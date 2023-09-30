@@ -1,0 +1,499 @@
+body {
+    padding: 85px;
+}
+#login-app,
+.External,
+body,
+html {
+    height: 100%;
+}
+.LoginLayout {
+    display: flex;
+    height: 100%;
+}
+
+.LoginLayout .LoginLayout-leftBanner {
+    flex: 1 !important;
+}
+
+.LoginLeftBanner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.iDMIRC {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    background-color: rgb(0, 40, 56);
+    overflow: hidden;
+    position: absolute;
+    z-index: -9999;
+    inset: 0px;
+}
+.gSJkEV {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+}
+.iyMoMC {
+    align-items: flex-start;
+    flex-direction: column;
+}
+.iyMoMC {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    padding-left: 96px;
+    padding-right: 96px;
+    display: flex;
+    height: 100%;
+    align-items: flex-start;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.cKDynS {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+}
+.dVFqFd img {
+    display: block;
+}
+
+.dVFqFd img {
+    width: auto;
+    max-width: 100%;
+    max-height: 36vh;
+    display: none;
+}
+
+.klMRqZ {
+    margin-left: 0px;
+    margin-top: 40px;
+}
+.bMlgID {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    max-width: 620px;
+}
+.dVFqFd .LoginUpsellBanner__HeaderText-sc-1xab2hr-0 {
+    font-size: 43px;
+    line-height: 50.6667px;
+}
+
+.hAGISW {
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 57px;
+    line-height: 64px;
+    font-weight: 800;
+}
+
+.klMRqZ {
+    margin-left: 0px;
+    margin-top: 40px;
+}
+.hcuLUi {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    max-width: 520px;
+}
+.dVFqFd .LoginUpsellBanner__BodyText-sc-1xab2hr-1 {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.geZbGf {
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    line-height: 26.6667px;
+    font-weight: 600;
+}
+.ccFsyw {
+    display: inline-block;
+}
+
+.gSJkEV {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+}
+.dVFqFd .LoginUpsellBanner__BodyText-sc-1xab2hr-1 {
+    font-size: 16px;
+    line-height: 24px;
+}
+.klMRqZ {
+    margin-left: 0px;
+    margin-top: 40px;
+}
+.jffoWx {
+    border-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+}
+.hMJwac {
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    border: 1px solid rgb(54, 65, 65);
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 16px;
+    white-space: nowrap;
+    font-weight: 700;
+    transition: all 0.15s linear 0s;
+    margin: 0px;
+    padding: 12px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+}
+.LoginLayout .LoginLayout-content {
+    display: flex;
+    position: relative;
+    height: 100%;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #cacccd;
+    /* margin-left: -155px; */
+}
+.LoginLayout .LoginLayout-languagePicker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 16px;
+}
+.vGmwo {
+    display: inline-block;
+}
+.cJFyiu {
+    position: relative;
+    width: 100%;
+    border: 1px solid rgb(110, 121, 122);
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(54, 65, 65);
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.7, 0.2) 0s,
+        box-shadow 0.15s cubic-bezier(0.4, 0, 0.7, 0.2) 0s;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    text-align: left;
+    margin: 0px;
+    padding: 8px 32px 8px 8px;
+    font-size: 13px;
+}
+.hqSABJ .styles__Container-sc-1v500hw-0 {
+    vertical-align: text-bottom;
+}
+.jfhzmF,
+.jfhzmF .Icon-svg {
+    height: 16px;
+    fill: currentcolor;
+}
+.jfhzmF {
+    display: inline-block;
+    color: inherit;
+    vertical-align: middle;
+    line-height: 16px;
+    margin-right: 8px;
+}
+v .javSsS {
+    position: absolute;
+    top: 48%;
+    right: 12px;
+    transform: translateY(-50%);
+    color: rgb(54, 65, 65);
+    pointer-events: none;
+}
+.hqSABJ .styles__Container-sc-1v500hw-0 {
+    vertical-align: text-bottom;
+}
+
+.dRDBra,
+.dRDBra .Icon-svg {
+    width: 16px;
+}
+.dRDBra,
+.dRDBra .Icon-svg {
+    height: 16px;
+    fill: currentcolor;
+}
+.dRDBra {
+    display: inline-block;
+    color: inherit;
+    vertical-align: middle;
+    line-height: 16px;
+}
+
+.dRDBra,
+.dRDBra .Icon-svg {
+    width: 16px;
+}
+
+.dRDBra,
+.dRDBra .Icon-svg {
+    height: 16px;
+    fill: currentcolor;
+}
+.LoginLayout .LoginContent {
+    width: 530px;
+}
+.LoginContent .LoginLogo {
+    margin-bottom: 12px;
+}
+.LoginLogo img {
+    height: 50px;
+}
+.LoginContent .LoginContent-info {
+    margin-bottom: 24px;
+}
+.gBkBky {
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+}
+.LoginContent .LoginContent-body > :not(:last-child) {
+    margin-bottom: 12px;
+}
+.hbqZgN {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.jYEMBA {
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    color: rgb(39, 51, 51);
+    font-size: 13px;
+    line-height: 21.3333px;
+    font-weight: 600;
+}
+
+.flPQcn {
+    box-sizing: border-box;
+    position: relative;
+}
+.flPQcn input {
+    border: 1px solid rgb(110, 121, 122);
+}
+
+.flPQcn input {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #ebe5e5;
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(54, 65, 65);
+    outline: none;
+    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.7, 0.2) 0s,
+        box-shadow 0.15s cubic-bezier(0.4, 0, 0.7, 0.2) 0s;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    appearance: none;
+    margin: 0px;
+    padding: 8px;
+    font-size: 13px;
+    line-height: 16px;
+}
+.LoginForm > div:not(:last-child) {
+    margin-bottom: 12px;
+}
+.hbqZgN {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.jYEMBA {
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    color: rgb(39, 51, 51);
+    font-size: 13px;
+    line-height: 21.3333px;
+    font-weight: 600;
+}
+.FormField-input {
+    margin: 8px 0;
+}
+
+.cUkVSe {
+    box-sizing: border-box;
+    position: relative;
+}
+.cUkVSe input {
+    border: 1px solid rgb(110, 121, 122);
+}
+.cUkVSe input {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(54, 65, 65);
+    outline: none;
+    transition: border-color 0.15s cubic-bezier(0.4, 0, 0.7, 0.2) 0s,
+        box-shadow 0.15s cubic-bezier(0.4, 0, 0.7, 0.2) 0s;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    appearance: none;
+    margin: 0px;
+    padding: 8px 40px 8px 8px;
+    font-size: 13px;
+    line-height: 16px;
+}
+.bzJEUA {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(54, 65, 65);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    right: 8px;
+}
+.vGmwo {
+    display: inline-block;
+}
+.juJqUt {
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    color: rgb(81, 94, 95);
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 16px;
+    white-space: nowrap;
+    font-weight: 700;
+    transition: all 0.15s linear 0s;
+    margin: 0px;
+    font-size: 13px;
+    padding: 0px;
+}
+.juJqUt .styles__Container-sc-1v500hw-0 {
+    vertical-align: text-bottom;
+}
+
+.dgzYOD,
+.dgzYOD .Icon-svg {
+    height: 16px;
+    fill: currentcolor;
+}
+.dgzYOD {
+    display: inline-block;
+    color: inherit;
+    vertical-align: middle;
+    line-height: 16px;
+}
+.f1 {
+    display: flex;
+}
+.InputField {
+    width: 50%;
+}
+.FormField-input {
+    margin-right: 10px;
+}
+.cDBdJO {
+    padding: 11px;
+    width: 113px;
+    border-radius: 3px;
+    border: 1px solid #726bae;
+    /* float: right; */
+    background-color: #00405a;
+    color: #ffff;
+}
+
+/* responsive */
+@media screen and (max-width: 767px) {
+    body {
+        padding: 20px;
+    }
+
+    .f1 {
+        display: block;
+    }
+
+    .LoginLayout .LoginContent {
+        width: auto;
+    }
+    .InputField {
+        width: 100%;
+    }
+}
+.shadow-sm {
+    display: none;
+}
+#login-app {
+    height: 560px;
+}
+.remr {
+    margin-left: 0;
+}
+.py-4 {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+/* mobile */
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+    .LoginLeftBanner {
+        display: none;
+    }
+}
