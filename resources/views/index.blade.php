@@ -613,7 +613,7 @@
 
 
 
-@include('Footer')
+@include('footer')
 {{-- rrom modal --}}
 <div class="modal fade" id="guest-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
