@@ -48,7 +48,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Price">Price</label>
-                                    <input type="text" class="form-control" name="price" placeholder="Enter Price" required>
+                                    <input type="text" class="form-control" name="price" placeholder="Enter Price"
+                                        required>
                                 </div>
                                 <div class="form-group">
                                     <label for="Price">Special Price</label>
@@ -57,25 +58,32 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="location">Location</label>
-                                    <input type="text" class="form-control" name="location" placeholder="Enter location" required>
+                                    <input type="text" class="form-control" name="location" placeholder="Enter location"
+                                        required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="rating">Star Rating</label>
+                                    <input type="text" class="form-control" name="rating" placeholder="Enter rating"
+                                        required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="geolocation">Geolocation</label>
 
-                                    <input class="form-control" id="search" type="text"
-                                        placeholder="Geo Location" autocomplete="on" name="geolocation" />
+                                    <input class="form-control" id="search" type="text" placeholder="Geo Location"
+                                        autocomplete="on" name="geolocation" />
 
                                     <!-- <input type="text" class="form-control" name="geolocation"
-                                        placeholder="Enter Geo Location" required> -->
+                                            placeholder="Enter Geo Location" required> -->
 
                                     <input type="hidden" value="" name="latitude" id="latitude">
                                     <input type="hidden" value="" name="longitude" id="longitude">
                                 </div>
                                 <div class="form-group">
                                     <label for="quote">Hotel Quote</label>
-                                    <input type="text" class="form-control" name="quote" placeholder="Enter Quote" >
-                                </div> 
+                                    <input type="text" class="form-control" name="quote" placeholder="Enter Quote">
+                                </div>
                                 <div class="form-group">
                                     <label>Hotel Type</label>
                                     <select class="form-control select2" style="width: 100%; height: 40px;"
@@ -249,21 +257,21 @@
         });
     </script> --}}
 
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb1d1Vqks7Wdf8OlUYl8BOGeFthpScZMY&libraries=places">
-                </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb1d1Vqks7Wdf8OlUYl8BOGeFthpScZMY&libraries=places">
+    </script>
 
-                <script>
-                    function initAutocomplete1() {
-                        const input1 = document.getElementById('search');
-                        const autocomplete1 = new google.maps.places.Autocomplete(input1);
-                        google.maps.event.addListener(autocomplete1, 'place_changed', function() {
-                            var place = autocomplete1.getPlace();
-                            document.getElementById('latitude').value = place.geometry.location.lat();
-                            document.getElementById('longitude').value = place.geometry.location.lng();
-                        });
-                    }
+    <script>
+        function initAutocomplete1() {
+            const input1 = document.getElementById('search');
+            const autocomplete1 = new google.maps.places.Autocomplete(input1);
+            google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+                var place = autocomplete1.getPlace();
+                document.getElementById('latitude').value = place.geometry.location.lat();
+                document.getElementById('longitude').value = place.geometry.location.lng();
+            });
+        }
 
-                   
-                    google.maps.event.addDomListener(window, 'load', initAutocomplete1);
-                </script>
+
+        google.maps.event.addDomListener(window, 'load', initAutocomplete1);
+    </script>
 @endsection

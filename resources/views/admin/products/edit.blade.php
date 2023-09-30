@@ -1,21 +1,32 @@
 @extends('admin.layout.master')
 
 @section('content')
+    <style type="text/css">
+        .container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            float: left;
+            margin-left: 10px;
+        }
 
-<style type="text/css">
-    .container { position: relative; width: 100px; height: 100px; float: left; margin-left: 10px; }
-.checkbox { position: absolute; bottom: 0px; right: 0px; }
+        .checkbox {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
 
-.checkbox {
-    top: 0;
-}
-[type='checkbox'], [type='radio']{
-    height: 2rem;
-    width: 2rem;
-    border-radius: 8px !important;
-}
+        .checkbox {
+            top: 0;
+        }
 
-</style>
+        [type='checkbox'],
+        [type='radio'] {
+            height: 2rem;
+            width: 2rem;
+            border-radius: 8px !important;
+        }
+    </style>
 
     <section class="content-header">
 
@@ -70,7 +81,6 @@
                         <!-- form start -->
 
                         <form action="{{ route('admin.product.update') }}" method="POST" enctype="multipart/form-data"
-
                             id="create">
 
                             <input type="hidden" name="product_id" value="{{ encrypt($product->id) }}">
@@ -84,7 +94,6 @@
                                     <label for="name">Property Name</label>
 
                                     <input type="text" class="form-control" name="name"
-
                                         placeholder="Enter Property Name" value="{{ $product->name }}">
 
                                 </div>
@@ -116,7 +125,6 @@
                                     <label for="Price">Price</label>
 
                                     <input type="text" class="form-control" name="price" placeholder="Enter Price"
-
                                         value="{{ $product->price }}">
 
                                 </div>
@@ -126,7 +134,6 @@
                                     <label for="Price">Special Price</label>
 
                                     <input type="text" class="form-control" name="special_price"
-
                                         placeholder="Enter Special Price" value="{{ $product->special_price }}">
 
                                 </div>
@@ -136,16 +143,25 @@
                                     <label for="location">Location</label>
 
                                     <input type="text" class="form-control" name="location" placeholder="Enter location"
-
                                         value="{{ $product->location }}">
 
                                 </div>
 
                                 <div class="form-group">
+
+                                    <label for="location">Star Rating</label>
+
+                                    <input type="text" class="form-control" name="rating" placeholder="Enter rating"
+                                        value="{{ $product->rating }}">
+
+                                </div>
+
+
+                                <div class="form-group">
                                     <label for="geolocation">Geolocation</label>
 
-                                    <input class="form-control" id="search" type="text"
-                                        placeholder="Geo Location" autocomplete="on" name="geolocation" value="{{ $product->searchlocation }}" />
+                                    <input class="form-control" id="search" type="text" placeholder="Geo Location"
+                                        autocomplete="on" name="geolocation" value="{{ $product->searchlocation }}" />
 
                                     <input type="hidden" value="{{ $latitude }}" name="latitude" id="latitude">
                                     <input type="hidden" value="{{ $longitude }}" name="longitude" id="longitude">
@@ -155,20 +171,19 @@
 
                                 <!-- <div class="form-group">
 
-                                    <label for="geolocation">Geolocation</label>
+                                        <label for="geolocation">Geolocation</label>
 
-                                    <input type="text" class="form-control" name="geolocation"
+                                        <input type="text" class="form-control" name="geolocation"
 
-                                        placeholder="Enter Geo Location" value="{{ $product->geolocation }}">
+                                            placeholder="Enter Geo Location" value="{{ $product->geolocation }}">
 
-                                </div> -->
+                                    </div> -->
 
                                 <div class="form-group">
 
                                     <label for="quote">Hotel Quote</label>
 
                                     <input type="text" class="form-control" name="quote" placeholder="Enter Quote"
-
                                         value="{{ $product->quote }}">
 
                                 </div>
@@ -178,23 +193,16 @@
                                     <label>Hotel Type</label>
 
                                     <select class="form-control select2" style="width: 100%; height: 40px;"
-
                                         name="hotel_type">
 
 
 
                                         @foreach ($types as $type)
-
                                             @if ($type->id == (int) $product->hotel_type)
-
                                                 <option value="{{ $type->id }}" selected>{{ $type->name }}</option>
-
                                             @else
-
                                                 <option value="{{ $type->id }}">{{ $type->name }}</option>
-
                                             @endif
-
                                         @endforeach
 
 
@@ -208,7 +216,6 @@
                                     <label for="checkin">Check In Time</label>
 
                                     <input type="text" class="form-control" name="checkin"
-
                                         placeholder="Enter Check In Time" value="{{ $product->checkin }}">
 
                                 </div>
@@ -218,7 +225,6 @@
                                     <label for="checkout">Check Out Time</label>
 
                                     <input type="text" class="form-control" name="checkout"
-
                                         placeholder="Enter Check Out Time" value="{{ $product->checkout }}">
 
                                 </div>
@@ -228,23 +234,16 @@
                                     <label>Amentities</label>
 
                                     <select class="select2" multiple="multiple" data-placeholder="Select a Amentity"
-
                                         style="width: 100%;" name="amentities[]">
 
                                         @foreach ($amentities as $amentity)
-
                                             @if (str_contains($product->amentities, $amentity->id))
-
                                                 <option value="{{ $amentity->id }}" selected>{{ $amentity->name }}
 
                                                 </option>
-
                                             @else
-
                                                 <option value="{{ $amentity->id }}">{{ $amentity->name }}</option>
-
                                             @endif
-
                                         @endforeach
 
                                     </select>
@@ -258,23 +257,16 @@
                                     <label>Menus</label>
 
                                     <select class="select2" multiple="multiple" data-placeholder="Select a Menu"
-
                                         style="width: 100%;" name="menus[]">
 
                                         @foreach ($menus as $menu)
-
                                             @if (str_contains($product->menus, $menu->id))
-
                                                 <option value="{{ $menu->id }}" selected>{{ $menu->name }}
 
                                                 </option>
-
                                             @else
-
                                                 <option value="{{ $menu->id }}">{{ $menu->name }}</option>
-
                                             @endif
-
                                         @endforeach
 
                                     </select>
@@ -312,31 +304,26 @@
                                     <div class="col-md-12" style="display: flex">
 
                                         @foreach ($image_datas as $key => $image)
-
-
-
-                                        <div class="col-md-2 ">
-                                           <img loading="auto" importance="auto"
-
+                                            <div class="col-md-2 ">
+                                                <img loading="auto" importance="auto"
                                                     src="{{ URL::asset('/uploads/' . $image['path']) }}" class="c-hwlvh4"
-
                                                     style="width: 280px; height: 280px;">
-                                            <input type="checkbox" name="del-images[{{$image['id']}}]" class="checkbox" id="check1" value="{{ $image['id'] }}" />
-                                        </div>
-                                        
+                                                <input type="checkbox" name="del-images[{{ $image['id'] }}]"
+                                                    class="checkbox" id="check1" value="{{ $image['id'] }}" />
+                                            </div>
+
 
 
 
                                             <!-- <div class="col-md-2">
 
-                                                <img loading="auto" importance="auto"
+                                                    <img loading="auto" importance="auto"
 
-                                                    src="{{ URL::asset('/uploads/' . $image['path']) }}" class="c-hwlvh4"
+                                                        src="{{ URL::asset('/uploads/' . $image['path']) }}" class="c-hwlvh4"
 
-                                                    style="width: 280px; height: 280px;">
+                                                        style="width: 280px; height: 280px;">
 
-                                            </div> -->
-
+                                                </div> -->
                                         @endforeach
 
                                     </div>
@@ -585,7 +572,8 @@
 
     </script> --}}
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb1d1Vqks7Wdf8OlUYl8BOGeFthpScZMY&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb1d1Vqks7Wdf8OlUYl8BOGeFthpScZMY&libraries=places">
+    </script>
 
     <script>
         function initAutocomplete1() {
@@ -598,9 +586,7 @@
             });
         }
 
-       
+
         google.maps.event.addDomListener(window, 'load', initAutocomplete1);
     </script>
-
 @endsection
-

@@ -63,7 +63,6 @@ class ProductController
             $geolocation = '';
         }
 
-
         DB::table('products')
             ->where('id', decrypt($input['product_id']))
             ->update(
@@ -73,6 +72,7 @@ class ProductController
                     'price'         => $input['price'],
                     'special_price' => $input['special_price'] ? $input['special_price'] : null,
                     'location'      => $input['location'],
+                    'rating'      => $input['rating'],
                     'geolocation'   => $geolocation,
                     'searchlocation' => $input['geolocation'] ? $input['geolocation'] : '',
                     'quote'         => $input['quote'] ? $input['quote'] : 'per room per night',
@@ -238,6 +238,7 @@ class ProductController
         $product->price = $input['price'];
         $product->special_price = $input['special_price'] ? $input['special_price'] : null;
         $product->location = $input['location'];
+        $product->rating = $input['rating'];
         $product->geolocation = $geolocation;
         $product->quote = $input['quote'] ? $input['quote'] : 'per room per night';
         $product->hotel_type = $input['hotel_type'];

@@ -176,6 +176,7 @@ class Product extends Model
             'checkin' => $hotel_data->checkin,
             'checkout' => $hotel_data->checkout,
             'location' => $hotel_data->location,
+            'rating' => $hotel_data->rating,
             'hotel_policy' => $hotel_data->hotel_policy,
             'latitude' => $latitude,
             'longitude' => $longitude,

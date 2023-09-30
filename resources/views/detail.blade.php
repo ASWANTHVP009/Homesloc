@@ -2,6 +2,32 @@
 <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" type="text/css">
 
 <!-- content -->
+<style>
+    .star-rating {
+        direction: rtl;
+        display: inline-block;
+        padding: 0px;
+    }
+
+    .star-rating input[type=radio] {
+        display: none;
+    }
+
+    .star-rating label {
+        color: #FFD700;
+        font-size: 20px;
+        padding: 0;
+        cursor: pointer;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover~label,
+    .star-rating input[type=radio]:checked~label {
+        color: #f2b600;
+    }
+</style>
 
 <div itemscope="true" itemtype="http://schema.org/Hotel">
 
@@ -82,6 +108,15 @@
                                         <meta itemprop="addressLocality" content="Kochi">
                                     </h2>
                                 </div>
+
+                                @if ($hotel_data['rating'])
+                                    <div class="c-88xksd" style="background: #ffffff; color: #000; font-size: 16px;">
+                                        <span>{{ $hotel_data['rating'] }}</span>
+                                        <div class="star-rating">
+                                            <label for="star-5" title="5 stars">★</label>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                             <div>
                                 <div><span itemprop="starRating" itemscope="true" itemtype="http://schema.org/Rating">
