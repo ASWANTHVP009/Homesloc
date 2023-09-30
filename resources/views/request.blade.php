@@ -78,7 +78,8 @@
                         HomesLoc! !!</h2>
                 </div>
                 <div class="LoginContent-body">
-                    <form method="POST" class="LoginForm" action="{{ route('callback') }}">
+                    <form method="POST" class="LoginForm" action="{{ route('callback') }}"
+                        enctype="multipart/form-data">
                         @csrf
 
                         <div id="step-1">
@@ -416,6 +417,30 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="f1">
+                                <div class="InputField">
+                                    <div class="FormField">
+                                        <div class="FormField-label">
+                                            <label color="text.headline" font-weight="semibold"
+                                                class="styles__Container-sc-99cuku-0 jYEMBA Label__StyledLabel-sc-dh0olx-0 hbqZgN">Property
+                                                Images *</label>
+                                        </div>
+                                        <div class="FormField-input">
+                                            <div class="styles__Container-sc-4stdun-0 flPQcn">
+                                                <input type="file" name="files[]" multiple>
+                                            </div>
+                                            <!-- @error('checkin')
+    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+@enderror -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                         <div style="text-align: center;">
 

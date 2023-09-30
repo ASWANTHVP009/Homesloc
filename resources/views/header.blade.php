@@ -83,11 +83,11 @@
                         <span>
                             <div class="oyo-row oyo-row--no-spacing headerSticky">
                                 <div class="oyo-cell headerSticky__leftHeader">
-                                    {{-- <a class="c-nn640c headerSticky__logoWrapper"
+                                    <a class="c-nn640c headerSticky__logoWrapper"
                                         href="\">
                                         <img src="uploads/images/logo.png"
                                         alt="Homesloc" class="mob-logo">
-                                    </a> --}}
+                                    </a>
                                 </div>
                                 <div class="oyo-cell headerSticky__rightHeader">
                                     <div class="headerSticky__menu">

@@ -153,6 +153,21 @@
 
                                 </div>
 
+                                @if ($image_datas)
+                                    <div class="form-group">
+                                        <label>Uploaded Images </label>
+                                        <div class="col-md-12" style="display: flex">
+                                            @foreach ($image_datas as $key => $image)
+                                                <div class="col-md-2 ">
+                                                    <img loading="auto" importance="auto"
+                                                        src="{{ URL::asset('/uploads/' . $image->name) }}"
+                                                        class="c-hwlvh4" style="width: 280px; height: 200px;">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+
                             </div>
                             <!-- /.card-body -->
                             {{-- <div class="card-footer">

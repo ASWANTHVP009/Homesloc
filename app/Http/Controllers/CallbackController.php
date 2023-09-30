@@ -7,6 +7,7 @@ use App\Models\Type;
 use App\Models\Amentity;
 use App\Models\Callback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CallbackController extends Controller
 {
@@ -38,6 +39,15 @@ class CallbackController extends Controller
         $input = request()->all();
 
         if (isset($input) && !empty($input)) {
+            // dd($request->file('files'));
+            $files = [];
+            if ($request->file('files')) {
+                foreach ($request->file('files') as $key => $file) {
+                    $file_name = time() . rand(1, 99) . '.' . $file->extension();
+                    $file->move(public_path('uploads'), $file_name);
+                    $files[] = $file_name;
+                }
+            }
 
             if (isset($input['amentities']) && !empty($input['amentities'])) {
                 $amentities = implode(',', $input['amentities']);
@@ -78,13 +88,18 @@ class CallbackController extends Controller
             $callback->menus = $menus;
             $callback->save();
 
-            // $callback = new Callback();
-            // $callback->firstname = $input['firstname'] ? $input['firstname'] : '';
-            // $callback->lastname = $input['lastname'] ? $input['lastname'] : '';
-            // $callback->email = $input['email'];
-            // $callback->mobile = $input['mobile'] ? $input['mobile'] : '';
-            // $callback->status = 0;
-            // $callback->save();
+            $request_id = $callback->id;
+
+            if (isset($files) && !empty($files)) {
+                foreach ($files as $file_data) {
+                    $imgs = [
+                        'user_id' => $request_id,
+                        'name' => $file_data,
+                    ];
+                    $insert[] = $imgs;
+                }
+                DB::table('request_images')->insert($insert);
+            }
 
             return view('callbackSuccess');
         } else {

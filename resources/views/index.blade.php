@@ -268,7 +268,32 @@
                             <div class="ProductBlock">
                                 <div itemscope="" itemtype="http://schema.org/Hotel"
                                     class="dwebCommonstyles__BaseColumnWrap-sc-112ty3f-2 SegmentSliderUIstyles__SliderListHoterOuterWrp-sc-ifa9fu-6 fVGWFo hdRKmz">
-                                    <a href="{{ url('/info') . '/' . $hotel['id'] }}">
+
+                                    <?php
+                                    // Get today's date
+                                    $today = new DateTime();
+                                    
+                                    // Get tomorrow's date
+                                    $tomorrow = new DateTime('tomorrow');
+                                    ?>
+
+                                    <a
+                                        href="{{ url('/info') .
+                                            '/' .
+                                            $hotel['id'] .
+                                            '?location=' .
+                                            app('request')->input('location') .
+                                            '&latitude=' .
+                                            app('request')->input('latitude') .
+                                            '&longitude=' .
+                                            app('request')->input('longitude') .
+                                            '&daterange=' .
+                                            $today->format('d/m/Y') .
+                                            '-' .
+                                            $today->format('d/m/Y') .
+                                            '&gt-count=2 &rm-count=1' }} 
+                                ">
+                                        {{-- <a href="{{ url('/info') . '/' . $hotel['id'] }}"> --}}
                                         <div
                                             class="SegmentSliderUIstyles__SliderListHotelImageWrap-sc-ifa9fu-7 jOIqHM">
                                             <img src="{{ URL::asset('/uploads/' . $hotel['path']) }}"

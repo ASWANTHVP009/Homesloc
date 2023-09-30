@@ -7,6 +7,7 @@ use App\Models\Type;
 use App\Models\Amentity;
 use App\Models\Callback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class RequestController extends Controller
@@ -36,7 +37,9 @@ class RequestController extends Controller
 
         $callbacks = Callback::find(decrypt($id));
 
-        return view('admin.request.edit', compact('callbacks'))->with('amentities', $amentities)->with('menus', $menus)->with('types', $types);
+        $images = DB::table('request_images')->select('user_id', 'name')->where('user_id', decrypt($id))->get();
+
+        return view('admin.request.edit', compact('callbacks'))->with('amentities', $amentities)->with('menus', $menus)->with('types', $types)->with('image_datas', $images);
     }
     public function update(Request $request)
     {
