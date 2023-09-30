@@ -657,7 +657,7 @@
                             <div class="c-nx2p0o">
 
                                 <span class="c-2jict3">
-                                    ₹{{ app('request')->input('rm-count') * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price']) }}
+                                    ₹{{ $total }}
                                 </span>
                             </div>
 

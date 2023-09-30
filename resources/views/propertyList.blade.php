@@ -294,8 +294,11 @@
                                             class="SegmentSliderUIstyles__SliderHotelNameInfoWrap-sc-ifa9fu-11 kOpxsp">
                                             <span itemprop="starRating" content="3"
                                                 class="SegmentSliderUIstyles__StarRatingWrapperSpan-sc-ifa9fu-12 fmnOYP">
+
                                                 <div>
-                                                    @include('star', ['rating' => 2])
+                                                    @include('star', [
+                                                        'rating' => $hotel['rating_count'],
+                                                    ])
                                                 </div>
                                             </span>
                                             <p itemprop="name"

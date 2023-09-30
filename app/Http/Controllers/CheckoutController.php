@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Razorpay\Api\Api;
+use DateTime;
 
+use Razorpay\Api\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,11 +29,25 @@ class CheckoutController extends Controller
 
         $hotel_data = DB::table('products')->select('price', 'special_price')->where('id', $property_id)->first();
 
+        $daterange = $request->get('daterange') ? $request->get('daterange') : '';
+        $room_count = $request->get('rm-count') ? $request->get('rm-count') : 1;
+        if (isset($daterange) && !empty($daterange)) {
+            $dates =  explode(" - ", $daterange);
+            $date1_str = $dates[0];
+            $date2_str = $dates[1];
+            $date1 = new DateTime($date1_str);
+            $date2 = new DateTime($date2_str);
+            $interval = $date1->diff($date2);
+            $days = $interval->days + 1;
+        } else {
+            $days = 1;
+        }
+
         if ($hotel_data->special_price != 0) {
-            $total = $room_count * $hotel_data->special_price;
+            $total = $days * ($room_count * $hotel_data->special_price);
             $unit_price = $hotel_data->special_price;
         } else {
-            $total = $room_count * $hotel_data->price;
+            $total = $days * ($room_count * $hotel_data->price);
             $unit_price = $hotel_data->price;
         }
         $orderid = rand(1111111, 9999999);

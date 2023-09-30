@@ -78,6 +78,9 @@ class Product extends Model
 
             $rate_cn = 0;
 
+            $image_data = new Product();
+            $rating_array =  $image_data->getTotalRatings($hotel->id);
+            $ratings =  $image_data->getRatings($hotel->id);
             $hotels_data[] = array(
                 'id' => $hotel->id,
                 'property_name' => $hotel->name,
@@ -86,9 +89,8 @@ class Product extends Model
                 'location' => $hotel->location,
                 // 'path' => 'files/9Rrrf-Kjll5kSg1ilKNTB5NvwiiHOP5pBkm1rBk-K3I=_plaintext_638270220129039908.jpg',
                 'quote' => $hotel->quote,
-                // 'rating_count' => $ratings->count,
-                'rating_count' => 0,
-                'average_rating' => $rate_cn,
+                'rating_count' => count($ratings),
+                'average_rating' => $rating_array['average_rating'],
                 'path' => $single_image_path,
             );
         }

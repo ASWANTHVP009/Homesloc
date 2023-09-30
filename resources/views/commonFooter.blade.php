@@ -171,6 +171,28 @@
                 </script>
 
                 {{-- Mobile Js --}}
+
+                <script>
+                    window.onload = function() {
+                        console.log('12121212112');
+                        var default_room = document.getElementById("mroom-count").innerText;
+                        console.log('dadasd' + default_room);
+                        var total_value = 0;
+                        for (i = 1; i <= default_room; i++) {
+                            var sum = document.getElementById("mguest-count-" + i).innerText;
+                            var total_value = parseInt(total_value) + parseInt(sum);
+
+                        }
+
+                        document.getElementById("mroom-guest").textContent = parseInt(total_value);
+                        document.getElementById("mroom-count").textContent = parseInt(default_room);
+                        // Main guest count update End
+                        // guest and room count for saving
+                        document.getElementById("mgt-count").value = parseInt(total_value);
+                        document.getElementById("rm-count").value = parseInt(default_room);
+                    };
+                </script>
+
                 <script type="text/javascript">
                     function addMRoom(mroom_row) {
                         if (mroom_row <= 5) {
@@ -199,6 +221,7 @@
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
+                            html += '<input type="hidden" id="mconfig-' + mroom_row + '" name="config-' + mroom_row + '" value="2">';
 
                             $('#mroom-add').append(html);
 
@@ -209,6 +232,8 @@
                             for (i = 1; i <= mroom_row; i++) {
                                 var sum = document.getElementById("mguest-count-" + i).innerText;
                                 var total_value = parseInt(total_value) + parseInt(sum);
+
+                                document.getElementById("mconfig-" + i).value = sum;
                             }
                             document.getElementById("mroom-guest").textContent = parseInt(total_value);
                             document.getElementById("mroom-count").textContent = parseInt(mroom_row);
@@ -239,6 +264,8 @@
                         for (i = 1; i <= mroom_row; i++) {
                             var sum = document.getElementById("mguest-count-" + i).innerText;
                             var total_value = parseInt(total_value) + parseInt(sum);
+
+                            document.getElementById("mconfig-" + i).value = sum;
                         }
                         document.getElementById("mroom-guest").textContent = parseInt(total_value);
                         document.getElementById("mroom-count").textContent = parseInt(mroom_row);
@@ -271,6 +298,8 @@
                             for (i = 1; i <= total_room_count; i++) {
                                 var sum = document.getElementById("mguest-count-" + i).innerText;
                                 var total_value = parseInt(total_value) + parseInt(sum);
+
+                                document.getElementById("mconfig-" + i).value = sum;
                             }
                             document.getElementById("mroom-guest").textContent = parseInt(total_value);
 
@@ -295,6 +324,8 @@
                             for (i = 1; i <= total_room_count; i++) {
                                 var sum = document.getElementById("mguest-count-" + i).innerText;
                                 var total_value = parseInt(total_value) + parseInt(sum);
+
+                                document.getElementById("mconfig-" + i).value = sum;
                             }
                             document.getElementById("mroom-guest").textContent = parseInt(total_value);
 
@@ -309,6 +340,7 @@
 
                 <script>
                     window.onload = function() {
+                        console.log('ddddddddddddddd');
 
                         var default_room = document.getElementById("room-count").innerText;
 

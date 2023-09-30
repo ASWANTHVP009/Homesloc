@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\AmentityController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\OrderController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -109,6 +111,15 @@ Route::name('admin.')->group(function () {
             Route::get('/delete/{id}', [RequestController::class, 'delete'])->name('delete');
         });
 
+        Route::name('order.')->prefix('admin/order')->group(function () {
+            Route::get('/', [BookingController::class, 'list'])->name('list');
+            Route::get('/create', [BookingController::class, 'create'])->name('create');
+            Route::post('/save', [BookingController::class, 'save'])->name('save');
+            Route::get('/edit/{id}', [BookingController::class, 'edit'])->name('edit');
+            Route::post('/update', [BookingController::class, 'update'])->name('update');
+            Route::get('/delete/{id}', [BookingController::class, 'delete'])->name('delete');
+        });
+
         Route::name('customer.')->prefix('admin/customer')->group(function () {
             Route::get('/', [CustomerController::class, 'list'])->name('list');
             Route::get('/create', [CustomerController::class, 'create'])->name('create');
@@ -119,7 +130,9 @@ Route::name('admin.')->group(function () {
         });
     });
 });
-
+Route::get('/asset/login', function () {
+    return redirect()->route('admin.login');
+});
 
 // Route::post(uri: 'upload', [\App\Http\Controllers\ProductController::class, 'store']);
 

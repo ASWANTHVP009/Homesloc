@@ -262,7 +262,7 @@
                                             <span>Sub Total</span>
                                         </div>
                                         <div class="c-11tk0uk" style="font-size: 15px;">
-                                            ₹{{ $total }}</div>
+                                            ₹{{ $total }}</div> 
                                     </div>
 
                                     <div class="c-18axi1k">

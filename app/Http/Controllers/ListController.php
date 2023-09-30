@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Nette\Utils\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -172,6 +173,10 @@ class ListController extends Controller
                 } else {
                     $single_image_path =  'placeholder.jpg';
                 }
+
+                $image_data = new Product();
+                $rating_array =  $image_data->getTotalRatings($hotel->id);
+
                 $hotels_data[] = array(
                     'id' => $hotel->id,
                     'property_name' => $hotel->name,
@@ -180,7 +185,7 @@ class ListController extends Controller
                     'location' => $hotel->location,
                     'path' => $single_image_path,
                     'quote' => $hotel->quote,
-                    'rating_count' => 0,
+                    'rating_count' => $rating_array['average_rating'],
                     'average_rating' => $rate_cn,
                 );
             }
@@ -197,12 +202,28 @@ class ListController extends Controller
         $images =  $image_data->getHotelImages($hotel_id);
         $hotel_data =  $image_data->getHotelDetails($hotel_id);
         $ratings =  $image_data->getRatings($hotel_id);
-
         $rating_array =  $image_data->getTotalRatings($hotel_id);
         $image =  $image_data->getHotelSingleImage($hotel_id);
-        // dd($image);
 
-        return view('detail')->with('images', $images)->with('image', $image)->with('hotel_data', $hotel_data)->with('ratings', $ratings)->with('rating_array', $rating_array);
+        $daterange = $request->get('daterange') ? $request->get('daterange') : '';
+        $room_count = $request->get('rm-count') ? $request->get('rm-count') : 1;
+        if (isset($daterange) && !empty($daterange)) {
+
+            $dates =  explode(" - ", $daterange);
+
+            $date1_str = (DateTime::createFromFormat("d/m/Y", $dates[0]))->format("Y-m-d");
+            $date2_str = (DateTime::createFromFormat("d/m/Y", $dates[1]))->format("Y-m-d");
+            $date1 = new DateTime($date1_str);
+
+            $date2 = new DateTime($date2_str);
+            $interval = $date1->diff($date2);
+            $days = $interval->days + 1;
+        } else {
+            $days = 1;
+        }
+        $total = $days * ($room_count * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price']));
+
+        return view('detail')->with('total', $total)->with('images', $images)->with('image', $image)->with('hotel_data', $hotel_data)->with('ratings', $ratings)->with('rating_array', $rating_array);
         // return view('detail', [
         //     'images' => $images,
         //     'image' => $image,

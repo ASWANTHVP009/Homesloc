@@ -165,8 +165,13 @@
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
-
                             $('#mroom-add').append(html);
+
+
+                            // mobile config add
+                            html_mob = '<input type="hidden" id="mconfig-' + mroom_row + '" name="config-' + mroom_row + '" value="2">';
+                            $('#mobile-config').append(html_mob);
+                            // mobile config end
 
                             document.getElementById('mdelete-room').setAttribute('onclick', 'mdeleteRoom(' + mroom_row + ')');
 
@@ -175,6 +180,9 @@
                             for (i = 1; i <= mroom_row; i++) {
                                 var sum = document.getElementById("mguest-count-" + i).innerText;
                                 var total_value = parseInt(total_value) + parseInt(sum);
+
+                                // update param guest count value
+                                document.getElementById("mconfig-" + i).value = sum;
                             }
                             document.getElementById("mroom-guest").textContent = parseInt(total_value);
                             document.getElementById("mroom-count").textContent = parseInt(mroom_row);
@@ -205,6 +213,8 @@
                         for (i = 1; i <= mroom_row; i++) {
                             var sum = document.getElementById("mguest-count-" + i).innerText;
                             var total_value = parseInt(total_value) + parseInt(sum);
+                            // update param guest count value
+                            document.getElementById("mconfig-" + i).value = sum;
                         }
                         document.getElementById("mroom-guest").textContent = parseInt(total_value);
                         document.getElementById("mroom-count").textContent = parseInt(mroom_row);
@@ -237,6 +247,8 @@
                             for (i = 1; i <= total_room_count; i++) {
                                 var sum = document.getElementById("mguest-count-" + i).innerText;
                                 var total_value = parseInt(total_value) + parseInt(sum);
+                                // update param guest count value
+                                document.getElementById("mconfig-" + i).value = sum;
                             }
                             document.getElementById("mroom-guest").textContent = parseInt(total_value);
 
@@ -261,6 +273,8 @@
                             for (i = 1; i <= total_room_count; i++) {
                                 var sum = document.getElementById("mguest-count-" + i).innerText;
                                 var total_value = parseInt(total_value) + parseInt(sum);
+                                // update param guest count value
+                                document.getElementById("mconfig-" + i).value = sum;
                             }
                             document.getElementById("mroom-guest").textContent = parseInt(total_value);
 

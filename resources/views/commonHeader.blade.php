@@ -37,48 +37,55 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                {{-- <button type="button" class="modal-title close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times; &nbsp; Add Room</span>
-                </button> --}}
                 Add Room
             </div>
             <form action="{{ url('/list') }}" method="GET">
                 <div class="modal-body">
                     <div id="mroom-add">
                         <?php $mroom_row = 1; ?>
-                        <div class="c-r37xpo" id="mroom_div-{{ $mroom_row }}">
-                            <div class="c-tjpp8s">
-                                <div class="c-2i8otg" id="mroom[{{ $mroom_row }}]">Room {{ $mroom_row }}</div>
-                                <button type="button"
-                                    class="guestRoomPickerPopUp__lessRoom guestRoomPickerPopUp__lessRoom--disabled"
-                                    fdprocessedid="98qndw" id="mdelete-room" style="color: black; text-align: right;"
-                                    onclick="mdeleteRoom({{ $mroom_row }});"><i class="fa fa-trash"
-                                        aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <div class="c-j4ddf8">
-                                <div class="c-mbh36o">Guests</div>
-                                <div class="c-1n2mv2k">
-                                    <span class="guestRoomPickerPopUp__minus" id="mminus-{{ $mroom_row }}"
-                                        onclick="mminus({{ $mroom_row }})">
-                                        -
-                                    </span>
-                                    <div class="c-4mc9w5" id="mguest-count-{{ $mroom_row }}">2</div>
-                                    <span class="guestRoomPickerPopUp__plus" id="mplus-{{ $mroom_row }}"
-                                        onclick="mplus({{ $mroom_row }})">
-                                        +
-                                    </span>
+                        @for ($i = 1; $i <= app('request')->input('rm-count'); $i++)
+                            <div class="c-r37xpo" id="mroom_div-{{ $i }}">
+                                <div class="c-tjpp8s">
+                                    <div class="c-2i8otg" id="mroom[{{ $i }}]">Room {{ $i }}
+                                    </div>
+                                    <button type="button"
+                                        class="guestRoomPickerPopUp__lessRoom guestRoomPickerPopUp__lessRoom--disabled"
+                                        fdprocessedid="98qndw" id="mdelete-room"
+                                        style="color: black; text-align: right;"
+                                        onclick="mdeleteRoom({{ $i }});"><i class="fa fa-trash"
+                                            aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <input type="hidden" name="config-{{ $i }}"
+                                    id="mconfig-{{ $i }}"
+                                    value="{{ app('request')->input('config-' . $i) }}">
+                                <div class="c-j4ddf8">
+                                    <div class="c-mbh36o">Guests</div>
+                                    <div class="c-1n2mv2k">
+                                        <span class="guestRoomPickerPopUp__minus" id="mminus-{{ $i }}"
+                                            onclick="mminus({{ $i }})">
+                                            -
+                                        </span>
+                                        <div class="c-4mc9w5" id="mguest-count-{{ $i }}">
+                                            {{ app('request')->input('config-' . $i) }}</div>
+                                        <span class="guestRoomPickerPopUp__plus" id="mplus-{{ $i }}"
+                                            onclick="mplus({{ $i }})">
+                                            +
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endfor
+
                     </div>
 
                     <div class="c-10x1sqe">
                         <?php $mroom_row = 2; ?>
+                        <?php $mroom_row = app('request')->input('rm-count'); ?>
                         <div class="ripple c-2grro3">
                             <button type="button" class="guestRoomPickerPopUp__addRoom" fdprocessedid="4v56i"
                                 id="madd-room" style="text-align: center; padding: 2px;"
-                                onclick="addMRoom({{ $mroom_row }});">Add
+                                onclick="addMRoom({{ $mroom_row + 1 }});">Add
                                 Room</button>
                         </div>
                     </div>
@@ -112,9 +119,9 @@
                         <span>
                             <div class="oyo-row oyo-row--no-spacing headerSticky">
                                 <div class="oyo-cell headerSticky__leftHeader">
-                                     <a class="c-nn640c headerSticky__logoWrapper" href=".\index.html">
+                                    <a class="c-nn640c headerSticky__logoWrapper" href=".\index.html">
                                         <img src="uploads/images/logo.png" alt="Homesloc" class="mob-logo">
-                                    </a> 
+                                    </a>
                                 </div>
                             </div>
                         </span>

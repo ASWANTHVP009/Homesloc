@@ -32,6 +32,8 @@
 
                         <button type="button" class="filter-bt" data-toggle="modal" data-target="#guest-modal">
                             <div class="c-1c7wg8">
+                                <input type="hidden" name="gt-count" id="mgt-count" value="2">
+                                <input type="hidden" name="rm-count" id="mrm-count" value="1">
                                 <span class="c-78mvka">
                                     <span id="mroom-count"> 1</span> {!! '&nbsp;' !!} Room
                                     <span class="c-kg79y4">·</span>
@@ -40,13 +42,17 @@
                             </div>
                         </button>
 
+                        {{-- modal config count --}}
+                        <div id="mobile-config">
+                            <input type="hidden" id="mconfig-1" name="config-1" value="2">
+                        </div>
+                        {{-- modal count edn --}}
+
                     </div>
                 </div>
             </div>
             <div class="c-l4zwwj">
                 <div>
-                    <input type="hidden" name="gt-count" id="mgt-count" value="2">
-                    <input type="hidden" name="rm-count" id="mrm-count" value="1">
                     <button class="u-textCenter searchButton searchButton--home Rtgyd" id="searchButton" type="submit">
                         Search
                     </button>
@@ -270,10 +276,7 @@
                                     class="dwebCommonstyles__BaseColumnWrap-sc-112ty3f-2 SegmentSliderUIstyles__SliderListHoterOuterWrp-sc-ifa9fu-6 fVGWFo hdRKmz">
 
                                     <?php
-                                    // Get today's date
                                     $today = new DateTime();
-                                    
-                                    // Get tomorrow's date
                                     $tomorrow = new DateTime('tomorrow');
                                     ?>
 
@@ -289,7 +292,7 @@
                                             app('request')->input('longitude') .
                                             '&daterange=' .
                                             $today->format('d/m/Y') .
-                                            '-' .
+                                            ' - ' .
                                             $today->format('d/m/Y') .
                                             '&gt-count=2 &rm-count=1' }} 
                                 ">
@@ -309,24 +312,12 @@
                                                 class="SegmentSliderUIstyles__SliderHotelNameInfoWrap-sc-ifa9fu-11 kOpxsp">
                                                 <span itemprop="starRating" content="3"
                                                     class="SegmentSliderUIstyles__StarRatingWrapperSpan-sc-ifa9fu-12 fmnOYP">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 16"
-                                                        class="HappyRatingStarIcon-sc-qukodd-1 btqzjJ">
-                                                        <path fill-rule="evenodd"
-                                                            d="M8.172 13.282l3.964 2.434c.726.446 1.614-.213 1.423-1.047l-1.05-4.577 3.505-3.084c.64-.562.296-1.629-.545-1.696l-4.613-.398L9.051.589c-.325-.785-1.432-.785-1.757 0L5.489 4.904l-4.613.398C.036 5.37-.31 6.436.33 6.999l3.505 3.083-1.05 4.577c-.191.834.697 1.494 1.423 1.048l3.963-2.425z">
-                                                        </path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 16"
-                                                        class="HappyRatingStarIcon-sc-qukodd-1 btqzjJ">
-                                                        <path fill-rule="evenodd"
-                                                            d="M8.172 13.282l3.964 2.434c.726.446 1.614-.213 1.423-1.047l-1.05-4.577 3.505-3.084c.64-.562.296-1.629-.545-1.696l-4.613-.398L9.051.589c-.325-.785-1.432-.785-1.757 0L5.489 4.904l-4.613.398C.036 5.37-.31 6.436.33 6.999l3.505 3.083-1.05 4.577c-.191.834.697 1.494 1.423 1.048l3.963-2.425z">
-                                                        </path>
-                                                    </svg>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 16"
-                                                        class="HappyRatingStarIcon-sc-qukodd-1 btqzjJ">
-                                                        <path fill-rule="evenodd"
-                                                            d="M8.172 13.282l3.964 2.434c.726.446 1.614-.213 1.423-1.047l-1.05-4.577 3.505-3.084c.64-.562.296-1.629-.545-1.696l-4.613-.398L9.051.589c-.325-.785-1.432-.785-1.757 0L5.489 4.904l-4.613.398C.036 5.37-.31 6.436.33 6.999l3.505 3.083-1.05 4.577c-.191.834.697 1.494 1.423 1.048l3.963-2.425z">
-                                                        </path>
-                                                    </svg>
+
+                                                    <div>
+                                                        @include('star', [
+                                                            'rating' => $hotel['average_rating'],
+                                                        ])
+                                                    </div>
                                                 </span>
                                                 <p itemprop="name"
                                                     class="SegmentSliderUIstyles__SliderHotelNameText-sc-ifa9fu-14 bfQYZk">
@@ -619,12 +610,7 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                {{-- <button type="button" class="modal-title close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times; &nbsp; Add Room</span>
-                </button> --}}
-                Add Room
-            </div>
+            <div class="modal-header"> Add Room </div>
             <form action="{{ url('/list') }}" method="GET">
                 <div class="modal-body">
                     <div id="mroom-add">
@@ -655,7 +641,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <input type="hidden" id="mconfig-1" name="config-1" value="2">
                     <div class="c-10x1sqe">
                         <?php $mroom_row = 2; ?>
                         <div class="ripple c-2grro3">

@@ -190,8 +190,8 @@
                                 @foreach ($order_history as $order_history_data)
                                     <div class="col-md-6 book-container">
                                         <div class="col-md-6 book-list">
-                                            <img src="https://images.oyoroomscdn.com/uploads/hotel_image/105066/medium/611ca00b9b9b3c46.jpg"
-                                                width="200">
+                                            <img src="{{ URL::asset('/uploads/' . $order_history_data['image']) }}"
+                                                width="200" height="150">
                                         </div>
                                         <div class="col-md-6 book-list book-text">
                                             <p><b>Hotel Name :</b> {{ $order_history_data['property_name'] }}</p>
