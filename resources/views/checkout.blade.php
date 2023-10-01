@@ -262,7 +262,7 @@
                                             <span>Sub Total</span>
                                         </div>
                                         <div class="c-11tk0uk" style="font-size: 15px;">
-                                            ₹{{ $total }}</div> 
+                                            ₹{{ $total }}</div>
                                     </div>
 
                                     <div class="c-18axi1k">
@@ -297,8 +297,8 @@
             $('#err-name').hide();
         }
 
-        // if (email === null || email == '' || !isValidEmail(email)) {
-        if (email === null || email == '') {
+        if (email === null || email == '' || !isValidEmail(email)) {
+            // if (email === null || email == '') {
             $('#err-email').show();
             error_value = 1;
 
@@ -306,7 +306,7 @@
             $('#err-email').hide();
         }
 
-        if (mobile === null || mobile == '') {
+        if (mobile === null || mobile == '' || mobile.length < 10 || mobile.length > 10 || isNaN(mobile)) {
             $('#err-mobile').show();
             error_value = 1;
 

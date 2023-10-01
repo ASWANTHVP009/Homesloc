@@ -119,8 +119,10 @@
                         <span>
                             <div class="oyo-row oyo-row--no-spacing headerSticky">
                                 <div class="oyo-cell headerSticky__leftHeader">
-                                    <a class="c-nn640c headerSticky__logoWrapper" href=".\index.html">
-                                        <img src="uploads/images/logo.png" alt="Homesloc" class="mob-logo">
+                                    <a class="c-nn640c headerSticky__logoWrapper"
+                                        href="\">
+                                        <img src="{{ asset('uploads/images/logo.png') }}"
+                                        alt="Homesloc" class="mob-logo">
                                     </a>
                                 </div>
                             </div>
@@ -214,10 +216,10 @@
                         <div class="searchContainer HigTrfe" data-cms-id="300457" data-cms-template="cWEB-oyoSpaces">
                             <div class=""
                                 style="position: relative;float: left; margin-right: 33px; margin-left: -50px;margin-top: 7px;">
-                                {{-- <a href="\">
+                                <a href="\">
                                 <img src="{{ asset('uploads/images/wlogo.png') }}"
                                     alt="Homeslocss" class="mob-logo">
-                                </a> --}}
+                                </a>
                             </div>
                             <div class="searchContainer__wrapper">
                                 <div class="searchContainer__searchWidgetContainer">

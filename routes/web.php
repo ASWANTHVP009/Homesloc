@@ -29,10 +29,12 @@ Route::get("/", function () {
     $mobile_banners =  $banners->getMobileBanners();
     // Home Hotel List
     $hotel_data =  $banners->getHotelBasicdatas();
+    $rec_hotel_data =  $banners->recommendedHotels();
     return view('index', [
         'banners' => $banners_data,
         'mobile_banners' => $mobile_banners,
         'hotels' => $hotel_data,
+        'rec_hotel_data' => $rec_hotel_data,
     ]);
 });
 

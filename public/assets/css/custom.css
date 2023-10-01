@@ -373,8 +373,20 @@ button:focus {
 #mobile-register-banner {
     display: none;
 }
+#mob-slide2 {
+    display: none;
+}
 /* mobile */
 @media only screen and (min-width: 321px) and (max-width: 768px) {
+    #mob-slide2 {
+        display: block;
+    }
+    .slick-arrow {
+        display: none !important;
+    }
+    .fmnOYP {
+        margin-right: 0rem;
+    }
     .bfQYZk {
         display: inline-block;
         -webkit-line-clamp: 2;

@@ -394,6 +394,133 @@
 </section>
 <!-- slider -->
 
+<!-- slider 2-->
+<section data-testid="segment-slider-ui" class="SegmentSliderUIstyles__SliderOuterWrapper-sc-ifa9fu-0 hAOwmo"
+    id="mob-slide2">
+    <div
+        class="dwebCommonstyles__CenteredSpaceWrap-sc-112ty3f-0 SegmentSliderUIstyles__SliderHeaderWrapper-sc-ifa9fu-24 eHRHNU eWGEDe">
+        <h3 class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 hJuprJ">Recommended Hotels</h3>
+    </div>
+    <div class="SegmentSliderUIstyles__SliderMainContentWrapper-sc-ifa9fu-16 dBbiqB">
+        <div class="SegmentSliderUIstyles__SliderHotelsOuterWrapper-sc-ifa9fu-1 gkiHfw">
+            <div class="SegmentSliderUIstyles__SliderHotelInnerWrapper-sc-ifa9fu-4 lpbtHk">
+                <div class="Container">
+                    <div class="SlickCarousel1">
+                        @foreach ($rec_hotel_data as $rec_hotel)
+                            <!-- Item -->
+                            <div class="ProductBlock">
+                                <div itemscope="" itemtype="http://schema.org/Hotel"
+                                    class="dwebCommonstyles__BaseColumnWrap-sc-112ty3f-2 SegmentSliderUIstyles__SliderListHoterOuterWrp-sc-ifa9fu-6 fVGWFo hdRKmz">
+                                    <?php
+                                    $today = new DateTime();
+                                    $tomorrow = new DateTime('tomorrow');
+                                    ?>
+                                    <a
+                                        href="{{ url('/info') .
+                                            '/' .
+                                            $rec_hotel['id'] .
+                                            '?location=' .
+                                            app('request')->input('location') .
+                                            '&latitude=' .
+                                            app('request')->input('latitude') .
+                                            '&longitude=' .
+                                            app('request')->input('longitude') .
+                                            '&daterange=' .
+                                            $today->format('d/m/Y') .
+                                            ' - ' .
+                                            $today->format('d/m/Y') .
+                                            '&gt-count=2 &rm-count=1' }} 
+                                ">
+                                        <div
+                                            class="SegmentSliderUIstyles__SliderListHotelImageWrap-sc-ifa9fu-7 jOIqHM">
+                                            <img src="{{ URL::asset('/uploads/' . $rec_hotel['path']) }}"
+                                                alt="{{ URL::asset('/uploads/' . $rec_hotel['path']) }}"
+                                                class="SegmentSliderUIstyles__SliderListHotelImg-sc-ifa9fu-8 gOLvTW"
+                                                data-testid="" itemprop="image">
+                                        </div>
+                                    </a>
+                                    <div class="SegmentSliderUIstyles__SliderHotelInfoWrapper-sc-ifa9fu-9 kkmhtq">
+                                        <div
+                                            class="SegmentSliderUIstyles__SliderHotelInfoInnerWrapper-sc-ifa9fu-10 hYvijQ">
+                                            <div
+                                                class="SegmentSliderUIstyles__SliderHotelNameInfoWrap-sc-ifa9fu-11 kOpxsp">
+                                                <span itemprop="starRating" content="3"
+                                                    class="SegmentSliderUIstyles__StarRatingWrapperSpan-sc-ifa9fu-12 fmnOYP">
+
+                                                    <div>
+                                                        @include('star', [
+                                                            'rating' => $rec_hotel['average_rating'],
+                                                        ])
+                                                    </div>
+                                                </span>
+                                                <p itemprop="name"
+                                                    class="SegmentSliderUIstyles__SliderHotelNameText-sc-ifa9fu-14 bfQYZk">
+                                                    {{ $rec_hotel['property_name'] }} </p>
+                                                <span itemprop="address"
+                                                    class="SegmentSliderUIstyles__SliderHotelLocationText-sc-ifa9fu-15 bgFBTe">{{ $rec_hotel['location'] }}</span>
+                                                <div
+                                                    class="ReviewAndRatingsstyles__ReviewAndRatingOuterContainer-sc-1nxmeoo-2 gwqHKN">
+                                                    <div
+                                                        class="ReviewAndRatingsstyles__HotelTotalReviewWrapper-sc-1nxmeoo-1 ixtzNN">
+                                                        <div
+                                                            class="ReviewAndRatingsstyles__TotalReviewOuterDiv-sc-1nxmeoo-9 fIKiFm">
+                                                            <div
+                                                                class="ReviewAndRatingsstyles__AverageReviewWrapper-sc-1nxmeoo-7 cWfjjH">
+                                                                <span content="3.7"
+                                                                    class="ReviewAndRatingsstyles__AverageReviewText-sc-1nxmeoo-10 ZTpPO">{{ $rec_hotel['average_rating'] }}/5</span>
+                                                            </div>
+                                                            <span
+                                                                class="ReviewAndRatingsstyles__ReviewTestStyles-sc-1nxmeoo-8 bnqyMS"></span>
+                                                        </div>
+                                                        <span content="3.7" data-testid="ratingCount"
+                                                            class="ReviewAndRatingsstyles__TotalReviewCountText-sc-1nxmeoo-5 jjZSih">{{ $rec_hotel['rating_count'] }}
+                                                            Ratings</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="SegmentSliderUIstyles__SliderHotelPriceInfoWrap-sc-ifa9fu-13 cGZutD">
+                                                <div class="SegmentSliderUIstyles__PriceOuterWrap-sc-ifa9fu-17 fyyhRj">
+                                                    <div
+                                                        class="SegmentSliderUIstyles__OriginalPriceStrike-sc-ifa9fu-18 dTqWxL">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                            class="HappyRupeeIcon-sc-em2g9m-1 SegmentSliderUIstyles__RuppeStrike-sc-ifa9fu-19 hEpHNM jDAIke">
+                                                            <path
+                                                                d="M21.482 7.945h3.536c.982 0 1.786.818 1.786 1.818s-.804 1.818-1.786 1.818h-3.536a9.429 9.429 0 01-2.625 5.109 9.509 9.509 0 01-6.75 2.891h-.679l9.661 9.255c0 .018.018.018.036.036.679.673.696 1.782.036 2.473a1.742 1.742 0 01-2.518.091L5.714 19a1.78 1.78 0 01-.554-1.364c.036-.964.839-1.727 1.786-1.691h5.179a5.902 5.902 0 004.214-1.836 6.327 6.327 0 001.482-2.527H6.946c-.982 0-1.786-.818-1.786-1.818s.804-1.818 1.786-1.818h10.875C17 5.455 14.714 3.782 12.125 3.764H6.946c-.982 0-1.786-.818-1.786-1.818S5.964.128 6.946.128h18.071c.982 0 1.786.818 1.786 1.818s-.804 1.818-1.804 1.818h-5.464a8.504 8.504 0 011.946 4.182z">
+                                                            </path>
+                                                        </svg>{{ $rec_hotel['price'] }}
+                                                    </div>
+                                                    <h3 itemprop="priceRange"
+                                                        class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 hJuprJ">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                                            color="#e47544"
+                                                            class="HappyRupeeIcon-sc-em2g9m-1 SegmentSliderUIstyles__RuppeAskingPrice-sc-ifa9fu-20 hEpHNM eAomPZ">
+                                                            <path
+                                                                d="M21.482 7.945h3.536c.982 0 1.786.818 1.786 1.818s-.804 1.818-1.786 1.818h-3.536a9.429 9.429 0 01-2.625 5.109 9.509 9.509 0 01-6.75 2.891h-.679l9.661 9.255c0 .018.018.018.036.036.679.673.696 1.782.036 2.473a1.742 1.742 0 01-2.518.091L5.714 19a1.78 1.78 0 01-.554-1.364c.036-.964.839-1.727 1.786-1.691h5.179a5.902 5.902 0 004.214-1.836 6.327 6.327 0 001.482-2.527H6.946c-.982 0-1.786-.818-1.786-1.818s.804-1.818 1.786-1.818h10.875C17 5.455 14.714 3.782 12.125 3.764H6.946c-.982 0-1.786-.818-1.786-1.818S5.964.128 6.946.128h18.071c.982 0 1.786.818 1.786 1.818s-.804 1.818-1.804 1.818h-5.464a8.504 8.504 0 011.946 4.182z">
+                                                            </path>
+                                                        </svg>
+                                                        <span
+                                                            style="color: rgb(228, 117, 68);">{{ $rec_hotel['special_price'] }}</span>
+                                                    </h3>
+                                                    <p class="SegmentSliderUIstyles__PerNightText-sc-ifa9fu-23 erqdGN">
+                                                        <strong>1 room</strong>
+                                                        <span>per night</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- slider -->
+
 <div class="bannerStrip reg-seller" data-cms-id="763934" data-cms-template="cWeb-BannerCarousel"
     id="mobile-register-banner">
     <a href="/join"><img src="{{ URL::asset('/uploads/property.jpg') }}" class="c-2tglnv banner__cardImage"></a>
@@ -689,6 +816,40 @@
             appendArrows: $(".Container .Head .Arrows"), // Class For Arrows Buttons
             prevArrow: '<span class="Slick-Prev"></span>',
             nextArrow: '<span class="Slick-Next"></span>',
+            easing: "linear",
+            responsive: [{
+                    breakpoint: 801,
+                    settings: {
+                        slidesToShow: 3,
+                    }
+                },
+                {
+                    breakpoint: 641,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+                },
+                {
+                    breakpoint: 481,
+                    settings: {
+                        slidesToShow: 1,
+                    }
+                },
+            ],
+        })
+    })
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".SlickCarousel1").slick({
+            rtl: false, // If RTL Make it true & .slick-slide{float:right;}
+            autoplay: true,
+            autoplaySpeed: 5000, //  Slide Delay
+            speed: 800, // Transition Speed
+            slidesToShow: 3, // Number Of Carousel
+            slidesToScroll: 1, // Slide To Move 
+            pauseOnHover: false,
             easing: "linear",
             responsive: [{
                     breakpoint: 801,

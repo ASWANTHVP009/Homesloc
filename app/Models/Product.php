@@ -44,6 +44,40 @@ class Product extends Model
         $amentities = DB::table('menus')->select('id', 'name')->get();
         return $amentities;
     }
+
+    public function recommendedHotels()
+    {
+        $hotels = DB::table('products')->select('id', 'name', 'price', 'location', 'special_price', 'quote')->where('hotel_type', 6)->get();
+        $hotels_data = [];
+        foreach ($hotels as $hotel) {
+
+            $image_path = DB::table('images')->select('name')->where('property_id', $hotel->id)->first();
+
+            if (isset($image_path) && !empty($image_path)) {
+                $single_image_path =  $image_path->name;
+            } else {
+                $single_image_path =  'placeholder.jpg';
+            }
+
+            $rate_cn = 0;
+            $image_data = new Product();
+            $rating_array =  $image_data->getTotalRatings($hotel->id);
+            $ratings =  $image_data->getRatings($hotel->id);
+            $hotels_data[] = array(
+                'id' => $hotel->id,
+                'property_name' => $hotel->name,
+                'price' => $hotel->price,
+                'special_price' => $hotel->special_price,
+                'location' => $hotel->location,
+                'quote' => $hotel->quote,
+                'rating_count' => count($ratings),
+                'average_rating' => $rating_array['average_rating'],
+                'path' => $single_image_path,
+            );
+        }
+        return $hotels_data;
+    }
+
     public function getHotelBasicdatas()
     {
         $hotels = DB::table('products')->select('id', 'name', 'price', 'location', 'special_price', 'quote')->get();

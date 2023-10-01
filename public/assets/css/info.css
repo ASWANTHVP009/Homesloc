@@ -1930,3 +1930,8 @@ a {
     max-width: max-content;
     padding: 0;
 }
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+    .c-1gdxnl5 {
+        width: auto;
+    }
+}
