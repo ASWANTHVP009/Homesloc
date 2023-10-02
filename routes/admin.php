@@ -30,6 +30,20 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+Route::name('asset.')->group(
+    function () {
+        Route::get('/asset/login', [LoginController::class, 'login'])->name('login');
+        Route::post('/asset/do-login', [LoginController::class, 'doLogin'])->name('dologin');
+
+        Route::middleware('auth:asset')->group(
+            function () {
+                Route::get('/asset/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+                Route::get('/asset/logout', [LoginController::class, 'logout']);
+            }
+        );
+    }
+);
+
 Route::name('admin.')->group(function () {
     Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
     Route::post('/admin/do-login', [LoginController::class, 'doLogin'])->name('dologin');
@@ -130,9 +144,9 @@ Route::name('admin.')->group(function () {
         });
     });
 });
-Route::get('/asset/login', function () {
-    return redirect()->route('admin.login');
-});
+// Route::get('/asset/login', function () {
+//     return redirect()->route('admin.login');
+// });
 
 // Route::post(uri: 'upload', [\App\Http\Controllers\ProductController::class, 'store']);
 

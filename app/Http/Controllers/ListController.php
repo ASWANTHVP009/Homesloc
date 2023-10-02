@@ -45,9 +45,12 @@ class ListController extends Controller
         $distance = 0;
         $input = $request->all();
 
+
         $search_latitude = isset($input['latitude']) ? $input['latitude'] : '';
         $search_longitude = isset($input['longitude']) ? $input['longitude'] : '';
         $price_values = [];
+        $review_values = [];
+
         foreach ($input as $key => $item) {
             if ($key[0] == "t") {
                 $types[] = explode("_", $key)[1];
@@ -55,6 +58,8 @@ class ListController extends Controller
                 $price_values[] = explode("_", $key)[1];
             } else if ($key[0] == "a") {
                 $amentities_values[] = explode("_", $key)[1];
+            } else if (substr($key, 0, 2) == "rw") {
+                $review_values[] = explode("_", $key)[1];
             }
         }
 
@@ -69,7 +74,6 @@ class ListController extends Controller
         $amentities = DB::table('amentities')->select('id', 'name')->get();
 
         $price_ranges = array(
-
             '1' => array(
                 'id' => 1,
                 'name' => "Upto ₹2000"
@@ -90,10 +94,40 @@ class ListController extends Controller
                 'id' => 5,
                 'name' => "₹8000 +"
             ),
+        );
+
+        $review_ranges = array(
+            '1' => array(
+                'id' => 1,
+                'name' => "★"
+            ),
+            '2' => array(
+                'id' => 2,
+                'name' => "★ ★"
+            ),
+            '3' => array(
+                'id' => 3,
+                'name' => "★ ★ ★"
+            ),
+            '4' => array(
+                'id' => 4,
+                'name' => "★ ★ ★ ★"
+            ),
+            '5' => array(
+                'id' => 5,
+                'name' => "★ ★ ★ ★ ★"
+            ),
 
         );
         $query = DB::table('products');
         $query->select('id', 'name', 'price', 'location', 'geolocation', 'special_price', 'quote');
+
+        // review
+        if (isset($review_values) && !empty($review_values)) {
+            $query->addSelect(DB::raw('(SELECT AVG(rating) FROM reviews WHERE property_id = products.id) as average_rating'));
+        }
+        // review End
+
         if (!empty($type_values)) {
             $query->whereIn('hotel_type', explode(',', $type_values));
         }
@@ -105,6 +139,7 @@ class ListController extends Controller
                 }
             });
         }
+
         if (isset($price_values) && !empty($price_values)) {
             foreach ($price_values as $pvalue) {
                 if ($pvalue == 1) {
@@ -121,6 +156,22 @@ class ListController extends Controller
             }
         }
 
+        // if (isset($review_values) && !empty($review_values)) {
+        //     foreach ($review_values as $rvalue) {
+        //         if ($rvalue == 1) {
+        //             $rw1 = 1;
+        //         } else if ($rvalue == 2) {
+        //             $rw2 = 1;
+        //         } else if ($rvalue == 3) {
+        //             $rw3 = 1;
+        //         } else if ($rvalue == 4) {
+        //             $rw4 = 1;
+        //         } else if ($rvalue == 5) {
+        //             $rw5 = 1;
+        //         }
+        //     }
+        // }
+
         if (isset($p1) && !empty($p1)) {
             $query->orWhereBetween('special_price', [0, 2000]);
         }
@@ -136,6 +187,13 @@ class ListController extends Controller
         if (isset($p5) && !empty($p5)) {
             $query->orWhereBetween('special_price', [8001, 100000]);
         }
+
+        // review
+        if (isset($review_values) && !empty($review_values)) {
+            $query->havingRaw('ROUND(average_rating) IN (' . implode(',', $review_values) . ')');
+        }
+        // review end
+
         if (isset($input['sort']) && !empty($input['sort'])) {
             // 1.popularity,  2.rating ,3.price low-high, 4.price high-low
             if ($input['sort'] == 1) {
@@ -149,6 +207,8 @@ class ListController extends Controller
             }
         }
         $hotels = $query->get();
+        // $hotels = $query->toSql();
+        // dd($hotels);
         // $totalCount = $hotels->count();
         $hotels_data = [];
         foreach ($hotels as $hotel) {
@@ -191,7 +251,7 @@ class ListController extends Controller
             }
         }
         $totalCount = count($hotels_data);
-        return view('propertyList')->with('price_ranges', $price_ranges)->with('amentities', $amentities)->with('hotel_types', $hotel_types)->with('hotels', $hotels_data)->with('totalCount', $totalCount);
+        return view('propertyList')->with('review_ranges', $review_ranges)->with('price_ranges', $price_ranges)->with('amentities', $amentities)->with('hotel_types', $hotel_types)->with('hotels', $hotels_data)->with('totalCount', $totalCount);
     }
 
     public function info(Request $request)
@@ -211,16 +271,22 @@ class ListController extends Controller
 
             $dates =  explode(" - ", $daterange);
 
-            $date1_str = (DateTime::createFromFormat("d/m/Y", $dates[0]))->format("Y-m-d");
-            $date2_str = (DateTime::createFromFormat("d/m/Y", $dates[1]))->format("Y-m-d");
+            // $date1_str = (DateTime::createFromFormat("d/m/Y", $dates[0]))->format("Y-m-d");
+            // $date2_str = (DateTime::createFromFormat("d/m/Y", $dates[1]))->format("Y-m-d");
+
+            $date1_str = (DateTime::createFromFormat("d/m/Y", $dates[0]))->format("m-d-Y");
+            $date2_str = (DateTime::createFromFormat("d/m/Y", $dates[1]))->format("m-d-Y");
+
             $date1 = new DateTime($date1_str);
 
             $date2 = new DateTime($date2_str);
+
             $interval = $date1->diff($date2);
             $days = $interval->days + 1;
         } else {
             $days = 1;
         }
+
         $total = $days * ($room_count * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price']));
 
         return view('detail')->with('total', $total)->with('images', $images)->with('image', $image)->with('hotel_data', $hotel_data)->with('ratings', $ratings)->with('rating_array', $rating_array);

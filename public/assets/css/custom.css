@@ -378,6 +378,11 @@ button:focus {
 }
 /* mobile */
 @media only screen and (min-width: 321px) and (max-width: 768px) {
+    .mob-filter-stat {
+        height: 90vh;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+    }
     #mob-slide2 {
         display: block;
     }

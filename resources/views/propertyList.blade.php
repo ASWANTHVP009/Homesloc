@@ -81,6 +81,50 @@
                     <div class="filters__wrapper">
                         <div class="filters__item">
                             <div class="checkBoxGroup">
+                                <h4>Price</h4>
+                                @foreach ($review_ranges as $review_range)
+                                    <label class="checkbox" htmlfor="{{ $review_range['id'] }}">
+                                        @if (request("rw_{$review_range['id']}") == 'on')
+                                            <input class=" " checked="" id="{{ $review_range['id'] }}"
+                                                name="rw_{{ $review_range['id'] }}" icon_id="143" excludequery="true"
+                                                type="checkbox">
+                                        @else
+                                            <input class=" " id="{{ $review_range['id'] }}"
+                                                name="rw_{{ $review_range['id'] }}" icon_id="143" excludequery="true"
+                                                type="checkbox">
+                                        @endif
+
+                                        <span lazyload="true"
+                                            class="checkbox__checkmark checkbox__checkmark--  c-1m1i8cc"><!--?xml version='1.0' encoding='UTF-8'?-->
+                                            <svg viewBox="0 0 12 9" version="1.1" id="checkmark"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <g id="Arash" stroke="none" stroke-width="1" fill="none"
+                                                    fill-rule="evenodd">
+                                                    <g id="Listing_ListView"
+                                                        transform="translate(-22.000000, -260.000000)" fill="white">
+                                                        <g id="component/filters"
+                                                            transform="translate(0.000000, 96.000000)">
+                                                            <g id="ic/checkbox/inactive-copy-4"
+                                                                transform="translate(20.000000, 160.000000)">
+                                                                <polygon id="Fill-3-Copy-9"
+                                                                    points="2 8.68138196 3.20857143 7.46353167 6.28571429 10.5556622 12.7914286 4 14 5.22648752 6.28571429 13">
+                                                                </polygon>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </svg></span>
+                                        <div class="checkbox__label">{{ $review_range['name'] }}</div>
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filters__wrapper">
+                        <div class="filters__item">
+                            <div class="checkBoxGroup">
                                 <h4>Accomodation Type</h4>
                                 @foreach ($hotel_types as $hotel_type)
                                     <label class="checkbox" htmlfor="{{ $hotel_type->id }}">
@@ -442,7 +486,7 @@
                     <span aria-hidden="true">&times; &nbsp; Filter</span>
                 </button>
             </div>
-            <form action="{{ url('/list') }}" method="GET">
+            <form action="{{ url('/list') }}" method="GET" class="mob-filter-stat">
                 <div class="modal-body">
                     <div class="filters__wrapper">
                         <div class="filters__wrapper">
@@ -489,6 +533,52 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="filters__wrapper">
+                            <div class="filters__item">
+                                <div class="checkBoxGroup">
+                                    <h4>Price</h4>
+                                    @foreach ($review_ranges as $review_range)
+                                        <label class="checkbox" htmlfor="{{ $review_range['id'] }}">
+                                            @if (request("rw_{$review_range['id']}") == 'on')
+                                                <input class=" " checked="" id="{{ $review_range['id'] }}"
+                                                    name="rw_{{ $review_range['id'] }}" icon_id="143"
+                                                    excludequery="true" type="checkbox">
+                                            @else
+                                                <input class=" " id="{{ $review_range['id'] }}"
+                                                    name="rw_{{ $review_range['id'] }}" icon_id="143"
+                                                    excludequery="true" type="checkbox">
+                                            @endif
+
+                                            <span lazyload="true"
+                                                class="checkbox__checkmark checkbox__checkmark--  c-1m1i8cc"><!--?xml version='1.0' encoding='UTF-8'?-->
+                                                <svg viewBox="0 0 12 9" version="1.1" id="checkmark"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <g id="Arash" stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <g id="Listing_ListView"
+                                                            transform="translate(-22.000000, -260.000000)"
+                                                            fill="white">
+                                                            <g id="component/filters"
+                                                                transform="translate(0.000000, 96.000000)">
+                                                                <g id="ic/checkbox/inactive-copy-4"
+                                                                    transform="translate(20.000000, 160.000000)">
+                                                                    <polygon id="Fill-3-Copy-9"
+                                                                        points="2 8.68138196 3.20857143 7.46353167 6.28571429 10.5556622 12.7914286 4 14 5.22648752 6.28571429 13">
+                                                                    </polygon>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg></span>
+                                            <div class="checkbox__label">{{ $review_range['name'] }}</div>
+                                        </label>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="filters__wrapper">
                             <div class="filters__item">
                                 <div class="checkBoxGroup">
