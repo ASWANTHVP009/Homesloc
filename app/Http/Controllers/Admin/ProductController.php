@@ -83,6 +83,8 @@ class ProductController
                     'menus'         => $menus,
                     'hotel_policy'  => $input['hotel_policy'] ? $input['hotel_policy'] : '',
                     'user_id'       => auth()->guard('admin')->id() ? auth()->guard('admin')->id() : 0,
+                    'status'  => $input['status'] ? $input['status'] : 0,
+
 
                 ]
             );
@@ -249,6 +251,8 @@ class ProductController
         $product->hotel_policy = $input['hotel_policy'] ? $input['hotel_policy'] : '';
         $product->searchlocation = $input['geolocation'] ? $input['geolocation'] : '';
         $product->user_id = auth()->guard('admin')->id() ? auth()->guard('admin')->id() : 0;
+        $product->status  = $input['status'] ? $input['status'] : 0;
+
         // dd($product);
 
         $product->save();

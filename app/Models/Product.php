@@ -47,7 +47,7 @@ class Product extends Model
 
     public function recommendedHotels()
     {
-        $hotels = DB::table('products')->select('id', 'name', 'price', 'location', 'special_price', 'quote')->where('hotel_type', 6)->get();
+        $hotels = DB::table('products')->select('id', 'name', 'price', 'location', 'special_price', 'quote')->where('hotel_type', 6)->where('status', 1)->get();
         $hotels_data = [];
         foreach ($hotels as $hotel) {
 
@@ -80,7 +80,7 @@ class Product extends Model
 
     public function getHotelBasicdatas()
     {
-        $hotels = DB::table('products')->select('id', 'name', 'price', 'location', 'special_price', 'quote')->get();
+        $hotels = DB::table('products')->select('id', 'name', 'price', 'location', 'special_price', 'quote', 'status')->where('status', 1)->get();
 
         $hotels_data = [];
         foreach ($hotels as $hotel) {

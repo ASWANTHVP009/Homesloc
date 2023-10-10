@@ -113,6 +113,9 @@
                             opens: 'left',
                             minYear: 2023,
                             minDate: new Date(),
+                            locale: {
+                                format: 'DD/MM/YYYY'
+                            },
                         }, function(start, end, label) {});
                     });
                 </script>

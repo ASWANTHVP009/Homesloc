@@ -75,7 +75,7 @@
                                         autocomplete="on" name="geolocation" />
 
                                     <!-- <input type="text" class="form-control" name="geolocation"
-                                            placeholder="Enter Geo Location" required> -->
+                                                                                placeholder="Enter Geo Location" required> -->
 
                                     <input type="hidden" value="" name="latitude" id="latitude">
                                     <input type="hidden" value="" name="longitude" id="longitude">
@@ -134,6 +134,15 @@
                                             <textarea id="summernote-policy" rows="5" name="hotel_policy">Hotel Policy</textarea>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="form-control select2" style="width: 100%; height: 40px;"
+                                        name="status">
+                                        <option selected="selected" value="1">Enabled</option>
+                                        <option value="0">Disabled</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">

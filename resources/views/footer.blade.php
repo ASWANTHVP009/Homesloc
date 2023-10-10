@@ -64,6 +64,31 @@
                 </div>
                 </div>
                 </div>
+
+                <style>
+                    .whats-app {
+                        position: fixed;
+                        width: 60px;
+                        height: 60px;
+                        bottom: 40px;
+                        background-color: #25d366;
+                        color: #FFF;
+                        border-radius: 50px;
+                        text-align: center;
+                        font-size: 30px;
+                        z-index: 100;
+                        right: 15px;
+                    }
+
+                    .my-float {
+                        margin-top: 16px;
+                    }
+                </style>
+
+                <a class="whats-app" href="https://wa.me/+918590391009" target="_blank">
+                    <i class="fa-brands fa-whatsapp my-float"></i>
+                </a>
+
                 </body>
 
                 </html>
@@ -79,6 +104,9 @@
                             opens: 'left',
                             minYear: 2023,
                             minDate: new Date(),
+                            locale: {
+                                format: 'DD-MM-YYYY'
+                            }
                         }, function(start, end, label) {});
                     });
                 </script>
@@ -86,7 +114,7 @@
 
                 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 
-                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZfdyk825u0pdExeT_o8I2NknXXeuNNU&libraries=places"> 
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZfdyk825u0pdExeT_o8I2NknXXeuNNU&libraries=places">
                 </script>
 
                 <script>

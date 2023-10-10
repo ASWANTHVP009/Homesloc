@@ -171,13 +171,13 @@
 
                                 <!-- <div class="form-group">
 
-                                        <label for="geolocation">Geolocation</label>
+                                                                                <label for="geolocation">Geolocation</label>
 
-                                        <input type="text" class="form-control" name="geolocation"
+                                                                                <input type="text" class="form-control" name="geolocation"
 
-                                            placeholder="Enter Geo Location" value="{{ $product->geolocation }}">
+                                                                                    placeholder="Enter Geo Location" value="{{ $product->geolocation }}">
 
-                                    </div> -->
+                                                                            </div> -->
 
                                 <div class="form-group">
 
@@ -295,7 +295,19 @@
 
                                 </div>
 
-
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="form-control select2" style="width: 100%; height: 40px;"
+                                        name="status" value="{{ $product->status }}">
+                                        @if ($product->status == 1)
+                                            <option selected="selected" value="1">Enabled</option>
+                                            <option value="0">Disabled</option>
+                                        @else
+                                            <option value="0" selected="selected">Disabled</option>
+                                            <option value="1">Enabled</option>
+                                        @endif
+                                    </select>
+                                </div>
 
                                 <div class="form-group">
 
@@ -317,13 +329,13 @@
 
                                             <!-- <div class="col-md-2">
 
-                                                    <img loading="auto" importance="auto"
+                                                                                            <img loading="auto" importance="auto"
 
-                                                        src="{{ URL::asset('/uploads/' . $image['path']) }}" class="c-hwlvh4"
+                                                                                                src="{{ URL::asset('/uploads/' . $image['path']) }}" class="c-hwlvh4"
 
-                                                        style="width: 280px; height: 280px;">
+                                                                                                style="width: 280px; height: 280px;">
 
-                                                </div> -->
+                                                                                        </div> -->
                                         @endforeach
 
                                     </div>

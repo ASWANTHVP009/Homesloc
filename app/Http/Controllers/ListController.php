@@ -128,6 +128,8 @@ class ListController extends Controller
         }
         // review End
 
+        $query->where('status', 1);
+
         if (!empty($type_values)) {
             $query->whereIn('hotel_type', explode(',', $type_values));
         }
@@ -268,21 +270,20 @@ class ListController extends Controller
         $daterange = $request->get('daterange') ? $request->get('daterange') : '';
         $room_count = $request->get('rm-count') ? $request->get('rm-count') : 1;
         if (isset($daterange) && !empty($daterange)) {
-
             $dates =  explode(" - ", $daterange);
 
             // $date1_str = (DateTime::createFromFormat("d/m/Y", $dates[0]))->format("Y-m-d");
             // $date2_str = (DateTime::createFromFormat("d/m/Y", $dates[1]))->format("Y-m-d");
 
-            $date1_str = (DateTime::createFromFormat("d/m/Y", $dates[0]))->format("m-d-Y");
-            $date2_str = (DateTime::createFromFormat("d/m/Y", $dates[1]))->format("m-d-Y");
+            $date1_str = DateTime::createFromFormat("d/m/Y", $dates[0]);
+            $date2_str = DateTime::createFromFormat("d/m/Y", $dates[1]);
 
             $date1 = new DateTime($date1_str);
-
             $date2 = new DateTime($date2_str);
 
             $interval = $date1->diff($date2);
-            $days = $interval->days + 1;
+            $days = $interval->days;
+
         } else {
             $days = 1;
         }

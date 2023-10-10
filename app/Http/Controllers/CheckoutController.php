@@ -33,12 +33,17 @@ class CheckoutController extends Controller
         $room_count = $request->get('rm-count') ? $request->get('rm-count') : 1;
         if (isset($daterange) && !empty($daterange)) {
             $dates =  explode(" - ", $daterange);
-            $date1_str = $dates[0];
-            $date2_str = $dates[1];
-            $date1 = new DateTime($date1_str);
-            $date2 = new DateTime($date2_str);
-            $interval = $date1->diff($date2);
-            $days = $interval->days + 1;
+
+            $date1_str = DateTime::createFromFormat("d/m/Y", $dates[0]);
+            $date2_str = DateTime::createFromFormat("d/m/Y", $dates[1]);
+
+            // $date1_str = $dates[0];
+            // $date2_str = $dates[1];
+            // $date1 = new DateTime($date1_str);
+            // $date2 = new DateTime($date2_str);
+
+            $interval = $date1_str->diff($date2_str);
+            $days = $interval->days;
         } else {
             $days = 1;
         }
