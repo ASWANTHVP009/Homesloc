@@ -81,7 +81,7 @@
                     <div class="filters__wrapper">
                         <div class="filters__item">
                             <div class="checkBoxGroup">
-                                <h4>Price</h4>
+                                <h4>Ratings</h4>
                                 @foreach ($review_ranges as $review_range)
                                     <label class="checkbox" htmlfor="{{ $review_range['id'] }}">
                                         @if (request("rw_{$review_range['id']}") == 'on')
@@ -537,7 +537,7 @@
                         <div class="filters__wrapper">
                             <div class="filters__item">
                                 <div class="checkBoxGroup">
-                                    <h4>Price</h4>
+                                    <h4>Ratings</h4>
                                     @foreach ($review_ranges as $review_range)
                                         <label class="checkbox" htmlfor="{{ $review_range['id'] }}">
                                             @if (request("rw_{$review_range['id']}") == 'on')

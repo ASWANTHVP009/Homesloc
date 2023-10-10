@@ -165,7 +165,7 @@
                                                 <div class="c-1lpmxla">
                                                     <input type="text" name="daterange"
                                                         value="{{ app('request')->input('daterange') }}"
-                                                        class="date-range-pick" />
+                                                        class="date-range-pick" inputmode='none' />
                                                 </div>
                                             </div>
                                         </div>

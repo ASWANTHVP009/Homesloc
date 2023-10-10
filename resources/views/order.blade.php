@@ -232,7 +232,7 @@
                                 @foreach ($complete_order as $complete_order)
                                     <div class="col-md-6 book-container">
                                         <div class="col-md-6 book-list">
-                                            <img src="https://images.oyoroomscdn.com/uploads/hotel_image/105066/medium/611ca00b9b9b3c46.jpg"
+                                            <img src="{{ URL::asset('/uploads/' . $complete_order['image']) }}"
                                                 width="200">
                                         </div>
                                         <div class="col-md-6 book-list book-text">

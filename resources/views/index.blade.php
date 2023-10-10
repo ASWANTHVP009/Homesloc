@@ -23,7 +23,7 @@
                         <div class="c-127cf4w">
                             <div class="c-1lpmxla">
                                 <input type="text" name="daterange" value="01/01/2018 - 01/15/2018"
-                                    class="date-range-pick" />
+                                    class="date-range-pick" inputmode='none'/>
                             </div>
                         </div>
                     </div>
