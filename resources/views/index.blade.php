@@ -4,6 +4,38 @@
     .c-l4zwwj {
         line-height: 0px !important;
     }
+
+    .join-container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .join-container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .join-container .btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: #00405a;
+        color: white;
+        font-size: 17px;
+        font-weight: 700;
+        padding: 7px 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .join-container .btn:hover {
+        background-color: black;
+    }
 </style>
 <div class="c-19midj6 mob-C12rgh">
     <h1 class="c-1cq3vev">Find hotels at best prices</h1>
@@ -523,7 +555,14 @@
 
 <div class="bannerStrip reg-seller" data-cms-id="763934" data-cms-template="cWeb-BannerCarousel"
     id="mobile-register-banner">
-    <a href="/join"><img src="{{ URL::asset('/uploads/property.jpg') }}" class="c-2tglnv banner__cardImage"></a>
+
+    <div class="join-container">
+        <img src="{{ URL::asset('/uploads/property.jpg') }}" class="c-2tglnv banner__cardImage">
+        <a href="/join" class="btn"><i class="fa-regular fa-building"></i>&nbsp;&nbsp;Register Your
+            Properties</a>
+    </div>
+
+    {{-- <a href="/join"><img src="{{ URL::asset('/uploads/property.jpg') }}" class="c-2tglnv banner__cardImage"></a> --}}
 </div>
 
 <div class="cmsWrapper ">
