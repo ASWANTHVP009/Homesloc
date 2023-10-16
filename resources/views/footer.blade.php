@@ -29,7 +29,8 @@
                                         <span style="color: #fff;">Keep in touch</span>
                                         <a target="_blank" rel="noopener" href=" "></a>
                                     </div>
-                                    <form method="POST" action="{{ route('newsletter') }}">
+                                    <form action="{{ url('/newsletter') }}" method="POST" id="newsl">
+                                        @csrf
                                         <div class="oyo-row oyo-row--no-spacing">
                                             <div class="subscription_form_wrap">
                                                 <input type="email" name="email" autocapitalize="off"
@@ -43,6 +44,16 @@
                                                     Subscribe </button>
                                             </div>
                                         </div>
+
+                                        @if (session('success'))
+                                            <div class="alert alert-success alr">
+                                                {{ session('success') }}
+                                            </div>
+                                            <script>
+                                                window.scrollTo(0, document.body.scrollHeight);
+                                            </script>
+                                        @endif
+
                                     </form>
                                 </div>
                             </div>
@@ -92,11 +103,31 @@
                 </body>
 
                 </html>
+
                 <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"></script>
                 <script src="{{ asset('assets/js/moment.min.js') }}"></script>
+                {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+
+                <script>
+                    //                     $('#newsl').on('submit', function(e) {
+                    //                         e.preventDefault(); // Prevent default form submission
+                    // 
+                    //                         jQuery.ajax({
+                    //                             type: 'POST',
+                    //                             url: $(this).attr('action'),
+                    //                             data: $(this).serialize(),
+                    //                             success: function(response) {
+                    //                                 console.log(response.message);
+                    //                             },
+                    //                             error: function(error) {
+                    //                                 console.log(error.responseJSON);
+                    //                             }
+                    //                         });
+                    //                     });
+                </script>
 
                 <script>
                     $(function() {

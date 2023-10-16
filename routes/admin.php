@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AmentityController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\OrderController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -141,6 +142,10 @@ Route::name('admin.')->group(function () {
             Route::get('/edit/{id}', [CustomerController::class, 'edit'])->name('edit');
             Route::post('/update', [CustomerController::class, 'update'])->name('update');
             Route::get('/delete/{id}', [CustomerController::class, 'delete'])->name('delete');
+        });
+
+        Route::name('newsletter.')->prefix('admin/newsletter')->group(function () {
+            Route::get('/', [NewsletterController::class, 'list'])->name('list');
         });
     });
 });

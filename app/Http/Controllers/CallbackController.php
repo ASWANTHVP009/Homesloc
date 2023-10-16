@@ -2,15 +2,55 @@
 
 namespace App\Http\Controllers;
 
+// include
+// include_once 'vendor/autoload.php';
+
+use Exception;
 use App\Models\Menu;
 use App\Models\Type;
+use App\Mail\MailNotify;
 use App\Models\Amentity;
 use App\Models\Callback;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
+use Carbon\Carbon;
+
 
 class CallbackController extends Controller
 {
+
+    public function mail()
+    {
+        $name = request('name');
+        $email = request('email');
+        $subject = request('message');
+
+        if (isset($email) && !empty($email)) {
+            $data = [
+                'subject' => "HomesLoc Contact",
+                'name' => $name,
+                'email' => $email,
+                'body' => $subject
+            ];
+            try {
+                Mail::to($email)->send(new MailNotify($data));
+            } catch (Exception $e) {
+            }
+            session()->flash('msg', 'Message send successfully!');
+            return redirect('/contact');
+        } else {
+            session()->flash('success', 'Message send successfully!');
+            return redirect('/contact');
+        }
+    }
+
+    public function mailnotify()
+    {
+        return view('mailnotify');
+    }
 
     public function index()
     {
@@ -39,7 +79,6 @@ class CallbackController extends Controller
         $input = request()->all();
 
         if (isset($input) && !empty($input)) {
-            // dd($request->file('files'));
             $files = [];
             if ($request->file('files')) {
                 foreach ($request->file('files') as $key => $file) {
@@ -110,6 +149,16 @@ class CallbackController extends Controller
     public function newsletter()
     {
         $input = request()->all();
-        return view('callbackSuccess');
+        $currentDateTime = Carbon::now();
+        $formattedDateTime = $currentDateTime->format('Y-m-d H:i:s');
+        $insert = [
+            'email' => $input['email'],
+            'created_at' => $formattedDateTime,
+            'updated_at' => $formattedDateTime,
+        ];
+
+        DB::table('newsletter')->insert($insert);
+        session()->flash('success', 'Subscribed successfully!');
+        return redirect()->back();
     }
 }

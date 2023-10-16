@@ -551,3 +551,11 @@ button:focus {
     color: #fff;
     text-decoration: none;
 }
+
+.alr {
+    color: #18cda7 !important;
+    font-size: 10px !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 10px 0 !important;
+}

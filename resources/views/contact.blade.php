@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <form id="ajax-form" name="ajax-form" action="contact.php" method="post" class="wpcf7">
+                    <form id="ajax-form" name="ajax-form" action="{{ url('/mail') }}" method="get" class="wpcf7">
                         <div class="main-form">
                             <h2>Ready to Get Started?</h2>
                             <p class="font14">Your email address will not be published. Required fields are marked *</p>
@@ -87,6 +87,16 @@
                             <p><button type="submit" id="send" class="octf-btn octf-btn-light">Send
                                     Message</button></p>
                             <div class="clear"></div>
+
+
+                            @if (session('msg'))
+                                <div class="alert alert-success alr">
+                                    {{ session('msg') }}
+                                </div>
+                                <script>
+                                    window.scrollTo(10, document.body.scrollHeight);
+                                </script>
+                            @endif
                             <div class="error" id="err-form">There was a problem validating the form please check!
                             </div>
                             <div class="error" id="err-timedout">The connection to the server timed out!</div>

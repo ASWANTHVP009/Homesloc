@@ -99,6 +99,9 @@ Route::get('/success', function () {
 
 Route::get('/join', [CallbackController::class, 'index'])->name('index');
 
+Route::get('/mail', [CallbackController::class, 'mail'])->name('mail');
+Route::get('/mailnotify', [CallbackController::class, 'mailnotify'])->name('mailnotify');
+
 Route::get('/list/{name?}', [ListController::class, 'list'])->name('list');
 
 Route::get('/info/{id}/{name?}', [ListController::class, 'info'])->name('info');
