@@ -1,4 +1,25 @@
 <x-guest-layout>
+
+    <style type="text/css">
+        .fill-current {
+            display: none;
+        }
+        .bg-gray-100{
+            background: #fff !important;
+        }
+        .bg-white{
+            background: #fff !important;
+            border: 1px solid #2e2b2b;
+        }
+        #email{
+            background: #fff !important;
+            color: #000;
+        }
+    </style>
+
+    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400" style="display: flex; justify-content: center;">
+        <img src="uploads/images/logo.png" alt="Homesloc" class="mob-logo">
+    </div>
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>

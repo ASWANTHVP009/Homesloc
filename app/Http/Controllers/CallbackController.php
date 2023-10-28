@@ -27,6 +27,7 @@ class CallbackController extends Controller
         $name = request('name');
         $email = request('email');
         $subject = request('message');
+        $send = "info@homesloc.com";
 
         if (isset($email) && !empty($email)) {
             $data = [
@@ -36,7 +37,7 @@ class CallbackController extends Controller
                 'body' => $subject
             ];
             try {
-                Mail::to($email)->send(new MailNotify($data));
+                Mail::to($send)->send(new MailNotify($data));
             } catch (Exception $e) {
             }
             session()->flash('msg', 'Message send successfully!');

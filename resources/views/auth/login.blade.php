@@ -130,13 +130,8 @@
 
                         <div class="row mb-3">
                             <div class="col-md-6 offset-md-4 remr">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                        {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                                <div style="font-size: 12px; text-decoration: underline; font-weight: 600;">
+                                    <a href="/forgot-password" style="color: #273333;"> Forgot Password ? </a>
                                 </div>
                             </div>
                         </div>
