@@ -692,7 +692,7 @@
                             <div class="c-nx2p0o">
 
                                 <span class="c-2jict3">
-                                    ₹{{ $total }}
+                                    ₹{{ $total }} 
                                 </span>
                             </div>
 

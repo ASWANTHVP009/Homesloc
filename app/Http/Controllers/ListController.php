@@ -282,11 +282,12 @@ class ListController extends Controller
             $date2 = new DateTime($date2_str);
 
             $interval = $date1->diff($date2);
-            $days = $interval->days;
-
+            $days = $interval->days + 1;
         } else {
             $days = 1;
         }
+
+        // dd($days);
 
         $total = $days * ($room_count * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price']));
 

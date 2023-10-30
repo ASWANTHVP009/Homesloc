@@ -19,6 +19,12 @@ class BannerController extends Controller
         $banners = Banner::find(decrypt($id));
         return view('admin.banner.edit', compact('banners'));
     }
+    public function delete($id)
+    {
+        $banners = Banner::find(decrypt($id));
+        $banners->delete();
+        return redirect()->route('admin.banner.list')->with('message', 'banner deleted successfully');
+    }
     public function create()
     {
         return view('admin.banner.create');
