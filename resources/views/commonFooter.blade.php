@@ -125,6 +125,9 @@
 
                 {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb1d1Vqks7Wdf8OlUYl8BOGeFthpScZMY&libraries=places"> --}}
                 </script>
+                
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZfdyk825u0pdExeT_o8I2NknXXeuNNU&libraries=places">
+                </script>
 
                 <script>
                     function initAutocomplete1() {

@@ -82,11 +82,11 @@
                         width: 60px;
                         height: 60px;
                         bottom: 40px;
-                        background-color: #25d366;
-                        color: #FFF;
+                        /*background-color: #25d366;*/
+                        color: green;
                         border-radius: 50px;
                         text-align: center;
-                        font-size: 30px;
+                        font-size: 40px;
                         z-index: 100;
                         right: 15px;
                     }
