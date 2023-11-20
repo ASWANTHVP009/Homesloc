@@ -2,12 +2,7 @@
                     <div class="fadeIn__container fadeIn__container--active">
                         <div class="footerAppIcons" data-cms-id="187470" data-cms-template="cWEB-footerAppIconsText">
                             <div class="oyo-row footerAppIcons__container">
-                                <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
-                                    <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
-                                        <a href="=" target="_blank" class="Q-BLNK">Quick Links</a>
-                                        <a href="" target="_blank">My Account</a>
-                                    </div>
-                                </div>
+
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
                                         <a href="/about-us" target="_blank" class="Q-BLNK">About Us</a>
@@ -44,6 +39,14 @@
                                             </div>
                                         </div>
                                     </form>
+                                </div>
+                                <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
+                                    <div class="oyo-row oyo-row--no-spacing address-footer"
+                                        style="padding: 0 32px;font-size: 14px;  text-align: left; color: #fff;display: block;    line-height: 21px;">
+                                        <p style=" margin: 0 0 7px;">SHIGATHA TOURISM PRIVATE LIMITED COMPANY</p>
+                                        <p style=" margin: 0 0 7px;">NIRAMARUTHUR PO</p>
+                                        <p style=" margin: 0 0 7px;">TIRUR.676109</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -90,6 +93,12 @@
                                     <div
                                         class="oyo-cell oyo-cell--4-col oyo-cell--middle u-textRight footerSocial__copyright">
                                         2023 © HomesLoc</div>
+                                    <div
+                                        class="oyo-cell oyo-cell--4-col oyo-cell--middle u-textRight footerSocial__copyright">
+                                        <a href="/privacy" target="_blank">Privacy Policy</a>
+                                        <a href="/terms" target="_blank">Terms & Condition</a>
+                                        <a href="/refund" target="_blank">Refund & cancellation</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +134,7 @@
 
                 {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb1d1Vqks7Wdf8OlUYl8BOGeFthpScZMY&libraries=places"> --}}
                 </script>
-                
+
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZfdyk825u0pdExeT_o8I2NknXXeuNNU&libraries=places">
                 </script>
 

@@ -117,6 +117,63 @@
                             </div>
                         </div>
                         <span>
+
+
+
+                            {{-- mobile Start --}}
+                            <div class="mobile-container">
+                                <div class="topnav ">
+                                    <a href="/" class="active">
+                                        <img src="https://homesloc.com/uploads/images/logo.png" alt="Homesloc"
+                                            style="width: 175px;">
+                                    </a>
+                                    <div id="myLinks">
+                                        <a href="/about-us">About Us</a>
+                                        <a href="/contact">Contact Us</a>
+                                        <a href="/join">List Properties</a>
+
+                                        @auth
+                                            <a href="/profile">My account</a>
+                                            <a href="/order">Orders</a>
+                                        @else
+                                            <a href="{{ route('login') }}" style="text-decoration: none;">
+                                                Login / Signup
+                                            </a>
+                                        @endauth
+
+                                        @auth
+                                            <form method="POST" action="{{ route('logout') }}"
+                                                style="font-size: 16px; font-weight: 600;">
+                                                @csrf
+                                                <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();this.closest('form').submit();">
+                                                    {{ __('Log Out') }}
+                                                </x-dropdown-link>
+                                            </form>
+
+                                        @endauth
+                                    </div>
+                                    <a href="javascript:void(0);" class="icon" onclick="myFunction()"
+                                        style="text-indent: unset;">
+                                        <i class="fa fa-bars" style="margin-top: 9px;  font-size: 41px;"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <script>
+                                function myFunction() {
+                                    var x = document.getElementById("myLinks");
+                                    if (x.style.display === "block") {
+                                        x.style.display = "none";
+                                    } else {
+                                        x.style.display = "block";
+                                    }
+                                }
+                            </script>
+
+                            {{-- mobile End --}}
+
+
                             <div class="oyo-row oyo-row--no-spacing headerSticky">
                                 <div class="oyo-cell headerSticky__leftHeader">
                                     <a class="c-nn640c headerSticky__logoWrapper"

@@ -23,7 +23,7 @@
         </div>
     </div>
     <section class="contact-page">
-        <div class="" style="padding: 50px;">
+        <div class="al-con">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="contact-left">

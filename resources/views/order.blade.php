@@ -200,13 +200,16 @@
                                             <p><b>Guests :</b> {{ $order_history_data['guest_count'] }} Guests</p>
                                             <p><b>Checkin Time :</b> {{ $order_history_data['time'] }}</p>
                                             @if ($order_history_data['daterange'])
-                                                <p><b>Booking Date :</b> {{ $order_history_data['daterange'] }}</p>
+                                                <p class="order-book"><b>Booking Date :</b>
+                                                    {{ $order_history_data['daterange'] }}</p>
                                             @endif
                                             <p><b>Total Payment :</b> Rs.{{ $order_history_data['total'] }}</p>
 
                                             <button class="review" id="review-mod"
                                                 onclick="review({{ $order_history_data['hotel_id'] }})">Add
                                                 Review</button>
+                                            <button class="review" id="cancel"
+                                                onclick="review({{ $order_history_data['hotel_id'] }})">Cancel</button>
                                         </div>
 
                                     </div>
@@ -242,6 +245,9 @@
                                             <p><b>Guests :</b> {{ $complete_order['guest_count'] }} Guests</p>
                                             <p><b>Checkin Time :</b> 10 AM</p>
                                             <p><b>Total Payment :</b> Rs.{{ $complete_order['total'] }}</p>
+
+                                            <button class="review" id="cancel"
+                                                onclick="review({{ $order_history_data['hotel_id'] }})">Cancel</button>
                                         </div>
                                     </div>
                                 @endforeach
