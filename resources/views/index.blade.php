@@ -325,7 +325,7 @@
                                             '&daterange=' .
                                             $today->format('d/m/Y') .
                                             ' - ' .
-                                            $today->format('d/m/Y') .
+                                            \Carbon\Carbon::tomorrow()->format('d/m/Y') .
                                             '&gt-count=2 &rm-count=1' }} 
                                 ">
                                         {{-- <a href="{{ url('/info') . '/' . $hotel['id'] }}"> --}}
@@ -460,7 +460,7 @@
                                             '&daterange=' .
                                             $today->format('d/m/Y') .
                                             ' - ' .
-                                            $today->format('d/m/Y') .
+                                            \Carbon\Carbon::tomorrow()->format('d/m/Y') .
                                             '&gt-count=2 &rm-count=1' }} 
                                 ">
                                         <div
@@ -694,7 +694,7 @@
 <!-- images -->
 <section class="PopularDestinationsUIstyles__PopularDestMainWrapper-sc-1ir08i0-0 gDEqxl">
     <h3 class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 hJuprJ">Popular Destinations</h3>
-    <div class="PopularDestinationsUIstyles__PopularImageOuterWrapper-sc-1ir08i0-2 fggXza">
+    <div class="PopularDestinationsUIstyles__PopularImageOuterWrapper-sc-1ir08i0-2 fggXza container" style="max-width: 1440px;">
         <a href="" title="Bengaluru"
             class="PopularDestinationsUIstyles__PopularBigImageWrapper-sc-1ir08i0-3 dAUSpZ">
             <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Bengaluru_1-1581426843.jpg"
@@ -928,7 +928,8 @@
             locale: {
                 format: 'DD/MM/YYYY'
             },
-            startDate: new Date()
+            startDate: new Date(),
+            endDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
         }, function(start, end, label) {
             console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end
                 .format('YYYY-MM-DD'));

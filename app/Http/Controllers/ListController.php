@@ -282,7 +282,7 @@ class ListController extends Controller
             $date2 = new DateTime($date2_str);
 
             $interval = $date1->diff($date2);
-            $days = $interval->days + 1;
+            $days = $interval->days;
         } else {
             $days = 1;
         }

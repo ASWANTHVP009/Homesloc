@@ -7,13 +7,19 @@
     <link rel="icon" type="image/x-icon" href="uploads/images/favlogo.png">
     <link href="assets/css/style.min.css" rel="stylesheet" type="text/css">
 </head>
+<style>
+    .text-xl {
+    font-size: 15px;
+    
+}
+</style>
 
 <body class="bg-gray-100">
 
     <section class="py-20 overflow-hidden relative">
 
 
-        <div class="container">
+        <div class="container" style="zoom: 90%;">
             <div>
                 <div class="bg-white rounded-t-3xl sm:p-16 p-10">
 
@@ -82,8 +88,18 @@
                             td {
                                 line-height: 12px !important;
                             }
+                            .md\:p-20 {
+                                padding: 3rem;
+                            }
+                            @media print
+                            {    
+                                .no-print, .no-print *
+                                {
+                                    display: none !important;
+                                }
+                            }
                         </style>
-                        <table class="border-collapse table-auto w-full text-sm mt-14 mb-12 whitespace-pre">
+                        <table class="border-collapse table-auto w-full text-sm mt-14 mb-12 whitespace-pre container" style="zoom: 73%;">
                             <thead>
                                 <tr>
                                     <th class="p-4 border-b tracking-widest text-lg font-medium text-start">No.</th>
@@ -138,7 +154,7 @@
                     <h3 class="md:text-2xl text-lg font-semibold text-center mt-10">Thank You </h3>
                     <div style="text-align: center;margin-top: 15px;">
                         <a href="/"
-                            style="color: #fff; padding: 10px; border-radius: 5px; background: #00405a;">
+                            style="color: #fff; padding: 10px; border-radius: 5px; background: #00405a;" class="no-print">
                             Back to Home Page
                         </a>
                     </div>
