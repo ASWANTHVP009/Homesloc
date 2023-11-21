@@ -25,6 +25,9 @@ Route::get("/", function () {
     // Offer Banner
     $banners = new Product;
     $banners_data =  $banners->getBanners();
+    $mainbanners_data =  $banners->getMainBanners();
+
+    // dd($mainbanners_data);
     // Mobile banners
     $mobile_banners =  $banners->getMobileBanners();
     // Home Hotel List
@@ -32,6 +35,7 @@ Route::get("/", function () {
     $rec_hotel_data =  $banners->recommendedHotels();
     return view('index', [
         'banners' => $banners_data,
+        'mainbanners_data' => $mainbanners_data,
         'mobile_banners' => $mobile_banners,
         'hotels' => $hotel_data,
         'rec_hotel_data' => $rec_hotel_data,
@@ -187,6 +191,8 @@ Route::get('/invoice', [CheckoutController::class, 'invoice']);
 Route::get('razorpay-payment', [RazorpayController::class, 'store'])->name('razorpay.payment.store');
 
 Route::post('/review', [ProfileController::class, 'review'])->name('review');
+
+Route::post('/cancel', [ProfileController::class, 'cancel'])->name('cancel');
 
 
 // Route::get('/checkout', function () {

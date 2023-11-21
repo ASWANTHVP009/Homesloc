@@ -18,6 +18,12 @@
 
         @if ($admin && $admin->user_group_id == 1)
             <li class="nav-item">
+                <a href="{{ route('admin.mainbanner.list') }}" class="nav-link">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <p>Main Banners</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('admin.banner.list') }}" class="nav-link">
                     <i class="fas fa-puzzle-piece"></i>
                     <p>Banners</p>

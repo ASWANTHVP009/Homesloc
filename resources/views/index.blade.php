@@ -97,137 +97,143 @@
 <!-- End -->
 
 <!-- Web -->
-<div class="searchContainer des-C12rgh" data-cms-id="300457" data-cms-template="cWEB-oyoSpaces"
-    style="background-image: url(uploads/images/home.png);">
-    <div class="searchContainer__wrapper">
-        <h1 class="searchContainer__tagline">Book Hotels & Home Stays</h1>
-        <div class="searchContainer__searchWidgetContainer">
-            <form class="autoCompleteDesktop__searchContainer" action="{{ url('/list') }}" method="GET">
-                <div class="oyo-row oyo-row--no-spacing homeSearchWidget" data-cms-id="570807"
-                    data-cms-template="cWeb-Search">
-                    <div
-                        class="oyo-cell oyo-cell--4-col oyo-cell--8-col-tablet oyo-cell--4-col-phone homeSearchWidget__gutter homeSearchWidget__autoComplete">
-                        <div class="oyo-row oyo-row--no-spacing autoCompleteDesktop autoCompleteDesktop--home SerGF">
-                            <div class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone Rtgydrd">
-                                <input
-                                    class="autoCompleteDesktop__searchBox autoCompleteDesktop__searchBox--home  autoCompleteDesktop__searchBox--nearbyVisible"
-                                    placeholder="Search by city, hotel, or neighborhood" id="search" name="location"
-                                    type="text" placeholder="Search location" autocomplete="on" required />
-                                <input type="hidden" name="latitude" value="" id="latitude">
-                                <input type="hidden" name="longitude" value="" id="longitude">
-                                <span></span>
-                            </div>
+
+@if ($mainbanners_data)
+    <div class="searchContainer des-C12rgh" data-cms-id="300457" data-cms-template="cWEB-oyoSpaces"
+        style="background-image: url('{{ URL::asset('/uploads/' . $mainbanners_data['path']) }}');">
+    @else
+        <div class="searchContainer des-C12rgh" data-cms-id="300457" data-cms-template="cWEB-oyoSpaces"
+            style="background-image: url(uploads/images/home.png);">
+@endif
+<div class="searchContainer__wrapper">
+    <h1 class="searchContainer__tagline">Book Hotels & Home Stays</h1>
+    <div class="searchContainer__searchWidgetContainer">
+        <form class="autoCompleteDesktop__searchContainer" action="{{ url('/list') }}" method="GET">
+            <div class="oyo-row oyo-row--no-spacing homeSearchWidget" data-cms-id="570807"
+                data-cms-template="cWeb-Search">
+                <div
+                    class="oyo-cell oyo-cell--4-col oyo-cell--8-col-tablet oyo-cell--4-col-phone homeSearchWidget__gutter homeSearchWidget__autoComplete">
+                    <div class="oyo-row oyo-row--no-spacing autoCompleteDesktop autoCompleteDesktop--home SerGF">
+                        <div class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone Rtgydrd">
+                            <input
+                                class="autoCompleteDesktop__searchBox autoCompleteDesktop__searchBox--home  autoCompleteDesktop__searchBox--nearbyVisible"
+                                placeholder="Search by city, hotel, or neighborhood" id="search" name="location"
+                                type="text" placeholder="Search location" autocomplete="on" required />
+                            <input type="hidden" name="latitude" value="" id="latitude">
+                            <input type="hidden" name="longitude" value="" id="longitude">
                             <span></span>
                         </div>
+                        <span></span>
                     </div>
-                    <div
-                        class="oyo-cell oyo-cell--3-col oyo-cell--4-col-tablet oyo-cell--4-col-phone homeSearchWidget__gutter homeSearchWidget__dateRangePicker Rtgyd">
-                        <div class="oyo-row oyo-row--no-spacing datePickerDesktop datePickerDesktop--home">
-                            <div
-                                class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone d-text16 is-fontBold datePickerDesktop__checkInOut u-textEllipsis">
-                                <input type="text" name="daterange" value="09/16/2023 - 09/17/2023"
-                                    class="date-range-pick" />
-                            </div>
-                            <span></span>
+                </div>
+                <div
+                    class="oyo-cell oyo-cell--3-col oyo-cell--4-col-tablet oyo-cell--4-col-phone homeSearchWidget__gutter homeSearchWidget__dateRangePicker Rtgyd">
+                    <div class="oyo-row oyo-row--no-spacing datePickerDesktop datePickerDesktop--home">
+                        <div
+                            class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone d-text16 is-fontBold datePickerDesktop__checkInOut u-textEllipsis">
+                            <input type="text" name="daterange" value="09/16/2023 - 09/17/2023"
+                                class="date-range-pick" />
                         </div>
+                        <span></span>
                     </div>
-                    <div
-                        class="oyo-cell oyo-cell--3-col oyo-cell--4-col-tablet oyo-cell--4-col-phone homeSearchWidget__gutter homeSearchWidget__guestRoomPicker Rtgyd">
-                        <input type="hidden" name="gt-count" id="gt-count" value="2">
-                        <input type="hidden" name="rm-count" id="rm-count" value="1">
-                        <div id="Guest-Popup-block"
-                            class="oyo-row oyo-row--no-spacing guestRoomPicker guestRoomPicker--home ">
-                            <div
-                                class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone d-text16 is-fontBold u-textEllipsis guestRoomPicker__guestRoomCount">
-                                <span id="room-count"> 1 </span> {!! '&nbsp;' !!} Room,
-                                <span id="room-guest"> 2 </span> {!! '&nbsp;' !!} Guests
-                            </div>
-                            {{-- room add section --}}
-                            <span>
-                                <div class="oyo-row oyo-row--no-spacing d-popup guestRoomPickerPopUp"
-                                    style="display: none">
-                                    <div id="Guest-Popup" style="display: none;"
-                                        class="oyo-row oyo-row--no-spacing guestRoomPickerPopUp__headingRow">
+                </div>
+                <div
+                    class="oyo-cell oyo-cell--3-col oyo-cell--4-col-tablet oyo-cell--4-col-phone homeSearchWidget__gutter homeSearchWidget__guestRoomPicker Rtgyd">
+                    <input type="hidden" name="gt-count" id="gt-count" value="2">
+                    <input type="hidden" name="rm-count" id="rm-count" value="1">
+                    <div id="Guest-Popup-block"
+                        class="oyo-row oyo-row--no-spacing guestRoomPicker guestRoomPicker--home ">
+                        <div
+                            class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone d-text16 is-fontBold u-textEllipsis guestRoomPicker__guestRoomCount">
+                            <span id="room-count"> 1 </span> {!! '&nbsp;' !!} Room,
+                            <span id="room-guest"> 2 </span> {!! '&nbsp;' !!} Guests
+                        </div>
+                        {{-- room add section --}}
+                        <span>
+                            <div class="oyo-row oyo-row--no-spacing d-popup guestRoomPickerPopUp"
+                                style="display: none">
+                                <div id="Guest-Popup" style="display: none;"
+                                    class="oyo-row oyo-row--no-spacing guestRoomPickerPopUp__headingRow">
+                                    <div
+                                        class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone d-text14 guestRoomPickerPopUp__heading">
+                                        Rooms</div>
+                                    <div
+                                        class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone d-text14 guestRoomPickerPopUp__heading">
+                                        Guests</div>
+                                </div>
+                                {{-- room --}}
+                                <div id="room-add">
+                                    <?php $room_row = 1; ?>
+                                    <div class="oyo-row oyo-row--no-spacing guestRoomPickerPopUp__roomsRow"
+                                        id="room_div-{{ $room_row }}">
                                         <div
-                                            class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone d-text14 guestRoomPickerPopUp__heading">
-                                            Rooms</div>
-                                        <div
-                                            class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone d-text14 guestRoomPickerPopUp__heading">
-                                            Guests</div>
-                                    </div>
-                                    {{-- room --}}
-                                    <div id="room-add">
-                                        <?php $room_row = 1; ?>
-                                        <div class="oyo-row oyo-row--no-spacing guestRoomPickerPopUp__roomsRow"
-                                            id="room_div-{{ $room_row }}">
-                                            <div
-                                                class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone guestRoomPickerPopUp__roomTable">
-                                                <div class="oyo-row oyo-row--no-spacing">
-                                                    <div
-                                                        class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone u-displayFlex u-alignItemsCenter">
-                                                        <span
-                                                            class="d-text14 guestRoomPickerPopUp__roomCount u-displayBlock"
-                                                            id="room[{{ $room_row }}]">Room
-                                                            1</span>
-                                                    </div>
-                                                    <div
-                                                        class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone">
-                                                        <span class="guestRoomPickerPopUp__minus"
-                                                            id="minus-{{ $room_row }}"
-                                                            onclick="minus({{ $room_row }})">
-                                                            -
-                                                        </span>
-                                                        <span class="d-text16 guestRoomPickerPopUp__count"
-                                                            id="guest-count-{{ $room_row }}">2</span>
-                                                        <span class="guestRoomPickerPopUp__plus"
-                                                            id="plus-{{ $room_row }}"
-                                                            onclick="plus({{ $room_row }})">
-                                                            +
-                                                        </span>
-                                                    </div>
+                                            class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone guestRoomPickerPopUp__roomTable">
+                                            <div class="oyo-row oyo-row--no-spacing">
+                                                <div
+                                                    class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone u-displayFlex u-alignItemsCenter">
+                                                    <span
+                                                        class="d-text14 guestRoomPickerPopUp__roomCount u-displayBlock"
+                                                        id="room[{{ $room_row }}]">Room
+                                                        1</span>
+                                                </div>
+                                                <div
+                                                    class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone">
+                                                    <span class="guestRoomPickerPopUp__minus"
+                                                        id="minus-{{ $room_row }}"
+                                                        onclick="minus({{ $room_row }})">
+                                                        -
+                                                    </span>
+                                                    <span class="d-text16 guestRoomPickerPopUp__count"
+                                                        id="guest-count-{{ $room_row }}">2</span>
+                                                    <span class="guestRoomPickerPopUp__plus"
+                                                        id="plus-{{ $room_row }}"
+                                                        onclick="plus({{ $room_row }})">
+                                                        +
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" id="config-1" name="config-1" value="2">;
+                                </div>
+                                <input type="hidden" id="config-1" name="config-1" value="2">;
 
-                                    {{-- room end --}}
-                                    <?php $room_row = 2; ?>
-                                    <div
-                                        class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone guestRoomPickerPopUp__buttonWrapper">
-                                        <div class="oyo-row oyo-row--no-spacing guestRoomPickerPopUp__buttonRow">
-                                            <div
-                                                class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone d-text14">
-                                                <button type="button"
-                                                    class="guestRoomPickerPopUp__lessRoom guestRoomPickerPopUp__lessRoom--disabled"
-                                                    fdprocessedid="98qndw" id="delete-room"
-                                                    onclick="deleteRoom({{ $room_row }});">Delete Room</button>
-                                            </div>
-                                            <div
-                                                class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone d-text14">
-                                                <button type="button" class="guestRoomPickerPopUp__addRoom"
-                                                    fdprocessedid="4v56i" id="add-room"
-                                                    onclick="addRoom({{ $room_row }});">Add
-                                                    Room</button>
-                                            </div>
+                                {{-- room end --}}
+                                <?php $room_row = 2; ?>
+                                <div
+                                    class="oyo-cell oyo-cell--12-col oyo-cell--8-col-tablet oyo-cell--4-col-phone guestRoomPickerPopUp__buttonWrapper">
+                                    <div class="oyo-row oyo-row--no-spacing guestRoomPickerPopUp__buttonRow">
+                                        <div
+                                            class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone d-text14">
+                                            <button type="button"
+                                                class="guestRoomPickerPopUp__lessRoom guestRoomPickerPopUp__lessRoom--disabled"
+                                                fdprocessedid="98qndw" id="delete-room"
+                                                onclick="deleteRoom({{ $room_row }});">Delete Room</button>
+                                        </div>
+                                        <div
+                                            class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone d-text14">
+                                            <button type="button" class="guestRoomPickerPopUp__addRoom"
+                                                fdprocessedid="4v56i" id="add-room"
+                                                onclick="addRoom({{ $room_row }});">Add
+                                                Room</button>
                                         </div>
                                     </div>
                                 </div>
-                            </span>
-                            {{-- room add section end --}}
-                        </div>
-                    </div>
-                    <div
-                        class="oyo-cell oyo-cell--2-col oyo-cell--8-col-tablet oyo-cell--4-col-phone homeSearchWidget__gutter homeSearchWidget__search">
-                        <button class="u-textCenter searchButton searchButton--home Rtgyd" id="searchButton"
-                            type="submit">
-                            Search
-                        </button>
+                            </div>
+                        </span>
+                        {{-- room add section end --}}
                     </div>
                 </div>
-            </form>
-        </div>
+                <div
+                    class="oyo-cell oyo-cell--2-col oyo-cell--8-col-tablet oyo-cell--4-col-phone homeSearchWidget__gutter homeSearchWidget__search">
+                    <button class="u-textCenter searchButton searchButton--home Rtgyd" id="searchButton"
+                        type="submit">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
+</div>
 </div>
 
 <!-- ENd - Web -->
@@ -694,7 +700,8 @@
 <!-- images -->
 <section class="PopularDestinationsUIstyles__PopularDestMainWrapper-sc-1ir08i0-0 gDEqxl">
     <h3 class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 hJuprJ">Popular Destinations</h3>
-    <div class="PopularDestinationsUIstyles__PopularImageOuterWrapper-sc-1ir08i0-2 fggXza container" style="max-width: 1440px;">
+    <div class="PopularDestinationsUIstyles__PopularImageOuterWrapper-sc-1ir08i0-2 fggXza container"
+        style="max-width: 1440px;">
         <a href="" title="Bengaluru"
             class="PopularDestinationsUIstyles__PopularBigImageWrapper-sc-1ir08i0-3 dAUSpZ">
             <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Bengaluru_1-1581426843.jpg"

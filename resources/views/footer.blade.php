@@ -5,13 +5,14 @@
 
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
-                                        <a href="/about-us" target="_blank" class="Q-BLNK">About Us</a>
+                                        <a href="/about-us" target="_blank" class="">About Us</a>
                                         <a href="/contact" target="_blank">Contact Us</a>
 
                                     </div>
                                 </div>
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
+                                        <a target="_blank" class="Q-BLNK">Quick Links</a>
                                         <a href="/privacy" target="_blank">Privacy Policy</a>
                                         <a href="/terms" target="_blank">Terms & Condition</a>
                                         <a href="/refund" target="_blank">Refund & cancellation</a>
@@ -57,6 +58,14 @@
                                         <p style=" margin: 0 0 7px;">SHIGATHA TOURISM PRIVATE LIMITED COMPANY</p>
                                         <p style=" margin: 0 0 7px;">NIRAMARUTHUR PO</p>
                                         <p style=" margin: 0 0 7px;">TIRUR.676109</p>
+                                    </div><br>
+                                    <div class="soc">
+                                        <a href="/refund" target="_blank"><i
+                                                class="fa-brands fa-facebook social-ic"></i></a>
+                                        <a href="/refund" target="_blank"><i
+                                                class="fa-brands fa-instagram social-ic"></i></a>
+                                        <a href="/refund" target="_blank"><i
+                                                class="fa-brands fa-linkedin social-ic"></i></a>
                                     </div>
                                 </div>
                             </div>

@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\Amenity;
+use App\Models\Mainbanner;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\GroupController;
@@ -10,14 +12,14 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Admin\AmenityController;
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\AmentityController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\MainbannerController;
 use App\Http\Controllers\Admin\NewsletterController;
-use App\Http\Controllers\OrderController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -89,6 +91,16 @@ Route::name('admin.')->group(function () {
             Route::post('/update', [TypeController::class, 'update'])->name('update');
             Route::get('/delete/{id}', [TypeController::class, 'delete'])->name('delete');
         });
+
+        Route::name('mainbanner.')->prefix('admin/mainbanner')->group(function () {
+            Route::get('/', [MainbannerController::class, 'list'])->name('list');
+            Route::get('/create', [MainbannerController::class, 'create'])->name('create');
+            Route::post('/save', [MainbannerController::class, 'save'])->name('save');
+            Route::get('/edit/{id}', [MainbannerController::class, 'edit'])->name('edit');
+            Route::post('/update', [MainbannerController::class, 'update'])->name('update');
+            Route::get('/delete/{id}', [MainbannerController::class, 'delete'])->name('delete');
+        });
+
 
         Route::name('banner.')->prefix('admin/banner')->group(function () {
             Route::get('/', [BannerController::class, 'list'])->name('list');

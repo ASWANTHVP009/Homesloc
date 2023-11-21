@@ -38,12 +38,14 @@ class OrderController extends Controller
                     }
 
                     $order_history[] = array(
+                        'id' => $data->id,
                         'property_name' => $data->hotel_name,
                         'hotel_id' => $data->hotel_id,
                         'hotel_location' => $data->hotel_location,
                         'room_count' => $data->room_count,
                         'guest_count' => $data->guest_count,
                         'image' => $single_image_path,
+                        'status' => $data->status,
                         'daterange' => $data->date_range,
                         'time' => $hotel_data->checkin . '-' . $hotel_data->checkout,
                         'total' => $data->total / 100,
@@ -69,6 +71,7 @@ class OrderController extends Controller
                     }
 
                     $complete_order[] = array(
+                        'id' => $cmp_data->id,
                         'property_name' => $cmp_data->hotel_name,
                         'hotel_id' => $cmp_data->hotel_id,
                         'hotel_location' => $cmp_data->hotel_location,
@@ -76,6 +79,7 @@ class OrderController extends Controller
                         'guest_count' => $cmp_data->guest_count,
                         'image' => $com_single_image_path,
                         'daterange' => $cmp_data->date_range,
+                        'status' => $data->status,
                         'time' => $hotel_data->checkin . '-' . $hotel_data->checkout,
                         'total' => $cmp_data->total / 100
                     );

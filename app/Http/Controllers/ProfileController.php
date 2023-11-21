@@ -48,6 +48,14 @@ class ProfileController extends Controller
 
         return response()->json(['success' => null], 200);
     }
+
+    public function cancel(Request $request)
+    {
+        $input = $request->all();
+        DB::table('orders')->where('id', $input['cancel_hotel_id'])->update(['status' => 2]);
+        return response()->json(['success' => null], 200);
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [

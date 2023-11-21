@@ -290,6 +290,16 @@ class Product extends Model
         }
         return $banners_data;
     }
+    public function getMainBanners()
+    {
+        $banners = DB::table('mainbanners')->select('id', 'name')->first();
+        $banners_data = array(
+            'id' => $banners->id,
+            'path' => $banners->name
+        );
+
+        return $banners_data;
+    }
 
     public function getMobileBanners()
     {

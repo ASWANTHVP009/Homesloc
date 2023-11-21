@@ -1061,7 +1061,21 @@ html {
 .tab-content {
     width: 100%;
 }
+.footerAppIcons {
+    height: 275px;
+}
+.soc {
+    padding: 0px 32px;
+}
+.social-ic {
+    font-size: 30px;
+    margin-right: 15px;
+    color: #fff;
+}
 @media screen and (max-width: 767px) {
+    .footerAppIcons {
+        height: auto;
+    }
     .tab-content {
         top: 6.75em !important;
     }

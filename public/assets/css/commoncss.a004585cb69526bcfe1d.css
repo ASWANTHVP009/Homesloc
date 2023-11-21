@@ -2649,7 +2649,7 @@ html[dir="rtl"] .u-RTLPositive svg {
 }
 .footerAppIcons__container {
     margin: 0;
-    padding: 30px 80px;
+    padding: 70px 80px;
     border-top: 1px solid hsla(0, 0%, 100%, 0.5);
     box-sizing: border-box;
 }
@@ -2722,7 +2722,7 @@ html[dir="rtl"] .u-RTLPositive svg {
     color: #fff;
     flex-direction: column;
     flex-wrap: wrap;
-    max-height: 160px;
+    max-height: 180px;
 }
 .footerAppIcons__secondryLinksContainer a {
     font-size: 14px;

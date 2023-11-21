@@ -195,7 +195,13 @@
                                         </div>
                                         <div class="col-md-6 book-list book-text">
                                             <p><b>Hotel Name :</b> {{ $order_history_data['property_name'] }}</p>
-                                            <p><b> Status :</b> Complted</p>
+
+                                            @if ($order_history_data['status'] == 2)
+                                                <p><b> Status :</b> Cancelled</p>
+                                            @else
+                                                <p><b> Status :</b> Completed</p>
+                                            @endif
+
                                             <p><b>Rooms :</b> {{ $order_history_data['room_count'] }} Room</p>
                                             <p><b>Guests :</b> {{ $order_history_data['guest_count'] }} Guests</p>
                                             <p><b>Checkin Time :</b> {{ $order_history_data['time'] }}</p>
@@ -208,8 +214,10 @@
                                             <button class="review" id="review-mod"
                                                 onclick="review({{ $order_history_data['hotel_id'] }})">Add
                                                 Review</button>
-                                            <button class="review" id="cancel"
-                                                onclick="review({{ $order_history_data['hotel_id'] }})">Cancel</button>
+                                            @if ($order_history_data['status'] != 2)
+                                                <button class="review cancel-mod" id="cancel-mod"
+                                                    onclick="cancel({{ $order_history_data['id'] }})">Cancel</button>
+                                            @endif
                                         </div>
 
                                     </div>
@@ -240,14 +248,23 @@
                                         </div>
                                         <div class="col-md-6 book-list book-text">
                                             <p><b>Hotel Name:</b> {{ $complete_order['property_name'] }}</p>
-                                            <p><b> Status :</b> Complted</p>
+
+                                            @if ($complete_order['status'] == 2)
+                                                <p><b> Status :</b> Cancelled</p>
+                                            @else
+                                                <p><b> Status :</b> Completed</p>
+                                            @endif
+
                                             <p><b>Rooms :</b> {{ $complete_order['room_count'] }} Room</p>
                                             <p><b>Guests :</b> {{ $complete_order['guest_count'] }} Guests</p>
                                             <p><b>Checkin Time :</b> 10 AM</p>
                                             <p><b>Total Payment :</b> Rs.{{ $complete_order['total'] }}</p>
 
-                                            <button class="review" id="cancel"
-                                                onclick="review({{ $order_history_data['hotel_id'] }})">Cancel</button>
+                                            @if ($complete_order['status'] != 2)
+                                                <button class="review cancel-mod" id="cancel"
+                                                    onclick="cancel({{ $order_history_data['id'] }})">Cancel</button>
+                                            @endif
+
                                         </div>
                                     </div>
                                 @endforeach
@@ -322,6 +339,39 @@
     </div>
 </div>
 
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cancel">Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form id="form-cancel">
+                    <div class="form-group required">
+                        <input type="hidden" name="cancel_hotel_id" id="cancel_hotel_id">
+                        <div class="form-group required">
+                            <div class="col-sm-12">
+                                <p>Are you sure you want to delete?</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary button-cancel" id="button-cancel"
+                    style="background: #00405a;padding: 10px 35px;">Yes</button>
+                <button type="button" class="btn btn-primary button-cancel-no" id="button-cancel-no"
+                    style="background: #00405a;padding: 10px 35px;">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -369,4 +419,35 @@
     $('#review-mod').on('click', function(e) {
         $('#reviewModal').modal('show');
     })
+</script>
+
+<script>
+    function cancel(hotel_id) {
+        $('#cancel_hotel_id').val(hotel_id);
+    }
+
+    $('.button-cancel-no').on('click', function(e) {
+        $('#cancelModal').modal('hide');
+    })
+
+    $('.cancel-mod').on('click', function(e) {
+        $('#cancelModal').modal('show');
+    })
+
+    $('.button-cancel').on('click', function(e) {
+        $.ajax({
+            type: 'POST',
+            url: '/cancel',
+            dataType: 'json',
+            data: $("#form-cancel").serialize(),
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            error: function(data) {},
+            success: function(data) {
+                $('#cancelModal').modal('hide');
+                location.reload();
+            }
+        });
+    });
 </script>
