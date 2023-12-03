@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\RequestController;
 use App\Http\Controllers\Admin\AmentityController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\MainbannerController;
 use App\Http\Controllers\Admin\NewsletterController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -99,6 +100,15 @@ Route::name('admin.')->group(function () {
             Route::get('/edit/{id}', [MainbannerController::class, 'edit'])->name('edit');
             Route::post('/update', [MainbannerController::class, 'update'])->name('update');
             Route::get('/delete/{id}', [MainbannerController::class, 'delete'])->name('delete');
+        });
+
+        Route::name('location.')->prefix('admin/location')->group(function () {
+            Route::get('/', [LocationController::class, 'list'])->name('list');
+            Route::get('/create', [LocationController::class, 'create'])->name('create');
+            Route::post('/save', [LocationController::class, 'save'])->name('save');
+            Route::get('/edit/{id}', [LocationController::class, 'edit'])->name('edit');
+            Route::post('/update', [LocationController::class, 'update'])->name('update');
+            Route::get('/delete/{id}', [LocationController::class, 'delete'])->name('delete');
         });
 
 

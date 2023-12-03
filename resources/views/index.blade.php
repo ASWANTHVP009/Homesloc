@@ -241,6 +241,23 @@
     <div class="oyo-cell oyo-cell--9-col homePage__leftFold"></div>
     <div class="oyo-cell oyo-cell--3-col homePage__rightFold"></div>
 </div>
+
+
+{{-- single Banner --}}
+
+<div class="bannerStrip" data-cms-id="421747" data-cms-template="cWeb-BannerCarousel">
+    <div role="button" class="oyo-row oyo-row--no-spacing banner  banner--noCursor"
+        data-cms-template="cWeb-BannerCarousel">
+        <div class="oyo-cell oyo-cell--12-col u-textCenter banner__cardImageContainer u-flexCenter">
+            <div class="c-5cjq8j"><img alt="OYO" loading="eager" importance="high"
+                    src="{{ URL::asset('/uploads/room.png') }}" class="c-2tglnv banner__cardImage" compact="true">
+            </div>
+        </div>
+    </div>
+</div>
+{{-- Single Banner end --}}
+
+
 <!-- banner -->
 <div class="bannerStrip" data-cms-id="763934" data-cms-template="cWeb-BannerCarousel" id="web-banner">
     <div role="button" class="oyo-row oyo-row--no-spacing banner  banner--noCursor"
@@ -702,82 +719,170 @@
     <h3 class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 hJuprJ">Popular Destinations</h3>
     <div class="PopularDestinationsUIstyles__PopularImageOuterWrapper-sc-1ir08i0-2 fggXza container"
         style="max-width: 1440px;">
-        <a href="" title="Bengaluru"
-            class="PopularDestinationsUIstyles__PopularBigImageWrapper-sc-1ir08i0-3 dAUSpZ">
-            <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Bengaluru_1-1581426843.jpg"
-                alt="" class="PopularDestinationsUIstyles__PopularBigImage-sc-1ir08i0-4 isfagQ"
-                data-testid="" itemprop="">
-            <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
-                <h3
-                    class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
-                    Bengaluru</h3>
-                <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">Technology Hub of
-                    India</p>
-            </div>
+        @if ($main_loaction_banner)
+            <a onclick="locBanner({{ $main_loaction_banner['id'] }})" title="Bengaluru"
+                class="PopularDestinationsUIstyles__PopularBigImageWrapper-sc-1ir08i0-3 dAUSpZ">
 
-        </a>
-        <div class="PopularDestinationsUIstyles__PopularSmallImageOuterWrapper-sc-1ir08i0-8 ceiRoP">
-            <a href="" title="Phuket"
-                class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
-                <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Phuket-1581457448.jpg" alt="Phuket"
-                    class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO" data-testid=""
+                <img src="{{ URL::asset('/uploads/' . $main_loaction_banner['path']) }}" alt=""
+                    class="PopularDestinationsUIstyles__PopularBigImage-sc-1ir08i0-4 isfagQ" data-testid=""
                     itemprop="">
                 <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
-                    <h3
-                        class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
-                        Phuket</h3>
-                    <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">A tropical
-                        paradise boasting of stunning beaches</p>
+                    <h3 class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh"
+                        id="{{ $main_loaction_banner['id'] }}_ltitle">
+                        {{ $main_loaction_banner['title'] }}</h3>
+                    <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy"
+                        id="{{ $main_loaction_banner['id'] }}_ltitle">
+                        {{ $main_loaction_banner['location'] }}</p>
+
+                    <div id="{{ $main_loaction_banner['id'] }}_ldescription" style="display: none">
+                        {{ $main_loaction_banner['description'] }}</div>
                 </div>
             </a>
-            <a href="" title="Ho Chi Minh"
-                class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
-                <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_HoChiMinh-1581456751.jpg"
-                    alt="Ho Chi Minh" class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO"
+        @else
+            <a title="Bengaluru" class="PopularDestinationsUIstyles__PopularBigImageWrapper-sc-1ir08i0-3 dAUSpZ">
+                <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Bengaluru_1-1581426843.jpg"
+                    alt="" class="PopularDestinationsUIstyles__PopularBigImage-sc-1ir08i0-4 isfagQ"
                     data-testid="" itemprop="">
                 <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
                     <h3
                         class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
-                        Dubai</h3>
-                    <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">Treasured gem of
-                        the Emirates</p>
+                        Bengaluru</h3>
+                    <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">Technology Hub
+                        of
+                        India</p>
+
                 </div>
             </a>
-        </div>
-        <div class="PopularDestinationsUIstyles__PopularSmallImageOuterWrapper-sc-1ir08i0-8 ceiRoP">
-            <a href="" title="Shimla"
-                class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
-                <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Shimla-1581427547.jpg" alt="Shimla"
-                    class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO" data-testid=""
-                    itemprop="">
-                <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
-                    <h3
-                        class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
-                        Shimla</h3>
-                    <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">Endearing
-                        combination of snow-covered peaks and blue sky</p>
-                </div>
-            </a>
-            <a href="" title="Munnar"
-                class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
-                <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Munnar-1581456447.jpg" alt="Munnar"
-                    class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO" data-testid=""
-                    itemprop="">
-                <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
-                    <h3
-                        class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
-                        Munnar</h3>
-                    <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">Referred as the
-                        Kashmir of South India</p>
-                </div>
-            </a>
-        </div>
+        @endif
+
+
+
+
+
+
+        @if ($location_banner1 && $location_banner2)
+            <div class="PopularDestinationsUIstyles__PopularSmallImageOuterWrapper-sc-1ir08i0-8 ceiRoP">
+                @foreach ($location_banner1 as $banner1)
+                    <a onclick="locBanner({{ $banner1['id'] }})" title="Phuket"
+                        class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
+                        <img src="{{ URL::asset('/uploads/' . $banner1['path']) }}" alt="Phuket"
+                            class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO" data-testid=""
+                            itemprop="">
+                        <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
+                            <h3 class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh"
+                                id="{{ $banner1['id'] }}_ltitle">
+                                {{ $banner1['title'] }}</h3>
+                            <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy"
+                                id="{{ $banner1['id'] }}_llocation">
+                                {{ $banner1['location'] }}</p>
+                            <div id="{{ $banner1['id'] }}_ldescription" style="display: none">
+                                {{ $banner1['description'] }}</div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+
+            <div class="PopularDestinationsUIstyles__PopularSmallImageOuterWrapper-sc-1ir08i0-8 ceiRoP">
+                @foreach ($location_banner2 as $banner2)
+                    <a onclick="locBanner({{ $banner2['id'] }})" title="Phuket"
+                        class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
+                        <img src="{{ URL::asset('/uploads/' . $banner2['path']) }}" alt="Phuket"
+                            class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO" data-testid=""
+                            itemprop="">
+                        <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
+                            <h3 class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh"
+                                id="{{ $banner2['id'] }}_ltitle">
+                                {{ $banner2['title'] }}</h3>
+                            <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy"
+                                id="{{ $banner2['id'] }}_llocation">
+                                {{ $banner2['location'] }}</p>
+                            <div id="{{ $banner2['id'] }}_ldescription" style="display: none">
+                                {{ $banner2['description'] }}</div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        @else
+            <div class="PopularDestinationsUIstyles__PopularSmallImageOuterWrapper-sc-1ir08i0-8 ceiRoP">
+                <a href="" title="Phuket"
+                    class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
+                    <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Phuket-1581457448.jpg"
+                        alt="Phuket" class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO"
+                        data-testid="" itemprop="">
+                    <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
+                        <h3
+                            class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
+                            Phuket</h3>
+                        <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">A tropical
+                            paradise boasting of stunning beaches</p>
+                    </div>
+                </a>
+                <a href="" title="Ho Chi Minh"
+                    class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
+                    <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_HoChiMinh-1581456751.jpg"
+                        alt="Ho Chi Minh" class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO"
+                        data-testid="" itemprop="">
+                    <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
+                        <h3
+                            class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
+                            Dubai</h3>
+                        <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">Treasured gem
+                            of
+                            the Emirates</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="PopularDestinationsUIstyles__PopularSmallImageOuterWrapper-sc-1ir08i0-8 ceiRoP">
+                <a href="" title="Phuket"
+                    class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
+                    <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_Phuket-1581457448.jpg"
+                        alt="Phuket" class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO"
+                        data-testid="" itemprop="">
+                    <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
+                        <h3
+                            class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
+                            Phuket</h3>
+                        <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">A tropical
+                            paradise boasting of stunning beaches</p>
+                    </div>
+                </a>
+                <a href="" title="Ho Chi Minh"
+                    class="PopularDestinationsUIstyles__PopularSmallImageWrapper-sc-1ir08i0-9 eiQutp">
+                    <img src="https://cdn1.goibibo.com/voy_ing/t_g/New_dWeb_Homepage_HoChiMinh-1581456751.jpg"
+                        alt="Ho Chi Minh" class="PopularDestinationsUIstyles__PopularSmallImage-sc-1ir08i0-10 dBcNbO"
+                        data-testid="" itemprop="">
+                    <div class="PopularDestinationsUIstyles__PopularImageOverlayWrap-sc-1ir08i0-5 jTVABK ">
+                        <h3
+                            class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 PopularDestinationsUIstyles__OverlayMainText-sc-1ir08i0-6 hJuprJ gmLHPV Rgtyh">
+                            Dubai</h3>
+                        <p class="PopularDestinationsUIstyles__OverlaySubText-sc-1ir08i0-7 cMRkEv tryHy">Treasured gem
+                            of
+                            the Emirates</p>
+                    </div>
+                </a>
+            </div>
+        @endif
+
     </div>
 </section>
 
 
 
-@include('footer')
+@include('footer');
+
+<script>
+    function locBanner(id) {
+
+        var title = $('#' + id + '_ltitle').html();
+        var description = $('#' + id + '_ldescription').html();
+
+        $('.location_name').html(title);
+        $('.location_description').html(description);
+        $('#location').modal('show');
+    }
+</script>
+
 {{-- rrom modal --}}
 <div class="modal fade" id="guest-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -835,6 +940,53 @@
     </div>
 </div>
 {{-- room modal End --}}
+
+{{-- location banner --}}
+{{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#location">
+    Launch demo modal
+</button>
+<style>
+    .modal {
+        text-align: center;
+        top: 0 !important;
+    }
+
+    @media screen and (min-width: 768px) {
+        .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%;
+        }
+    }
+
+    .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
+<!-- Modal -->
+<div class="modal fade" id="location" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title location_name" id="location_name">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body location_description"
+                style="height: 250px; overflow-y: auto; text-align: justify; font-size: 13px;">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -942,4 +1094,33 @@
                 .format('YYYY-MM-DD'));
         });
     });
+</script>
+<script>
+    // $(document).ready(function() {
+    //     function locBanner(id) {
+    //         console.log(id);
+    // 
+    //         //         $.ajax({
+    //         //             type: 'POST',
+    //         //             url: '/locationFetch',
+    //         //             dataType: 'json',
+    //         //             data: {
+    //         //                 id: id
+    //         //             },
+    //         //             headers: {
+    //         //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         //             },
+    //         //             error: function(data) {},
+    //         //             success: function(data) {
+    //         // 
+    //         //                 $('.location_name').val(data['title']);
+    //         //                 $('.location_description').val(data['title']);
+    //         // 
+    //         //                 $('#location').modal('show');
+    //         //             }
+    //         //         });
+    // 
+    // 
+    //     }
+    // });
 </script>

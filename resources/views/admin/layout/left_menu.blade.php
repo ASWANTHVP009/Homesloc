@@ -23,6 +23,14 @@
                     <p>Main Banners</p>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{ route('admin.location.list') }}" class="nav-link">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <p>Location Banners</p>
+                </a>
+            </li>
+
             <li class="nav-item">
                 <a href="{{ route('admin.banner.list') }}" class="nav-link">
                     <i class="fas fa-puzzle-piece"></i>

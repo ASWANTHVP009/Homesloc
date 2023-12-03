@@ -33,12 +33,30 @@ Route::get("/", function () {
     // Home Hotel List
     $hotel_data =  $banners->getHotelBasicdatas();
     $rec_hotel_data =  $banners->recommendedHotels();
+
+    // location Banners
+    $main_loaction_banner =  $banners->getMainLocationBanners();
+
+    $loaction_banner =  $banners->getLocationBanners();
+
+    if (isset($loaction_banner) && !empty($loaction_banner)) {
+        $loaction_banner_split_arrays = array_chunk($loaction_banner, ceil(count($loaction_banner) / 2));
+        $location_banner1 = $loaction_banner_split_arrays[0];
+        $location_banner2 = $loaction_banner_split_arrays[1];
+    } else {
+        $location_banner1 = '';
+        $location_banner2 = '';
+    }
+
     return view('index', [
         'banners' => $banners_data,
         'mainbanners_data' => $mainbanners_data,
         'mobile_banners' => $mobile_banners,
         'hotels' => $hotel_data,
         'rec_hotel_data' => $rec_hotel_data,
+        'main_loaction_banner' => $main_loaction_banner,
+        'location_banner1' => $location_banner1,
+        'location_banner2' => $location_banner2,
     ]);
 });
 
@@ -109,6 +127,8 @@ Route::get('/mailnotify', [CallbackController::class, 'mailnotify'])->name('mail
 Route::get('/list/{name?}', [ListController::class, 'list'])->name('list');
 
 Route::get('/info/{id}/{name?}', [ListController::class, 'info'])->name('info');
+
+Route::get('/locationFetch', [CallbackController::class, 'locationFetch'])->name('locationFetch');
 
 // Route::get('/info/{id?}{name?}', function ($hotel_id = null) {
 //     $image_data = new Product();

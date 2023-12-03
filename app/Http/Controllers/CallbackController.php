@@ -162,4 +162,16 @@ class CallbackController extends Controller
         session()->flash('success', 'Subscribed successfully!');
         return redirect()->back();
     }
+
+    public function locationFetch()
+    {
+
+        $input = request()->all();
+
+        dd($input);
+        $amentities = Amentity::all();
+        $menus = Menu::all();
+        $types = Type::all();
+        return view('request')->with('amentities', $amentities)->with('menus', $menus)->with('types', $types);
+    }
 }

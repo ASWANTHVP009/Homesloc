@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Schema::dropIfExists('request_images');
         Schema::create('request_images', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');

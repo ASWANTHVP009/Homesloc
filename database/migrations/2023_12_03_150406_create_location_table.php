@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::dropIfExists('mainbanners');
-        Schema::create('mainbanners', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
+            $table->string('location');
+            $table->longText('description')->nullable();
+            $table->string('path');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mainbanners');
+        Schema::dropIfExists('locations');
     }
 };

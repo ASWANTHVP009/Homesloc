@@ -313,4 +313,40 @@ class Product extends Model
         }
         return $mobile_banners_data;
     }
+
+    // Location Banners
+    public function getLocationBanners()
+    {
+        $images = DB::table('locations')->select('*')->where('status', '!=', 1)->get();
+        $image_data = [];
+
+        foreach ($images as $image) {
+            $data[] = array(
+                'id' =>  $image->id,
+                'title' =>  $image->title,
+                'location' =>  $image->location,
+                'description' =>  $image->description,
+                'path' =>  $image->path,
+            );
+        }
+        return $data;
+    }
+    // 
+    public function getMainLocationBanners()
+    {
+        $images = DB::table('locations')->select('*')->where('status', 1)->first();
+        if (isset($images) && !empty($images)) {
+            $data = array(
+                'id' =>  $images->id,
+                'title' =>  $images->title,
+                'location' =>  $images->location,
+                'description' =>  $images->description,
+                'path' =>  $images->path,
+            );
+        } else {
+            $data = '';
+        }
+        return $data;
+    }
+    // end
 }
