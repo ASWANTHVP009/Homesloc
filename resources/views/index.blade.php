@@ -869,7 +869,7 @@
 
 
 
-@include('footer');
+@include('footer')
 
 <script>
     function locBanner(id) {
@@ -1089,33 +1089,4 @@
                 .format('YYYY-MM-DD'));
         });
     });
-</script>
-<script>
-    // $(document).ready(function() {
-    //     function locBanner(id) {
-    //         console.log(id);
-    // 
-    //         //         $.ajax({
-    //         //             type: 'POST',
-    //         //             url: '/locationFetch',
-    //         //             dataType: 'json',
-    //         //             data: {
-    //         //                 id: id
-    //         //             },
-    //         //             headers: {
-    //         //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         //             },
-    //         //             error: function(data) {},
-    //         //             success: function(data) {
-    //         // 
-    //         //                 $('.location_name').val(data['title']);
-    //         //                 $('.location_description').val(data['title']);
-    //         // 
-    //         //                 $('#location').modal('show');
-    //         //             }
-    //         //         });
-    // 
-    // 
-    //     }
-    // });
 </script>
