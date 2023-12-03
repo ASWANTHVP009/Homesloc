@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Price">Sort order</label>
-                                    <input type="text" class="form-control" name="status" placeholder="Status">
+                                    <input type="text" class="form-control" name="status" placeholder="Sort order">
                                 </div>
                                 <div class="form-group">
                                     <label for="banner">Banner Images</label>

@@ -68,7 +68,7 @@ class LocationController extends Controller
         $product->location = $input['location'];
         $product->description = $input['description'];
         $product->path = $image_path;
-        $product->status = 1;
+        $product->status = $input['status'];
         $product->save();
 
         return redirect()->route('admin.location.list')->with('message', 'Banner created successfully');

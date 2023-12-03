@@ -942,12 +942,7 @@
 {{-- room modal End --}}
 
 {{-- location banner --}}
-{{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#location">
-    Launch demo modal
-</button>
 <style>
     .modal {
         text-align: center;
