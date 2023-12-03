@@ -14,7 +14,7 @@
     <link href="{{ asset('assets/css/home.4a868bd3e530d1605317.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/font-aswome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="uploads/images/logo.png">
+    <link rel="icon" type="image/x-icon" href="uploads/images/homeslogoic.png">
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
@@ -153,7 +153,7 @@
                                                 <div class="promoCard__contentWrapper">
                                                     <div class="promoCard__text d-text14 is-fontBold">
                                                         <span class=""><a href="/about-us"
-                                                                style="text-decoration: none; font-weight: 100;">About
+                                                                style="text-decoration: none; font-weight: 500;">About
                                                                 Us</a></span>
                                                     </div>
                                                 </div>
@@ -165,7 +165,7 @@
                                                 <div class="promoCard__contentWrapper">
                                                     <div class="promoCard__text d-text14 is-fontBold">
                                                         <span class=""><a href="/contact"
-                                                                style="text-decoration: none;font-weight: 100;">Contact
+                                                                style="text-decoration: none;font-weight: 500;">Contact
                                                                 Us</a></span>
                                                     </div>
                                                 </div>

@@ -3438,3 +3438,8 @@
 .bfQYZk a {
     text-decoration: none !important;
 }
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+    .oyoExpanding__countryImage {
+        width: 98px;
+    }
+}

@@ -8,7 +8,7 @@
     .join-container {
         position: relative;
         width: 100%;
-        max-width: 400px;
+        /*max-width: 400px;*/
     }
 
     .join-container img {
@@ -38,7 +38,7 @@
     }
 </style>
 <div class="c-19midj6 mob-C12rgh">
-    <h1 class="c-1cq3vev">Find hotels at best prices</h1>
+    <h1 class="c-1cq3vev">FIND HOTELS AT BEST PRICES</h1>
     <div>
         <form class="autoCompleteDesktop__searchContainer" action="{{ url('/list') }}" method="GET">
             <div class="c-1l2i9d5">
@@ -852,7 +852,7 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $(".SlickCarousel").slick({
-            rtl: false, // If RTL Make it true & .slick-slide{float:right;}
+            // rtl: false, // If RTL Make it true & .slick-slide{float:right;}
             autoplay: true,
             autoplaySpeed: 5000, //  Slide Delay
             speed: 800, // Transition Speed
@@ -862,7 +862,7 @@
             appendArrows: $(".Container .Head .Arrows"), // Class For Arrows Buttons
             prevArrow: '<span class="Slick-Prev"></span>',
             nextArrow: '<span class="Slick-Next"></span>',
-            easing: "linear",
+            // easing: "linear",
             responsive: [{
                     breakpoint: 801,
                     settings: {

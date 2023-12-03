@@ -731,7 +731,7 @@ html {
 
 @media only screen and (max-width: 1520px) {
     .gDEqxl {
-        padding: 0 1rem 0 2rem;
+        padding: 0 1rem 0 1rem;
     }
 }
 
@@ -1072,7 +1072,25 @@ html {
     margin-right: 15px;
     color: #fff;
 }
+.c-1lpmxla input{
+    font-weight: 500;
+}
+.date-range-pick{
+    font-weight:500;
+}
+.guestRoomPicker__guestRoomCount{
+    font-weight:500 !important;
+}
+
 @media screen and (max-width: 767px) {
+    
+    .c-105t92t {
+        padding-left: 10px;
+    }
+
+    .soc {
+        padding: 0 !important;
+    }
     .footerAppIcons {
         height: auto;
     }
@@ -1158,10 +1176,14 @@ html {
         padding: 0 !important;
         margin-top: 33px !important;
     }
-    .fggXza {
-        padding-left: 0px !important;
-    }
+    /*.fggXza {*/
+    /*    padding-left: 0px !important;*/
+    /*}*/
 
+    .container {
+        padding-right: 0px;
+    }
+    
     .des-C12rgh {
         display: none;
     }
@@ -1182,32 +1204,32 @@ html {
 
     .Rg-im1 {
         top: 175px;
-        left: 142px;
+        left: 120px;
     }
 
     .Rg-im2 {
         top: 11px;
-        left: 272px;
+        left: 240px;
     }
 
     .Rg-im3 {
         top: 155px;
-        left: 270px;
+        left: 240px;
     }
 
     .Rg-im4 {
         top: 35px;
-        left: 142px;
+        left: 120px;
     }
 
     .Rg-im5 {
         top: 235px;
-        left: 273px;
+        left: 240px;
     }
 
     .Rg-im6 {
         top: 64px;
-        left: 5px;
+        left: 0px;
     }
 
     .d-heading {
