@@ -1082,6 +1082,15 @@ html {
     font-weight:500 !important;
 }
 
+@media screen and (min-width: 420px) and (max-width: 767px) {
+    .isfagQ {
+        width: 24rem !important;
+    }
+    .dBcNbO {
+        width: 24rem  !important;
+    }
+}
+
 @media screen and (max-width: 767px) {
     
     .c-105t92t {
@@ -1249,14 +1258,14 @@ html {
         display: inline-block;
     }
     .dBcNbO {
-        width: 21rem;
+        width: 19rem;
         height: 21rem;
         object-fit: cover;
         margin-top: 10px;
     }
 
     .isfagQ {
-        width: 21rem;
+        width: 19rem;
         height: 21rem;
         object-fit: cover;
     }

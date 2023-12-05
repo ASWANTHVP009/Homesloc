@@ -2,23 +2,26 @@
                     <div class="fadeIn__container fadeIn__container--active">
                         <div class="footerAppIcons" data-cms-id="187470" data-cms-template="cWEB-footerAppIconsText">
                             <div class="oyo-row footerAppIcons__container">
-
+                                
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
+                                        <a target="_blank" class="Q-BLNK">Quick Links</a>
                                         <a href="/about-us" target="_blank" class="">About Us</a>
                                         <a href="/contact" target="_blank">Contact Us</a>
 
                                     </div>
                                 </div>
+                                
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
-                                        <a target="_blank" class="Q-BLNK">Quick Links</a>
-                                        <a href="/privacy" target="_blank">Privacy Policy</a>
-                                        <a href="/terms" target="_blank">Terms & Condition</a>
-                                        <a href="/refund" target="_blank">Refund & cancellation</a>
+                                        <a  target="_blank" class="">Home Stay</a>
+                                        <a  target="_blank">Resorts</a>
+                                        <a  target="_blank">Hotels</a>
+                                        <a  target="_blank">Appartments</a>
 
                                     </div>
                                 </div>
+                                
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks newsl">
                                     <div
                                         class="oyo-row oyo-row--no-spacing u-alignItemsCenter footerAppIcons__appsMessage">
@@ -60,11 +63,11 @@
                                         <p style=" margin: 0 0 7px;">TIRUR.676109</p>
                                     </div><br>
                                     <div class="soc">
-                                        <a href="/refund" target="_blank"><i
+                                        <a href="https://www.facebook.com/profile.php?id=61554143541070&mibextid=ZbWKwL" target="_blank"><i
                                                 class="fa-brands fa-facebook social-ic"></i></a>
-                                        <a href="/refund" target="_blank"><i
+                                        <a href="https://www.instagram.com/homes_loc/" target="_blank"><i
                                                 class="fa-brands fa-instagram social-ic"></i></a>
-                                        <a href="/refund" target="_blank"><i
+                                        <a href="https://www.linkedin.com/in/homesloc-homes-loc-8651282a1" target="_blank"><i
                                                 class="fa-brands fa-linkedin social-ic"></i></a>
                                     </div>
                                 </div>

@@ -347,7 +347,24 @@
                                             </span>
                                             <p itemprop="name"
                                                 class="SegmentSliderUIstyles__SliderHotelNameText-sc-ifa9fu-14 bfQYZk">
-                                                <a href=".\info.html"> {{ $hotel['property_name'] }}</a>
+                                                <a
+                                    href="{{ url('/info') .
+                                        '/' .
+                                        $hotel['id'] .
+                                        '?location=' .
+                                        app('request')->input('location') .
+                                        '&latitude=' .
+                                        app('request')->input('latitude') .
+                                        '&longitude=' .
+                                        app('request')->input('longitude') .
+                                        '&daterange=' .
+                                        app('request')->input('daterange') .
+                                        '&gt-count=' .
+                                        app('request')->input('gt-count') .
+                                        '&rm-count=' .
+                                        app('request')->input('rm-count') .
+                                        $expand }} 
+                                "> {{ $hotel['property_name'] }}</a>
                                             </p><span itemprop="address"
                                                 class="SegmentSliderUIstyles__SliderHotelLocationText-sc-ifa9fu-15 bgFBTe">{{ $hotel['location'] }}</span>
                                             <div

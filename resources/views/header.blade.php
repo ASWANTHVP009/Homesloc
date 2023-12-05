@@ -142,7 +142,7 @@
                                     <a class="c-nn640c headerSticky__logoWrapper"
                                         href="\">
                                         <img src="uploads/images/logo.png"
-                                        alt="Homesloc" class="mob-logo">
+                                        alt="Homesloc" class="mob-logo" style="margin-left: 52px;">
                                     </a>
                                 </div>
                                 <div class="oyo-cell headerSticky__rightHeader">

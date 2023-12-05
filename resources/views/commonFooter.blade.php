@@ -5,16 +5,19 @@
 
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
-                                        <a href="/about-us" target="_blank" class="Q-BLNK">About Us</a>
+                                        <a target="_blank" class="Q-BLNK">Quick Links</a>
+                                        <a href="/about-us" target="_blank" class="">About Us</a>
                                         <a href="/contact" target="_blank">Contact Us</a>
 
                                     </div>
                                 </div>
+                                
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
-                                        <a href="/privacy" target="_blank">Privacy Policy</a>
-                                        <a href="/terms" target="_blank">Terms & Condition</a>
-                                        <a href="/refund" target="_blank">Refund & cancellation</a>
+                                        <a  target="_blank" class="">Home Stay</a>
+                                        <a  target="_blank">Resorts</a>
+                                        <a  target="_blank">Hotels</a>
+                                        <a  target="_blank">Appartments</a>
 
                                     </div>
                                 </div>
@@ -46,7 +49,15 @@
                                         <p style=" margin: 0 0 7px;">SHIGATHA TOURISM PRIVATE LIMITED COMPANY</p>
                                         <p style=" margin: 0 0 7px;">NIRAMARUTHUR PO</p>
                                         <p style=" margin: 0 0 7px;">TIRUR.676109</p>
-                                    </div>
+                                    </div><br>
+                                    <!--<div class="soc">-->
+                                    <!--    <a href="https://www.facebook.com/profile.php?id=61554143541070&mibextid=ZbWKwL" target="_blank"><i-->
+                                    <!--            class="fa-brands fa-facebook social-ic"></i></a>-->
+                                    <!--    <a href="https://www.instagram.com/homes_loc/" target="_blank"><i-->
+                                    <!--            class="fa-brands fa-instagram social-ic"></i></a>-->
+                                    <!--    <a href="https://www.linkedin.com/in/homesloc-homes-loc-8651282a1" target="_blank"><i-->
+                                    <!--            class="fa-brands fa-linkedin social-ic"></i></a>-->
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </div>
@@ -87,14 +98,14 @@
                                             </svg>
                                         </a>
                                     </div>
-                                    <div
-                                        class="oyo-cell oyo-cell--4-col oyo-cell--middle u-textCenter footerSocial__tagLine">
-                                    </div>
+                                    <!--<div-->
+                                    <!--    class="oyo-cell oyo-cell--4-col oyo-cell--middle u-textCenter footerSocial__tagLine">-->
+                                    <!--</div>-->
                                     <div
                                         class="oyo-cell oyo-cell--4-col oyo-cell--middle u-textRight footerSocial__copyright">
                                         2023 © HomesLoc</div>
                                     <div
-                                        class="oyo-cell oyo-cell--4-col oyo-cell--middle u-textRight footerSocial__copyright">
+                                        class="oyo-cell oyo-cell--8-col oyo-cell--middle u-textRight footerSocial__copyright1 foot-pvc">
                                         <a href="/privacy" target="_blank">Privacy Policy</a>
                                         <a href="/terms" target="_blank">Terms & Condition</a>
                                         <a href="/refund" target="_blank">Refund & cancellation</a>

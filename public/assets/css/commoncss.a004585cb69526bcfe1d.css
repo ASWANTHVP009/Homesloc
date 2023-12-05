@@ -1571,7 +1571,8 @@ html[dir="rtl"] .u-RTLPositive svg {
     height: 100%;
     line-height: 1;
     outline: none;
-    padding: 19px 50px 19px 16px;
+    /*padding: 19px 50px 19px 16px;*/
+        padding: 9px 50px 10px 16px;
     font-size: 16px;
     color: rgba(0, 0, 0, 0.87);
     background-color: transparent;

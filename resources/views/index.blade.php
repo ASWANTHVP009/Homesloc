@@ -1,6 +1,13 @@
 @include('header')
 <!-- Mobile -->
 <style>
+    
+    
+    .autoCompleteDesktop__searchBox {
+    
+        padding: 19px 50px 19px 16px;
+        
+    }
     .c-l4zwwj {
         line-height: 0px !important;
     }
@@ -118,7 +125,7 @@
                             <input
                                 class="autoCompleteDesktop__searchBox autoCompleteDesktop__searchBox--home  autoCompleteDesktop__searchBox--nearbyVisible"
                                 placeholder="Search by city, hotel, or neighborhood" id="search" name="location"
-                                type="text" placeholder="Search location" autocomplete="on" required />
+                                type="text" placeholder="Search location" autocomplete="on" required style="    font-weight: 100;" />
                             <input type="hidden" name="latitude" value="" id="latitude">
                             <input type="hidden" name="longitude" value="" id="longitude">
                             <span></span>
@@ -245,10 +252,10 @@
 
 {{-- single Banner --}}
 
-<div class="bannerStrip" data-cms-id="421747" data-cms-template="cWeb-BannerCarousel">
+<div class="bannerStrip 4219" data-cms-id="421747" data-cms-template="cWeb-BannerCarousel">
     <div role="button" class="oyo-row oyo-row--no-spacing banner  banner--noCursor"
         data-cms-template="cWeb-BannerCarousel">
-        <div class="oyo-cell oyo-cell--12-col u-textCenter banner__cardImageContainer u-flexCenter">
+        <div class="oyo-cell oyo-cell--12-col u-textCenter  u-flexCenter">
             <div class="c-5cjq8j"><img alt="OYO" loading="eager" importance="high"
                     src="{{ URL::asset('/uploads/room.png') }}" class="c-2tglnv banner__cardImage" compact="true">
             </div>
@@ -376,7 +383,22 @@
                                                 </span>
                                                 <p itemprop="name"
                                                     class="SegmentSliderUIstyles__SliderHotelNameText-sc-ifa9fu-14 bfQYZk">
-                                                    {{ $hotel['property_name'] }} </p>
+                                                    <a
+                                        href="{{ url('/info') .
+                                            '/' .
+                                            $hotel['id'] .
+                                            '?location=' .
+                                            app('request')->input('location') .
+                                            '&latitude=' .
+                                            app('request')->input('latitude') .
+                                            '&longitude=' .
+                                            app('request')->input('longitude') .
+                                            '&daterange=' .
+                                            $today->format('d/m/Y') .
+                                            ' - ' .
+                                            \Carbon\Carbon::tomorrow()->format('d/m/Y') .
+                                            '&gt-count=2 &rm-count=1' }} 
+                                ">{{ $hotel['property_name'] }} </a></p>
                                                 <span itemprop="address"
                                                     class="SegmentSliderUIstyles__SliderHotelLocationText-sc-ifa9fu-15 bgFBTe">{{ $hotel['location'] }}</span>
                                                 <div
@@ -969,8 +991,8 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title location_name" id="location_name">Modal title</h5>
+            <div class="modal-header" style="border-bottom: none;">
+                <h5 class="modal-title location_name" id="location_name" style="color: #00405a; font-weight: 600;">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

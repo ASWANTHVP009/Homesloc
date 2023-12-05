@@ -272,7 +272,7 @@
                     <form class="autoCompleteDesktop__searchContainer" action="{{ url('/list') }}" method="GET">
                         <div class="searchContainer HigTrfe" data-cms-id="300457" data-cms-template="cWEB-oyoSpaces">
                             <div class=""
-                                style="position: relative;float: left; margin-right: 33px; margin-left: -50px;margin-top: 7px;">
+                                style="position: relative;float: left; margin-right: 33px; margin-left: -62px;margin-top: 7px;">
                                 <a href="\">
                                 <img src="{{ asset('uploads/images/wlogo.png') }}"
                                     alt="Homeslocss" class="mob-logo">
@@ -292,7 +292,7 @@
                                                         <input
                                                             class="autoCompleteDesktop__searchBox autoCompleteDesktop__searchBox--home  autoCompleteDesktop__searchBox--nearbyVisible"
                                                             id="search" type="text" name="location"
-                                                            placeholder="Search location" autocomplete="on"
+                                                            placeholder="Search location" autocomplete="on"  style="font-weight: 100;"
                                                             value="{{ app('request')->input('location') }}" />
                                                         <input type="hidden" name="latitude"
                                                             value="{{ app('request')->input('latitude') }}"
@@ -305,17 +305,7 @@
                                                         <input type="hidden" name="rm-count" id="rm-count"
                                                             value="{{ app('request')->input('rm-count') }}">
 
-                                                        <div class="autoCompleteDesktop__nearbyComponentWrapper">
-                                                            <div class="nearbyComponent ripple"><span
-                                                                    class="nearbyComponent__iconWrapper"><svg
-                                                                        class="nearbyComponent__icon">
-
-                                                                        <use xlink:href="#crosshair-icon"></use>
-
-                                                                    </svg></span><span
-                                                                    class="d-text12 is-fontBold nearbyComponent__text">Near
-                                                                    me</span></div>
-                                                        </div><span></span>
+                                                        
                                                     </div>
                                                 </div><span></span>
                                             </div>
