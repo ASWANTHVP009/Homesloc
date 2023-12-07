@@ -215,6 +215,15 @@ Route::post('/review', [ProfileController::class, 'review'])->name('review');
 Route::post('/cancel', [ProfileController::class, 'cancel'])->name('cancel');
 
 
+// stripe
+
+Route::get('/booknow', [CheckoutController::class, 'booknow'])->name('booknow');
+Route::post('/session', [CheckoutController::class, 'session'])->name('session');
+Route::get('/stripe', [CheckoutController::class, 'stripe'])->name('stripe');
+
+// end
+
+
 // Route::get('/checkout', function () {
 //     $data =  array();
 //     return view('checkout', [

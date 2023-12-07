@@ -155,9 +155,39 @@
                                                 <div class="c-193xivm"><span>We will confirm your stay after the
                                                         payment. After visit the hotel during your stay.</span></div>
                                                 <div class="c-1veb3nf">
-                                                    <button type="submit" class="c-u65gu2" id="rzp-button1">
+
+                                                    <form action="/session" method="POST">
+
+                                                        <input type="hidden" name="_token"
+                                                            value="{{ csrf_token() }}">
+                                                        <input type='hidden' name="productname"
+                                                            value="HomeLoc Room Booking.......">
+
+                                                        <input type='hidden' name="name" value=""
+                                                            id="cust_name">
+                                                        <input type='hidden' name="email" value=""
+                                                            id="cust_email">
+                                                        <input type='hidden' name="mobile" value=""
+                                                            id="cust_mobile">
+                                                        <input type='hidden' name="property_id"
+                                                            value="{{ app('request')->input('property') }}">
+                                                        <input type='hidden' name="room_count"
+                                                            value="{{ app('request')->input('rm-count') }}">
+                                                        <input type='hidden' name="guest_count"
+                                                            value="{{ app('request')->input('gt-count') }}">
+                                                        <input type='hidden' name="daterange"
+                                                            value="{{ app('request')->input('daterange') }}">
+                                                        <input type='hidden' name="total"
+                                                            value="{{ $total }}">
+
+                                                        <button class="c-u65gu2" type="submit"
+                                                            id="checkout-live-button"><i class="fa fa-money"></i>
+                                                            Pay Now</button>
+                                                    </form>
+
+                                                    {{-- <button type="submit" class="c-u65gu2" id="rzp-button1">
                                                         Pay Now
-                                                    </button>
+                                                    </button> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -315,6 +345,15 @@
         }
 
         if (error_value == 0) {
+
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var mobile = $('#mobile').val();
+
+            $('#cust_name').val(name);
+            $('#cust_email').val(email);
+            $('#cust_mobile').val(mobile);
+
             $('#Payment-Block').show();
 
         }

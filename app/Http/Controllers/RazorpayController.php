@@ -28,7 +28,9 @@ class RazorpayController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $payment_details = $this->api->payment->fetch($request->get('payment_id'));
+
+        // dd($input);
+        // $payment_details = $this->api->payment->fetch($request->get('payment_id'));
         $hotel_data = DB::table('products')->select('name', 'location', 'price', 'special_price')->where('id', $input['property_id'])->first();
 
         $user = auth()->user();
@@ -39,7 +41,8 @@ class RazorpayController extends Controller
         }
         // Order save
         $order_data = [
-            'order_id' => $payment_details->order_id,
+            // 'order_id' => $payment_details->order_id,
+            'order_id' => 'HMLC-' . substr($input['mobile'], -6) . '-' . substr($input['name'], -3),
             'name' => $input['name'],
             'last_name' => "",
             'email' => $input['email'],
@@ -50,8 +53,10 @@ class RazorpayController extends Controller
             'hotel_name' => $hotel_data->name,
             'hotel_location' => $hotel_data->location,
             'price' => $hotel_data->special_price ? $hotel_data->special_price : $hotel_data->price,
-            'total' => $payment_details->amount,
-            'payment_method' => $payment_details->method,
+            // 'total' => $payment_details->amount,
+            // 'payment_method' => $payment_details->method,
+            'total' => $input['total'],
+            'payment_method' => "Card Payment",
             'status' => 1,
             'customer_id' => $customerId,
             'date_range' => $input['daterange'],
@@ -60,14 +65,14 @@ class RazorpayController extends Controller
         // Order save End
 
         // Order save
-        $pay_data = [
-            'order_id' => $newOrderId,
-            'transaction_id' => $payment_details->id ? $payment_details->id : '',
-            'payment_method' => $payment_details->method ? $payment_details->method : '',
-            'bank_name' => $payment_details->bank ? $payment_details->bank : '',
-            'payment_status' => $payment_details->status ? $payment_details->status : '',
-        ];
-        DB::table('payment')->insert($pay_data);
+        // $pay_data = [
+        //     'order_id' => $newOrderId,
+        //     'transaction_id' => $payment_details->id ? $payment_details->id : '',
+        //     'payment_method' => $payment_details->method ? $payment_details->method : '',
+        //     'bank_name' => $payment_details->bank ? $payment_details->bank : '',
+        //     'payment_status' => $payment_details->status ? $payment_details->status : '',
+        // ];
+        // DB::table('payment')->insert($pay_data);
         // Order save End
 
         $invoice_data = array(
@@ -81,9 +86,11 @@ class RazorpayController extends Controller
             'hotel_name' => $hotel_data->name,
             'hotel_location' => $hotel_data->location,
             'price' => $hotel_data->special_price ? $hotel_data->special_price : $hotel_data->price,
-            'total' => $payment_details->amount / 100,
             'date_range' => $input['daterange'],
-            'payment_method' => $payment_details->method,
+            'payment_method' => 'Card Payment',
+            'total' => $input['total'],
+            // 'payment_method' => $payment_details->method,
+            // 'total' => $payment_details->amount / 100,
         );
         return view('invoice', compact('invoice_data'));
     }

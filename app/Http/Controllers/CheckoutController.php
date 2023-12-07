@@ -69,4 +69,72 @@ class CheckoutController extends Controller
 
         return view('checkout', compact('orderid', 'razorpayOrder', 'unit_price', 'total'));
     }
+
+    // stripe
+
+    public function booknow()
+    {
+        return view('booknow');
+    }
+
+    public function session(Request $request)
+    {
+        \Stripe\Stripe::setApiKey(config('stripe.sk'));
+
+        $productname = $request->get('productname');
+        $totalprice = $request->get('total');
+
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $mobile = $request->get('mobile');
+        $property_id = $request->get('property_id');
+        $room_count = $request->get('room_count');
+        $guest_count = $request->get('guest_count');
+        $daterange = $request->get('daterange');
+        $total = $request->get('total');
+
+
+
+        $total = 1;
+
+        $session = \Stripe\Checkout\Session::create([
+            'line_items'  => [
+                [
+                    'price_data' => [
+                        'currency'     => 'INR',
+                        'product_data' => [
+                            "name" => $productname,
+                        ],
+                        'unit_amount'  => $total * 100,
+                    ],
+                    'quantity'   => 1,
+                ],
+
+            ],
+            'mode'        => 'payment',
+            'success_url' => route(
+                'razorpay.payment.store',
+                [
+                    'name' => $name,
+                    'email' => $email,
+                    'mobile' => $mobile,
+                    'property_id' => $property_id,
+                    'room_count' => $room_count,
+                    'guest_count' => $guest_count,
+                    'daterange' => $daterange,
+                    'total' => $total,
+                ]
+            ),
+            'cancel_url'  => route('index'),
+        ]);
+
+        // dd($session);
+
+        return redirect()->away($session->url);
+    }
+
+    public function stripe()
+    {
+        return "Thanks for you order You have just completed your payment. The seeler will reach out to you as soon as possible";
+    }
 }
