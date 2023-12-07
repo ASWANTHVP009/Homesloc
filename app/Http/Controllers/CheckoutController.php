@@ -93,10 +93,6 @@ class CheckoutController extends Controller
         $daterange = $request->get('daterange');
         $total = $request->get('total');
 
-
-
-        $total = 1;
-
         $session = \Stripe\Checkout\Session::create([
             'line_items'  => [
                 [
@@ -127,8 +123,6 @@ class CheckoutController extends Controller
             ),
             'cancel_url'  => route('index'),
         ]);
-
-        // dd($session);
 
         return redirect()->away($session->url);
     }
