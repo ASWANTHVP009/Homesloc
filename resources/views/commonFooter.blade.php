@@ -14,6 +14,7 @@
                                 
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
+                                        <a target="_blank" class="Q-BLNK">Categories</a>
                                         <a  target="_blank" class="">Home Stay</a>
                                         <a  target="_blank">Resorts</a>
                                         <a  target="_blank">Hotels</a>
@@ -47,8 +48,8 @@
                                     <div class="oyo-row oyo-row--no-spacing address-footer"
                                         style="padding: 0 32px;font-size: 14px;  text-align: left; color: #fff;display: block;    line-height: 21px;">
                                         <p style=" margin: 0 0 7px;">SHIGATHA TOURISM PRIVATE LIMITED COMPANY</p>
-                                        <p style=" margin: 0 0 7px;">NIRAMARUTHUR PO</p>
-                                        <p style=" margin: 0 0 7px;">TIRUR.676109</p>
+                                        <p style=" margin: 0 0 7px;">Niramaruthur PO</p>
+                                        <p style=" margin: 0 0 7px;">Tirur.676109</p>
                                     </div><br>
                                     <!--<div class="soc">-->
                                     <!--    <a href="https://www.facebook.com/profile.php?id=61554143541070&mibextid=ZbWKwL" target="_blank"><i-->

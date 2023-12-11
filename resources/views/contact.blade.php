@@ -10,14 +10,19 @@
     <link rel="stylesheet" href="{{ asset('assets/css/mainstyle.css') }}">
 
 </head>
+<style>
+    .footerAppIcons__container {
+    padding: 20px 81px !important;
+}
+</style>
 <div id="content" class="site-content">
     <div class="page-header flex-middle">
         <div class="container">
             <div class="inner flex-middle">
-                <h1 class="page-title">Contact</h1>
+                <h1 class="page-title">CONTACT</h1>
                 <ul id="breadcrumbs" class="breadcrumbs none-style">
                     <li><a href="/">Home</a></li>
-                    <li class="active">Contact</li>
+                    <li class="active">CONTACT</li>
                 </ul>
             </div>
         </div>

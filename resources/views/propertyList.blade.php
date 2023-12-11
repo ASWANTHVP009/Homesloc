@@ -5,6 +5,71 @@
     .checkbox input:checked~span>svg {
         margin-top: -19px;
     }
+    .theme-agoda .SortBar {
+        background-color: #fff;
+        border-color: #dddfe2;
+    }
+    .SortBar {
+        border: 1px solid;
+        border-radius: 3px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+    }
+    .theme-agoda .SortBar__Item--Selected, .theme-agoda .SortBar__Item--Selected:hover {
+        background-color: #5392f9;
+        color: #fff;
+    }
+    .theme-agoda .SortBar__Divider {
+        background-color: #dddfe2;
+    }
+    .SortBar__Divider {
+        background-color: #dddfe2;
+        margin: 7px 0px;
+        width: 1px;
+    }
+    .SortBar__Item {
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        -ms-flex-preferred-size: 1px;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-basis: 1px;
+        flex-grow: 1;
+        font-size: 14px;
+        font-weight: 500;
+        justify-content: center;
+        line-height: 20px;
+        padding: 4px 0;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 300;
+        min-width: 150px;
+        cursor: pointer;
+
+    }
+    .SortBar__Item span{
+       
+        width: max-content;
+
+    }
+    .eEmzSD{
+        font-size: 16px;
+        margin-left: 15px;
+    }
+    .loc-found{
+        margin-right: 9em;
+    }
+    .sort-act{
+        background: #cac8d3;
+    }
 </style>
 
 <div class="listing__topSection web-lists">
@@ -266,23 +331,83 @@
 
             <div class="ListingContentHeader">
 
-                <div class="ListingContentHeader__heading"><span>
+                <div class="ListingContentHeader__heading"><span class="loc-found">
                         <h1 class="ListingContentHeader__h1">{{ $totalCount }} Locations Found</h1>
                     </span>
 
 
 
                     <div class="web-sort">
-
-                        <div class="dropdown"><span class="dropdown__label">Sort By</span>
-                            <select id="mySelect" style="border-radius: 3px; font-size: 15px;padding: 10px;">
-                                <option value="1" class="dropdown__item">Popularity</option>
-                                <option value="2">Ratings</option>
-                                <option value="3">Price Low to High</option>
-                                <option value="4">Price High to Low</option>
-                            </select>
-                            <input type="hidden" id="selectedValue" value="1">
+                        
+                        
+                        <div id="sort-bar">
+                            <div role="tablist" aria-busy="true" class="Box-sc-kv6pi1-0 dvfiQa SortBar ">
+                                <div class="Box-sc-kv6pi1-0 dMCyZn SortBar__Header" style="margin-right: 15px;">
+                                    <span class="Spanstyled__SpanStyled-sc-16tp9kb-0 eEmzSD kite-js-Span ">Sort</span>
+                                </div>
+                                <div class="SortBar__Divider"></div>
+                                
+                                @if (app('request')->input('sort') == 1)
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act"  id="popularity" onClick="sortForm(1)">
+                                        <span>Popularity</span>
+                                    </a>
+                                @else
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected"  id="popularity" onClick="sortForm(1)">
+                                        <span>Popularity</span>
+                                    </a>
+                                @endif
+                                
+                                <!--Rating-->
+                                <div class="SortBar__Divider"></div>
+                                @if (app('request')->input('sort') == 2)
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act" id="ratings" onClick="sortForm(2)">
+                                        <span>Ratings</span>
+                                    </a>
+                                @else
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected" id="ratings" onClick="sortForm(2)">
+                                        <span>Ratings</span>
+                                    </a>
+                                @endif
+                                
+                                <!--Low-->
+                                <div class="SortBar__Divider"></div>
+                                @if (app('request')->input('sort') == 3)
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act" id="price-low" onClick="sortForm(3)">
+                                        <span>Price Low to High</span>
+                                    </a>
+                                @else
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected " id="price-low" onClick="sortForm(3)">
+                                        <span>Price Low to High</span>
+                                    </a>
+                                @endif
+                                
+                                <!--High-->
+                                <div class="SortBar__Divider"></div>
+                                @if (app('request')->input('sort') == 4)
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act"  id="price-high" onClick="sortForm(4)">
+                                        <span>Price High to Low</span>
+                                    </a>
+                                @else
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected "  id="price-high" onClick="sortForm(4)">
+                                        <span>Price High to Low</span>
+                                    </a>
+                                @endif
+                                
+                                <input type="hidden" id="selectedValue" value="1">
+                            </div>
                         </div>
+
+
+
+                        <!--<div class="dropdown"><span class="dropdown__label">Sort By</span>-->
+                        <!--    <select id="mySelect" style="border-radius: 3px; font-size: 15px;padding: 10px;">-->
+                        <!--        <option value="1" class="dropdown__item">Popularity</option>-->
+                        <!--        <option value="2">Ratings</option>-->
+                        <!--        <option value="3">Price Low to High</option>-->
+                        <!--        <option value="4">Price High to Low</option>-->
+                        <!--    </select>-->
+                        <!--    <input type="hidden" id="selectedValue" value="1">-->
+                        <!--</div>-->
 
                     </div>
 
@@ -792,6 +917,24 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+</script>
+
+
+<script>
+    
+    function sortForm(id){
+        
+        const select = id;
+        const selectedValue = document.getElementById('selectedValue');
+        var currentUrl = window.location.href;
+        var updatedUrl = removeUrlParameter(currentUrl, 'sort');
+        selectedValue.value = select;
+        const urlParts = updatedUrl.split('?');
+        var separator = updatedUrl.includes('?') ? '&' : '?';
+        var newUrl = updatedUrl + separator + 'sort=' + select;
+        window.location.href = newUrl;
+        
+    }
 </script>
 
 <script>

@@ -685,7 +685,7 @@
             </div>
             <div
                 class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone oyoExpanding__contentWrapper map-cont">
-                <h3 class="d-heading oyoExpanding__heading">Our leading chain of hotels and homes</h3>
+                <h3 class="d-heading oyoExpanding__heading">OUR LEADING CHAIN OF HOTELS AND HOMES</h3>
                 <p class="d-text16 u-extraLineHeight oyoExpanding__text">More Destinations. More Ease.
                     More Affordable.</p>
                 <div class="oyoExpanding__insights">

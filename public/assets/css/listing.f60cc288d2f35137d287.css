@@ -1393,9 +1393,9 @@ html[dir="rtl"] .input-range {
     margin-bottom: 0;
     align-items: center;
 }
-.ListingContentHeader__heading > span {
-    flex: 1;
-}
+/*.ListingContentHeader__heading > span {*/
+/*    flex: 1;*/
+/*}*/
 .ListingContentHeader__heading--temperature {
     color: rgba(0, 0, 0, 0.54);
     font-size: 14px;
