@@ -315,7 +315,7 @@
                                 &nbsp;
                                 <input id="star-1" type="radio" name="rating" value="1" />
                                 <label for="star-1" title="1 star">★</label>
-                            </div>
+                            </div> 
                             <br>
                             <span id="error-rating" class="error-order" style="margin-left: 0;"></span>
 

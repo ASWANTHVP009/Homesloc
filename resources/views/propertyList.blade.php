@@ -5,10 +5,12 @@
     .checkbox input:checked~span>svg {
         margin-top: -19px;
     }
+
     .theme-agoda .SortBar {
         background-color: #fff;
         border-color: #dddfe2;
     }
+
     .SortBar {
         border: 1px solid;
         border-radius: 3px;
@@ -17,18 +19,23 @@
         display: flex;
         width: 100%;
     }
-    .theme-agoda .SortBar__Item--Selected, .theme-agoda .SortBar__Item--Selected:hover {
+
+    .theme-agoda .SortBar__Item--Selected,
+    .theme-agoda .SortBar__Item--Selected:hover {
         background-color: #5392f9;
         color: #fff;
     }
+
     .theme-agoda .SortBar__Divider {
         background-color: #dddfe2;
     }
+
     .SortBar__Divider {
         background-color: #dddfe2;
         margin: 7px 0px;
         width: 1px;
     }
+
     .SortBar__Item {
         -webkit-box-flex: 1;
         -ms-flex-positive: 1;
@@ -55,20 +62,123 @@
         cursor: pointer;
 
     }
-    .SortBar__Item span{
-       
+
+    .SortBar__Item span {
+
         width: max-content;
 
     }
-    .eEmzSD{
+
+    .eEmzSD {
         font-size: 16px;
         margin-left: 15px;
     }
-    .loc-found{
+
+    .loc-found {
         margin-right: 9em;
     }
-    .sort-act{
+
+    .sort-act {
         background: #cac8d3;
+    }
+
+    .star-rating {
+        direction: rtl;
+        display: inline-block;
+        padding: 7px;
+    }
+
+    .star-rating input[type=radio] {
+        display: none;
+    }
+
+    .star-rating label {
+        color: #bbb;
+        font-size: 26px;
+        padding: 0;
+        cursor: pointer;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover~label,
+    .star-rating input[type=radio]:checked~label {
+        color: #f2b600;
+    }
+
+    /* mob-rating */
+    .star-rating-mob {
+        direction: rtl;
+        display: inline-block;
+        padding: 7px;
+    }
+
+    .star-rating-mob input[type=radio] {
+        display: none;
+    }
+
+    .star-rating-mob label {
+        color: #bbb;
+        font-size: 26px;
+        padding: 0;
+        cursor: pointer;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+    }
+
+    .star-rating-mob label:hover,
+    .star-rating-mob label:hover~label,
+    .star-rating-mob input[type=radio]:checked~label {
+        color: #f2b600;
+    }
+
+    /* range */
+    .PriceFilter-searchbox.sidebar {
+        margin-top: 10px;
+    }
+
+    .PriceFilter-searchbox div {
+        display: inline-block;
+        position: relative;
+    }
+
+    .PriceFilter-searchbox__pricesymbol {
+        cursor: default;
+        left: 5px;
+        position: absolute;
+        right: auto;
+        top: 23px;
+    }
+
+    .PriceFilter-searchbox .PriceFilter-searchbox__label {
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+    .theme-agoda input {
+        outline-color: #75a8f9;
+    }
+
+    .PriceFilter-searchbox input {
+        border: 1px solid #b5b5b5 !important;
+        height: 30px;
+        width: 70px;
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .sidebar .PriceFilter-searchbox__seperator {
+        border-bottom-style: dashed;
+        width: 36px;
+    }
+
+    .PriceFilter-searchbox__seperator {
+        border-bottom: 1px solid;
+        display: inline-block;
+        margin-bottom: 12px;
+        width: 57px;
     }
 </style>
 
@@ -99,7 +209,7 @@
 
                 <div class="filters__wrapper">
 
-                    <div class="filters__wrapper">
+                    {{-- <div class="filters__wrapper">
                         <div class="filters__item">
                             <div class="checkBoxGroup">
                                 <h4>Price</h4>
@@ -141,7 +251,60 @@
                                 @endforeach
                             </div>
                         </div>
+                    </div> --}}
+
+                    <div class="filters__wrapper">
+                        <div class="filters__item">
+                            <div class="checkBoxGroup">
+                                <h4>Price Range</h4>
+                                <div class="PriceFilter-searchbox large sidebar" style="display: flex">
+                                    <div class="PriceFilter-searchbox__searchbox"><label
+                                            class="PriceFilter-searchbox__label">MIN</label>
+                                        <input id="min_price" type="text" class="min_price"
+                                            value="{{ $min_price }}" name="min_price" placeholder="Min Price"
+                                            onchange="minPrice()">
+                                    </div><span class="PriceFilter-searchbox__seperator"></span>
+                                    <div class="PriceFilter-searchbox__searchbox"><label for="price_box_1"
+                                            class="PriceFilter-searchbox__label">MAX</label>
+                                        <input id="max_price" type="text" class="max_price"
+                                            aria-label="Maximum price filter" value="{{ $max_price }}"
+                                            placeholder="Max Price" name="max_price" onchange="maxPrice()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
+                    <div class="filters__wrapper">
+                        <div class="filters__item">
+                            <div class="checkBoxGroup">
+                                <h4>Hotel Rating</h4>
+                                <div class="star-rating">
+                                    <input id="star-5" type="radio" name="rating" value="5"
+                                        class="hotel-rating" />
+                                    <label for="star-5" title="5 stars">★</label>
+                                    &nbsp;
+                                    <input id="star-4" type="radio" name="rating" value="4"
+                                        class="hotel-rating" />
+                                    <label for="star-4" title="4 stars">★</label>
+                                    &nbsp;
+                                    <input id="star-3" type="radio" name="rating" value="3"
+                                        class="hotel-rating" />
+                                    <label for="star-3" title="3 stars">★</label>
+                                    &nbsp;
+                                    <input id="star-2" type="radio" name="rating" value="2"
+                                        class="hotel-rating" />
+                                    <label for="star-2" title="2 stars">★</label>
+                                    &nbsp;
+                                    <input id="star-1" type="radio" name="rating" value="1"
+                                        class="hotel-rating" />
+                                    <label for="star-1" title="1 star">★</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="filters__wrapper">
                         <div class="filters__item">
@@ -150,13 +313,11 @@
                                 @foreach ($review_ranges as $review_range)
                                     <label class="checkbox" htmlfor="{{ $review_range['id'] }}">
                                         @if (request("rw_{$review_range['id']}") == 'on')
-                                            <input class=" " checked="" id="{{ $review_range['id'] }}"
-                                                name="rw_{{ $review_range['id'] }}" icon_id="143" excludequery="true"
-                                                type="checkbox">
+                                            <input class="h_rate" checked="" id="{{ $review_range['id'] }}"
+                                                name="rw_{{ $review_range['id'] }}" type="checkbox">
                                         @else
-                                            <input class=" " id="{{ $review_range['id'] }}"
-                                                name="rw_{{ $review_range['id'] }}" icon_id="143" excludequery="true"
-                                                type="checkbox">
+                                            <input class="h_rate" id="{{ $review_range['id'] }}"
+                                                name="rw_{{ $review_range['id'] }}" type="checkbox">
                                         @endif
 
                                         <span lazyload="true"
@@ -194,13 +355,11 @@
                                 @foreach ($hotel_types as $hotel_type)
                                     <label class="checkbox" htmlfor="{{ $hotel_type->id }}">
                                         @if (request("t_$hotel_type->id") == 'on')
-                                            <input class=" " checked="" id="{{ $hotel_type->id }}"
-                                                name="t_{{ $hotel_type->id }}" icon_id="143" excludequery="true"
-                                                type="checkbox">
+                                            <input class="h_type" checked="" id="{{ $hotel_type->id }}"
+                                                name="t_{{ $hotel_type->id }}" type="checkbox">
                                         @else
-                                            <input class=" " id="{{ $hotel_type->id }}"
-                                                name="t_{{ $hotel_type->id }}" icon_id="143" excludequery="true"
-                                                type="checkbox">
+                                            <input class="h_type" id="{{ $hotel_type->id }}"
+                                                name="t_{{ $hotel_type->id }}" type="checkbox">
                                         @endif
 
                                         <span lazyload="true"
@@ -282,13 +441,11 @@
                                 @foreach ($amentities as $amentitiy)
                                     <label class="checkbox" htmlfor="{{ $amentitiy->id }}">
                                         @if (request("a_$amentitiy->id") == 'on')
-                                            <input class=" " checked="" id="{{ $amentitiy->id }}"
-                                                name="a_{{ $amentitiy->id }}" icon_id="143" excludequery="true"
-                                                type="checkbox">
+                                            <input class="h_amentity" checked="" id="{{ $amentitiy->id }}"
+                                                name="a_{{ $amentitiy->id }}" type="checkbox">
                                         @else
-                                            <input class=" " id="{{ $amentitiy->id }}"
-                                                name="a_{{ $amentitiy->id }}" icon_id="143" excludequery="true"
-                                                type="checkbox">
+                                            <input class="h_amentity" id="{{ $amentitiy->id }}"
+                                                name="a_{{ $amentitiy->id }}" type="checkbox">
                                         @endif
 
                                         <span lazyload="true"
@@ -319,9 +476,9 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                {{-- <div>
                     <button class="fl-button">Filter</button>
-                </div>
+                </div> --}}
             </form>
     </aside>
 
@@ -338,61 +495,69 @@
 
 
                     <div class="web-sort">
-                        
-                        
+
+
                         <div id="sort-bar">
                             <div role="tablist" aria-busy="true" class="Box-sc-kv6pi1-0 dvfiQa SortBar ">
                                 <div class="Box-sc-kv6pi1-0 dMCyZn SortBar__Header" style="margin-right: 15px;">
                                     <span class="Spanstyled__SpanStyled-sc-16tp9kb-0 eEmzSD kite-js-Span ">Sort</span>
                                 </div>
                                 <div class="SortBar__Divider"></div>
-                                
+
                                 @if (app('request')->input('sort') == 1)
-                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act"  id="popularity" onClick="sortForm(1)">
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act"
+                                        id="popularity" onClick="sortForm(1)">
                                         <span>Popularity</span>
                                     </a>
                                 @else
-                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected"  id="popularity" onClick="sortForm(1)">
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected"
+                                        id="popularity" onClick="sortForm(1)">
                                         <span>Popularity</span>
                                     </a>
                                 @endif
-                                
+
                                 <!--Rating-->
                                 <div class="SortBar__Divider"></div>
                                 @if (app('request')->input('sort') == 2)
-                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act" id="ratings" onClick="sortForm(2)">
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act"
+                                        id="ratings" onClick="sortForm(2)">
                                         <span>Ratings</span>
                                     </a>
                                 @else
-                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected" id="ratings" onClick="sortForm(2)">
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected"
+                                        id="ratings" onClick="sortForm(2)">
                                         <span>Ratings</span>
                                     </a>
                                 @endif
-                                
+
                                 <!--Low-->
                                 <div class="SortBar__Divider"></div>
                                 @if (app('request')->input('sort') == 3)
-                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act" id="price-low" onClick="sortForm(3)">
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act"
+                                        id="price-low" onClick="sortForm(3)">
                                         <span>Price Low to High</span>
                                     </a>
                                 @else
-                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected " id="price-low" onClick="sortForm(3)">
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected "
+                                        id="price-low" onClick="sortForm(3)">
                                         <span>Price Low to High</span>
                                     </a>
                                 @endif
-                                
+
                                 <!--High-->
                                 <div class="SortBar__Divider"></div>
                                 @if (app('request')->input('sort') == 4)
-                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act"  id="price-high" onClick="sortForm(4)">
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected sort-act"
+                                        id="price-high" onClick="sortForm(4)">
                                         <span>Price High to Low</span>
                                     </a>
                                 @else
-                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected "  id="price-high" onClick="sortForm(4)">
+                                    <a class="Box-sc-kv6pi1-0 bsEaOG SortBar__Item SortBar__Item--Selected "
+                                        id="price-high" onClick="sortForm(4)">
                                         <span>Price High to Low</span>
                                     </a>
                                 @endif
-                                
+
                                 <input type="hidden" id="selectedValue" value="1">
                             </div>
                         </div>
@@ -473,23 +638,24 @@
                                             <p itemprop="name"
                                                 class="SegmentSliderUIstyles__SliderHotelNameText-sc-ifa9fu-14 bfQYZk">
                                                 <a
-                                    href="{{ url('/info') .
-                                        '/' .
-                                        $hotel['id'] .
-                                        '?location=' .
-                                        app('request')->input('location') .
-                                        '&latitude=' .
-                                        app('request')->input('latitude') .
-                                        '&longitude=' .
-                                        app('request')->input('longitude') .
-                                        '&daterange=' .
-                                        app('request')->input('daterange') .
-                                        '&gt-count=' .
-                                        app('request')->input('gt-count') .
-                                        '&rm-count=' .
-                                        app('request')->input('rm-count') .
-                                        $expand }} 
-                                "> {{ $hotel['property_name'] }}</a>
+                                                    href="{{ url('/info') .
+                                                        '/' .
+                                                        $hotel['id'] .
+                                                        '?location=' .
+                                                        app('request')->input('location') .
+                                                        '&latitude=' .
+                                                        app('request')->input('latitude') .
+                                                        '&longitude=' .
+                                                        app('request')->input('longitude') .
+                                                        '&daterange=' .
+                                                        app('request')->input('daterange') .
+                                                        '&gt-count=' .
+                                                        app('request')->input('gt-count') .
+                                                        '&rm-count=' .
+                                                        app('request')->input('rm-count') .
+                                                        $expand }} 
+                                ">
+                                                    {{ $hotel['property_name'] }}</a>
                                             </p><span itemprop="address"
                                                 class="SegmentSliderUIstyles__SliderHotelLocationText-sc-ifa9fu-15 bgFBTe">{{ $hotel['location'] }}</span>
                                             <div
@@ -634,47 +800,70 @@
                         <div class="filters__wrapper">
                             <div class="filters__item">
                                 <div class="checkBoxGroup">
-                                    <h4>Price</h4>
-                                    @foreach ($price_ranges as $price_range)
-                                        <label class="checkbox" htmlfor="{{ $price_range['id'] }}">
-                                            @if (request("z_{$price_range['id']}") == 'on')
-                                                <input class=" " checked="" id="{{ $price_range['id'] }}"
-                                                    name="z_{{ $price_range['id'] }}" icon_id="143"
-                                                    excludequery="true" type="checkbox">
-                                            @else
-                                                <input class=" " id="{{ $price_range['id'] }}"
-                                                    name="z_{{ $price_range['id'] }}" icon_id="143"
-                                                    excludequery="true" type="checkbox">
-                                            @endif
-
-                                            <span lazyload="true"
-                                                class="checkbox__checkmark checkbox__checkmark--  c-1m1i8cc"><!--?xml version='1.0' encoding='UTF-8'?-->
-                                                <svg viewBox="0 0 12 9" version="1.1" id="checkmark"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <g id="Arash" stroke="none" stroke-width="1" fill="none"
-                                                        fill-rule="evenodd">
-                                                        <g id="Listing_ListView"
-                                                            transform="translate(-22.000000, -260.000000)"
-                                                            fill="white">
-                                                            <g id="component/filters"
-                                                                transform="translate(0.000000, 96.000000)">
-                                                                <g id="ic/checkbox/inactive-copy-4"
-                                                                    transform="translate(20.000000, 160.000000)">
-                                                                    <polygon id="Fill-3-Copy-9"
-                                                                        points="2 8.68138196 3.20857143 7.46353167 6.28571429 10.5556622 12.7914286 4 14 5.22648752 6.28571429 13">
-                                                                    </polygon>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </g>
-                                                </svg></span>
-                                            <div class="checkbox__label">{{ $price_range['name'] }}</div>
-                                        </label>
-                                    @endforeach
+                                    <div class="checkBoxGroup">
+                                        <h4>Hotel Rating</h4>
+                                        <div class="star-rating-mob">
+                                            <input id="starm-5" type="radio" name="rating" value="5"
+                                                class="hotel-rating" />
+                                            <label for="star-5" title="5 stars">★</label>
+                                            &nbsp;
+                                            <input id="starm-4" type="radio" name="rating" value="4"
+                                                class="hotel-rating" />
+                                            <label for="star-4" title="4 stars">★</label>
+                                            &nbsp;
+                                            <input id="starm-3" type="radio" name="rating" value="3"
+                                                class="hotel-rating" />
+                                            <label for="star-3" title="3 stars">★</label>
+                                            &nbsp;
+                                            <input id="starm-2" type="radio" name="rating" value="2"
+                                                class="hotel-rating" />
+                                            <label for="star-2" title="2 stars">★</label>
+                                            &nbsp;
+                                            <input id="starm-1" type="radio" name="rating" value="1"
+                                                class="hotel-rating" />
+                                            <label for="star-1" title="1 star">★</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
+
+
+                        <div class="filters__wrapper">
+                            <div class="filters__item">
+                                <div class="checkBoxGroup">
+                                    <div class="filters__wrapper" style="padding: 18px 0px 0;">
+                                        <div class="filters__item">
+                                            <div class="checkBoxGroup">
+                                                <h4>Price Range</h4>
+
+                                                <div class="PriceFilter-searchbox large " style="display: flex">
+                                                    <div class="PriceFilter-searchbox__searchbox"><label
+                                                            class="PriceFilter-searchbox__label">MIN</label>
+                                                        <input id="min_mob_price" type="text" class="min_price"
+                                                            value="{{ app('request')->input('min_price') }}"
+                                                            name="min_price" placeholder="Min Price"
+                                                            onchange="minMobPrice()">
+                                                    </div><span class="PriceFilter-searchbox__seperator"></span>
+                                                    <div class="PriceFilter-searchbox__searchbox"><label
+                                                            for="price_box_1"
+                                                            class="PriceFilter-searchbox__label">MAX</label>
+                                                        <input id="max_mob_price" type="text" class="max_price"
+                                                            aria-label="Maximum price filter"
+                                                            value="{{ app('request')->input('max_price') }}"
+                                                            placeholder="Max Price" name="max_price"
+                                                            onchange="maxMobPrice()">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="filters__wrapper">
                             <div class="filters__item">
@@ -683,11 +872,12 @@
                                     @foreach ($review_ranges as $review_range)
                                         <label class="checkbox" htmlfor="{{ $review_range['id'] }}">
                                             @if (request("rw_{$review_range['id']}") == 'on')
-                                                <input class=" " checked="" id="{{ $review_range['id'] }}"
+                                                <input class="h_rate_mob" checked=""
+                                                    id="{{ $review_range['id'] }}"
                                                     name="rw_{{ $review_range['id'] }}" icon_id="143"
                                                     excludequery="true" type="checkbox">
                                             @else
-                                                <input class=" " id="{{ $review_range['id'] }}"
+                                                <input class="h_rate_mob" id="{{ $review_range['id'] }}"
                                                     name="rw_{{ $review_range['id'] }}" icon_id="143"
                                                     excludequery="true" type="checkbox">
                                             @endif
@@ -728,13 +918,11 @@
                                     @foreach ($hotel_types as $hotel_type)
                                         <label class="checkbox" htmlfor="{{ $hotel_type->id }}">
                                             @if (request("t_$hotel_type->id") == 'on')
-                                                <input class=" " checked="" id="{{ $hotel_type->id }}"
-                                                    name="t_{{ $hotel_type->id }}" icon_id="143"
-                                                    excludequery="true" type="checkbox">
+                                                <input class="h_type_mob" checked="" id="{{ $hotel_type->id }}"
+                                                    name="t_{{ $hotel_type->id }}" type="checkbox">
                                             @else
-                                                <input class=" " id="{{ $hotel_type->id }}"
-                                                    name="t_{{ $hotel_type->id }}" icon_id="143"
-                                                    excludequery="true" type="checkbox">
+                                                <input class="h_type_mob" id="{{ $hotel_type->id }}"
+                                                    name="t_{{ $hotel_type->id }}" type="checkbox">
                                             @endif
                                             <span lazyload="true"
                                                 class="checkbox__checkmark checkbox__checkmark--  c-1m1i8cc"><!--?xml version='1.0' encoding='UTF-8'?-->
@@ -771,11 +959,11 @@
                                     @foreach ($amentities as $amentitiy)
                                         <label class="checkbox" htmlfor="{{ $amentitiy->id }}">
                                             @if (request("a_$amentitiy->id") == 'on')
-                                                <input class=" " checked="" id="{{ $amentitiy->id }}"
-                                                    name="a_{{ $amentitiy->id }}" icon_id="143" excludequery="true"
-                                                    type="checkbox">
+                                                <input class="h_amentity_mob" checked=""
+                                                    id="{{ $amentitiy->id }}" name="a_{{ $amentitiy->id }}"
+                                                    icon_id="143" excludequery="true" type="checkbox">
                                             @else
-                                                <input class=" " id="{{ $amentitiy->id }}"
+                                                <input class="h_amentity_mob" id="{{ $amentitiy->id }}"
                                                     name="a_{{ $amentitiy->id }}" icon_id="143" excludequery="true"
                                                     type="checkbox">
                                             @endif
@@ -809,9 +997,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                {{-- <div class="modal-footer">
                     <button class="fl-button">Filter</button>
-                </div>
+                </div> --}}
             </form>
 
         </div>
@@ -909,6 +1097,10 @@
 {{-- sort modal End --}}
 
 
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
 </script>
@@ -921,9 +1113,8 @@
 
 
 <script>
-    
-    function sortForm(id){
-        
+    function sortForm(id) {
+
         const select = id;
         const selectedValue = document.getElementById('selectedValue');
         var currentUrl = window.location.href;
@@ -933,7 +1124,7 @@
         var separator = updatedUrl.includes('?') ? '&' : '?';
         var newUrl = updatedUrl + separator + 'sort=' + select;
         window.location.href = newUrl;
-        
+
     }
 </script>
 
@@ -981,3 +1172,272 @@
 </script>
 
 @include('commonFooter')
+
+{{-- Web Filter --}}
+
+<script>
+    $('.hotel-rating').on('click', function(e) {
+
+        removeParametersStartingWith('rating');
+        removeParametersStartingWith('rating');
+
+        var rate = document.querySelector('input[name="rating"]:checked').value;
+        var currentUrl = window.location.href;
+        var updatedUrl = removeUrlParameter(currentUrl, 'rating');
+        const urlParts = updatedUrl.split('?');
+        var separator = updatedUrl.includes('?') ? '&' : '?';
+        var newUrl = updatedUrl + separator + 'rating=' + rate;
+        window.location.href = newUrl;
+    });
+
+    function minPrice() {
+        var min_price = $('#min_price').val();
+        var currentUrl = window.location.href;
+        var updatedUrl = removeUrlParameter(currentUrl, 'min_price');
+        const urlParts = updatedUrl.split('?');
+        var separator = updatedUrl.includes('?') ? '&' : '?';
+        var newUrl = updatedUrl + separator + 'min_price=' + min_price;
+        window.location.href = newUrl;
+    }
+
+    function maxPrice() {
+        var max_price = $('#max_price').val();
+        var currentUrl = window.location.href;
+        var updatedUrl = removeUrlParameter(currentUrl, 'max_price');
+        const urlParts = updatedUrl.split('?');
+        var separator = updatedUrl.includes('?') ? '&' : '?';
+        var newUrl = updatedUrl + separator + 'max_price=' + max_price;
+        window.location.href = newUrl;
+    }
+
+    function minMobPrice() {
+        var min_price = $('#min_mob_price').val();
+        var currentUrl = window.location.href;
+        var updatedUrl = removeUrlParameter(currentUrl, 'min_price');
+        const urlParts = updatedUrl.split('?');
+        var separator = updatedUrl.includes('?') ? '&' : '?';
+        var newUrl = updatedUrl + separator + 'min_price=' + min_price;
+        window.location.href = newUrl;
+    }
+
+    function maxMobPrice() {
+        var max_price = $('#max_mob_price').val();
+        var currentUrl = window.location.href;
+        var updatedUrl = removeUrlParameter(currentUrl, 'max_price');
+        const urlParts = updatedUrl.split('?');
+        var separator = updatedUrl.includes('?') ? '&' : '?';
+        var newUrl = updatedUrl + separator + 'max_price=' + max_price;
+        window.location.href = newUrl;
+    }
+
+    $('.h_type').on('click', function(e) {
+        var h_type_selectedCheckboxNames = [];
+
+        removeParametersStartingWith('t_');
+        removeParametersStartingWith('t_');
+
+        $('.h_type').each(function() {
+            // Check if the checkbox is checked
+            if ($(this).is(':checked')) {
+                // Get the name of each selected checkbox and push it to the array
+                h_type_selectedCheckboxNames.push($(this).attr('name'));
+            }
+        });
+        var h_type_queryString = h_type_selectedCheckboxNames.map(function(name) {
+            return encodeURIComponent(name) + '=on';
+        }).join('&');
+        // Get the current URL
+        var h_type_currentUrl = window.location.href;
+        // Check if the current URL already contains query parameters
+        var h_type_separator = h_type_currentUrl.includes('?') ? '&' : '?';
+        // Concatenate the query string to the current URL and update the browser's location
+        var h_type_newUrl = h_type_currentUrl + h_type_separator + h_type_queryString;
+        history.replaceState({}, '', h_type_newUrl);
+        window.location.href = h_type_newUrl;
+    });
+
+    $('.h_type_mob').on('click', function(e) {
+        var h_type_selectedCheckboxNames = [];
+
+        removeParametersStartingWith('t_');
+        removeParametersStartingWith('t_');
+
+        $('.h_type_mob').each(function() {
+            // Check if the checkbox is checked
+            if ($(this).is(':checked')) {
+                // Get the name of each selected checkbox and push it to the array
+                h_type_selectedCheckboxNames.push($(this).attr('name'));
+            }
+        });
+        var h_type_queryString = h_type_selectedCheckboxNames.map(function(name) {
+            return encodeURIComponent(name) + '=on';
+        }).join('&');
+        // Get the current URL
+        var h_type_currentUrl = window.location.href;
+        // Check if the current URL already contains query parameters
+        var h_type_separator = h_type_currentUrl.includes('?') ? '&' : '?';
+        // Concatenate the query string to the current URL and update the browser's location
+        var h_type_newUrl = h_type_currentUrl + h_type_separator + h_type_queryString;
+        history.replaceState({}, '', h_type_newUrl);
+        window.location.href = h_type_newUrl;
+    });
+
+    $('.h_amentity').on('click', function(e) {
+        var h_amentity_selectedCheckboxNames = [];
+
+        removeParametersStartingWith('a_');
+        removeParametersStartingWith('a_');
+
+        $('.h_amentity').each(function() {
+            if ($(this).is(':checked')) {
+                h_amentity_selectedCheckboxNames.push($(this).attr('name'));
+            }
+        });
+        var h_amentity_queryString = h_amentity_selectedCheckboxNames.map(function(name) {
+            return encodeURIComponent(name) + '=on';
+        }).join('&');
+        var h_amentity_currentUrl = window.location.href;
+        var h_amentity_separator = h_amentity_currentUrl.includes('?') ? '&' : '?';
+        var h_amentity_newUrl = h_amentity_currentUrl + h_amentity_separator + h_amentity_queryString;
+        history.replaceState({}, '', h_amentity_newUrl);
+        window.location.href = h_amentity_newUrl;
+    });
+    $('.h_amentity_mob').on('click', function(e) {
+        var h_amentity_selectedCheckboxNames = [];
+
+        removeParametersStartingWith('a_');
+        removeParametersStartingWith('a_');
+
+        $('.h_amentity_mob').each(function() {
+            if ($(this).is(':checked')) {
+                h_amentity_selectedCheckboxNames.push($(this).attr('name'));
+            }
+        });
+        var h_amentity_queryString = h_amentity_selectedCheckboxNames.map(function(name) {
+            return encodeURIComponent(name) + '=on';
+        }).join('&');
+        var h_amentity_currentUrl = window.location.href;
+        var h_amentity_separator = h_amentity_currentUrl.includes('?') ? '&' : '?';
+        var h_amentity_newUrl = h_amentity_currentUrl + h_amentity_separator + h_amentity_queryString;
+        history.replaceState({}, '', h_amentity_newUrl);
+        window.location.href = h_amentity_newUrl;
+    });
+
+    $('.h_rate').on('click', function(e) {
+        var h_rate_selectedCheckboxNames = [];
+
+        removeParametersStartingWith('rw_');
+        removeParametersStartingWith('rw_');
+
+        $('.h_rate').each(function() {
+            if ($(this).is(':checked')) {
+                h_rate_selectedCheckboxNames.push($(this).attr('name'));
+            }
+        });
+        var h_rate_queryString = h_rate_selectedCheckboxNames.map(function(name) {
+            return encodeURIComponent(name) + '=on';
+        }).join('&');
+        var h_rate_currentUrl = window.location.href;
+
+
+        var h_rate_separator = h_rate_currentUrl.includes('?') ? '&' : '?';
+
+        var h_rate_newUrl = h_rate_currentUrl + h_rate_separator + h_rate_queryString;
+        history.replaceState({}, '', h_rate_newUrl);
+        window.location.href = h_rate_newUrl;
+    });
+    $('.h_rate_mob').on('click', function(e) {
+        var h_rate_selectedCheckboxNames = [];
+
+        removeParametersStartingWith('rw_');
+        removeParametersStartingWith('rw_');
+
+        $('.h_rate_mob').each(function() {
+            if ($(this).is(':checked')) {
+                h_rate_selectedCheckboxNames.push($(this).attr('name'));
+            }
+        });
+        var h_rate_queryString = h_rate_selectedCheckboxNames.map(function(name) {
+            return encodeURIComponent(name) + '=on';
+        }).join('&');
+        var h_rate_currentUrl = window.location.href;
+
+
+        var h_rate_separator = h_rate_currentUrl.includes('?') ? '&' : '?';
+
+        var h_rate_newUrl = h_rate_currentUrl + h_rate_separator + h_rate_queryString;
+        history.replaceState({}, '', h_rate_newUrl);
+        window.location.href = h_rate_newUrl;
+    });
+
+    function removeParametersStartingWith(prefix) {
+        // Get the current URL
+        var currentUrl = window.location.href;
+        // Use URLSearchParams to manipulate query parameters
+        var urlParams = new URLSearchParams(window.location.search);
+        // Iterate through all parameters
+        urlParams.forEach(function(value, key) {
+            // Check if the parameter starts with the specified prefix
+            if (key.startsWith(prefix)) {
+                // Remove the parameter
+                urlParams.delete(key);
+            }
+        });
+        // Create the new URL with updated parameters
+        var newUrl = currentUrl.split('?')[0] + '?' + urlParams.toString();
+        // Update the browser's location without reloading the page
+        history.replaceState({}, '', newUrl);
+    }
+</script>
+
+
+
+
+
+{{-- Web Filter End --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let count = 1;
+        let limit = {{ app('request')->input('rating') ? app('request')->input('rating') : 0 }};
+        // let limit = 3;
+
+        const radioInputs = document.querySelectorAll('.star-rating input[type="radio"]');
+        radioInputs.forEach(input => {
+            if (count <= limit) {
+                const starWInput = document.getElementById('starw-' + count);
+                if (starWInput) {
+                    starWInput.checked = true;
+                }
+
+                const starInput = document.getElementById('star-' + count);
+                if (starInput) {
+                    starInput.checked = true;
+                }
+                count++;
+            }
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let count = 1;
+        let limit = {{ app('request')->input('rating') ? app('request')->input('rating') : 0 }};
+        // let limit = 3;
+        const radioInputs = document.querySelectorAll('.star-rating-mob input[type="radio"]');
+        radioInputs.forEach(input => {
+            if (count <= limit) {
+                // const starWInput = document.getElementById('starm-' + count);
+                // if (starWInput) {
+                //     starWInput.checked = true;
+                // }
+
+                const starInput = document.getElementById('starm-' + count);
+                if (starInput) {
+                    starInput.checked = true;
+                }
+                count++;
+            }
+        });
+    });
+</script>

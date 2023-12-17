@@ -11,14 +11,14 @@
 
                                     </div>
                                 </div>
-                                
+
                                 <div class="oyo-cell oyo-cell--3-col footerAppIcons__topLinks">
                                     <div class="oyo-row oyo-row--no-spacing footerAppIcons__secondryLinksContainer">
                                         <a target="_blank" class="Q-BLNK">Categories</a>
-                                        <a  target="_blank" class="">Home Stay</a>
-                                        <a  target="_blank">Resorts</a>
-                                        <a  target="_blank">Hotels</a>
-                                        <a  target="_blank">Appartments</a>
+                                        <a target="_blank" class="">Home Stay</a>
+                                        <a target="_blank">Resorts</a>
+                                        <a target="_blank">Hotels</a>
+                                        <a target="_blank">Appartments</a>
 
                                     </div>
                                 </div>
@@ -367,7 +367,6 @@
 
                 <script>
                     window.onload = function() {
-                        console.log('ddddddddddddddd');
 
                         var default_room = document.getElementById("room-count").innerText;
 

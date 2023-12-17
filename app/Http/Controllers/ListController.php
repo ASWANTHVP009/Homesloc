@@ -44,13 +44,12 @@ class ListController extends Controller
         $km = 10;
         $distance = 0;
         $input = $request->all();
-
-
         $search_latitude = isset($input['latitude']) ? $input['latitude'] : '';
         $search_longitude = isset($input['longitude']) ? $input['longitude'] : '';
         $price_values = [];
         $review_values = [];
 
+        // dd($input);
         foreach ($input as $key => $item) {
             if ($key[0] == "t") {
                 $types[] = explode("_", $key)[1];
@@ -73,28 +72,28 @@ class ListController extends Controller
         $hotel_types = DB::table('types')->select('id', 'name')->get();
         $amentities = DB::table('amentities')->select('id', 'name')->get();
 
-        $price_ranges = array(
-            '1' => array(
-                'id' => 1,
-                'name' => "Upto ₹2000"
-            ),
-            '2' => array(
-                'id' => 2,
-                'name' => "₹2001 - ₹4000"
-            ),
-            '3' => array(
-                'id' => 3,
-                'name' => "₹4001 - ₹6000"
-            ),
-            '4' => array(
-                'id' => 4,
-                'name' => "₹6001 - ₹8000"
-            ),
-            '5' => array(
-                'id' => 5,
-                'name' => "₹8000 +"
-            ),
-        );
+        // $price_ranges = array(
+        //     '1' => array(
+        //         'id' => 1,
+        //         'name' => "Upto ₹2000"
+        //     ),
+        //     '2' => array(
+        //         'id' => 2,
+        //         'name' => "₹2001 - ₹4000"
+        //     ),
+        //     '3' => array(
+        //         'id' => 3,
+        //         'name' => "₹4001 - ₹6000"
+        //     ),
+        //     '4' => array(
+        //         'id' => 4,
+        //         'name' => "₹6001 - ₹8000"
+        //     ),
+        //     '5' => array(
+        //         'id' => 5,
+        //         'name' => "₹8000 +"
+        //     ),
+        // );
 
         $review_ranges = array(
             '1' => array(
@@ -142,21 +141,21 @@ class ListController extends Controller
             });
         }
 
-        if (isset($price_values) && !empty($price_values)) {
-            foreach ($price_values as $pvalue) {
-                if ($pvalue == 1) {
-                    $p1 = 1;
-                } else if ($pvalue == 2) {
-                    $p2 = 1;
-                } else if ($pvalue == 3) {
-                    $p3 = 1;
-                } else if ($pvalue == 4) {
-                    $p4 = 1;
-                } else if ($pvalue == 5) {
-                    $p5 = 1;
-                }
-            }
-        }
+        // if (isset($price_values) && !empty($price_values)) {
+        //     foreach ($price_values as $pvalue) {
+        //         if ($pvalue == 1) {
+        //             $p1 = 1;
+        //         } else if ($pvalue == 2) {
+        //             $p2 = 1;
+        //         } else if ($pvalue == 3) {
+        //             $p3 = 1;
+        //         } else if ($pvalue == 4) {
+        //             $p4 = 1;
+        //         } else if ($pvalue == 5) {
+        //             $p5 = 1;
+        //         }
+        //     }
+        // }
 
         // if (isset($review_values) && !empty($review_values)) {
         //     foreach ($review_values as $rvalue) {
@@ -174,21 +173,44 @@ class ListController extends Controller
         //     }
         // }
 
-        if (isset($p1) && !empty($p1)) {
-            $query->orWhereBetween('special_price', [0, 2000]);
+        // if (isset($p1) && !empty($p1)) {
+        //     $query->orWhereBetween('special_price', [0, 2000]);
+        // }
+        // if (isset($p2) && !empty($p2)) {
+        //     $query->orWhereBetween('special_price', [2001, 4000]);
+        // }
+        // if (isset($p3) && !empty($p3)) {
+        //     $query->orWhereBetween('special_price', [4001, 6000]);
+        // }
+        // if (isset($p4) && !empty($p4)) {
+        //     $query->orWhereBetween('special_price', [6001, 8000]);
+        // }
+        // if (isset($p5) && !empty($p5)) {
+        //     $query->orWhereBetween('special_price', [8001, 100000]);
+        // }
+
+
+        // price filter
+        if (isset($input['min_price']) && !empty($input['min_price'])) {
+            $min_price = $input['min_price'];
+        } else {
+            $min_price =  0;
         }
-        if (isset($p2) && !empty($p2)) {
-            $query->orWhereBetween('special_price', [2001, 4000]);
+        if (isset($input['max_price']) && !empty($input['max_price'])) {
+            $max_price = $input['max_price'];
+        } else {
+            $max_price =  500000;
         }
-        if (isset($p3) && !empty($p3)) {
-            $query->orWhereBetween('special_price', [4001, 6000]);
+        $query->WhereBetween('special_price', [$min_price, $max_price]);
+        // price filter end
+
+
+        // hotel rating
+        if (isset($input['rating']) && !empty($input['rating'])) {
+            $hotel_rating = $input['rating'];
+            $query->where('rating', $hotel_rating);
         }
-        if (isset($p4) && !empty($p4)) {
-            $query->orWhereBetween('special_price', [6001, 8000]);
-        }
-        if (isset($p5) && !empty($p5)) {
-            $query->orWhereBetween('special_price', [8001, 100000]);
-        }
+        // hotel rating end
 
         // review
         if (isset($review_values) && !empty($review_values)) {
@@ -253,7 +275,16 @@ class ListController extends Controller
             }
         }
         $totalCount = count($hotels_data);
-        return view('propertyList')->with('review_ranges', $review_ranges)->with('price_ranges', $price_ranges)->with('amentities', $amentities)->with('hotel_types', $hotel_types)->with('hotels', $hotels_data)->with('totalCount', $totalCount);
+        return view('propertyList')->with('review_ranges', $review_ranges)
+            // ->with('price_ranges', $price_ranges)
+            ->with('min_price', $min_price)
+            ->with('max_price', $max_price)
+            ->with('amentities', $amentities)
+            ->with('hotel_types', $hotel_types)
+            ->with('hotels', $hotels_data)
+            ->with('totalCount', $totalCount);
+
+        return redirect()->route('list', ['rating' => 1, 'sort' => 1]);
     }
 
     public function info(Request $request)
