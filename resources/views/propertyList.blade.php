@@ -180,13 +180,24 @@
         margin-bottom: 12px;
         width: 57px;
     }
+
+    .clear-all {
+        font-size: 12px;
+        background: #fff;
+        border: 1px solid #cac8d3;
+        padding: 6px 10px;
+        margin-top: 1px;
+        margin-left: 10px;
+        position: absolute;
+    }
 </style>
 
 <div class="listing__topSection web-lists">
 
     <aside class="sidebar">
         <div class="sidebar__header">
-            <div class="filters__heading"><span>Filters</span></div>
+            <div class="filters__heading"><span>Filters</span> <button class="clear-all" onclick="clearAll()">Clear
+                    All</button></div>
         </div>
         <div class="filters">
             {{-- <div class="filters__wrapper">
@@ -701,7 +712,8 @@
                                                 </div>
 
                                                 <h3 itemprop="priceRange"
-                                                    class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 " style="font-size: 1.50rem;">
+                                                    class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 "
+                                                    style="font-size: 1.50rem;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
                                                         color="#e47544"
                                                         class="HappyRupeeIcon-sc-em2g9m-1 SegmentSliderUIstyles__RuppeAskingPrice-sc-ifa9fu-20 hEpHNM eAomPZ">
@@ -793,6 +805,8 @@
                 <button type="button" class="modal-title close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times; &nbsp; Filter</span>
                 </button>
+                <button class="clear-all" onclick="clearAll()" style="position:relative">Clear
+                    All</button>
             </div>
             <form action="{{ url('/list') }}" method="GET" class="mob-filter-stat">
                 <div class="modal-body">
@@ -1440,4 +1454,17 @@
             }
         });
     });
+</script>
+
+<script>
+    function clearAll() {
+        removeParametersStartingWith('rating');
+        removeParametersStartingWith('t_');
+        removeParametersStartingWith('a_');
+        removeParametersStartingWith('rw_');
+        removeParametersStartingWith('min_price');
+        removeParametersStartingWith('max_price');
+
+        location.reload();
+    }
 </script>
