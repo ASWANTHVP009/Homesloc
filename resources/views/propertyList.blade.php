@@ -701,7 +701,7 @@
                                                 </div>
 
                                                 <h3 itemprop="priceRange"
-                                                    class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 ">
+                                                    class="dwebCommonstyles__SectionHeader-sc-112ty3f-9 " style="font-size: 1.50rem;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
                                                         color="#e47544"
                                                         class="HappyRupeeIcon-sc-em2g9m-1 SegmentSliderUIstyles__RuppeAskingPrice-sc-ifa9fu-20 hEpHNM eAomPZ">
