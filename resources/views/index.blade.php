@@ -257,7 +257,7 @@
         data-cms-template="cWeb-BannerCarousel">
         <div class="oyo-cell oyo-cell--12-col u-textCenter  u-flexCenter">
             <div class="c-5cjq8j"><img alt="OYO" loading="eager" importance="high"
-                    src="{{ URL::asset('/uploads/room.png') }}" class="c-2tglnv banner__cardImage" compact="true">
+                    src="{{ URL::asset('/uploads/second.jpg') }}" class="c-2tglnv banner__cardImage" compact="true">
             </div>
         </div>
     </div>
@@ -681,7 +681,7 @@
                         <div class="c-1lmmwwo">Himachal </div>
                     </div>
                 </div>
-                <img alt="map" src="https://assets.oyoroomscdn.com/cmsMedia/432737_widgetImage.jpg">
+                <img alt="map" src="{{ URL::asset('/uploads/map.png') }}">
             </div>
             <div
                 class="oyo-cell oyo-cell--6-col oyo-cell--4-col-tablet oyo-cell--2-col-phone oyoExpanding__contentWrapper map-cont">

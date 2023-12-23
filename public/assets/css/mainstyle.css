@@ -5919,7 +5919,8 @@ div.swiper-pagination-custom,
     color: #8e88b8 !important;
 }
 .page-header {
-    background-image: url(https://homesloc.com/uploads/images/home.png);
+    /*background-image: url(https://homesloc.com/uploads/images/home.png);*/
+    background-image: url(https://homesloc.com/uploads/bnr-1703057273.jpg);
 }
 /* Header */
 .header-fullwidth .octf-area-wrap {
