@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Roomtype;
 use DateTime;
 
 use Razorpay\Api\Api;
@@ -26,6 +27,7 @@ class CheckoutController extends Controller
         $property_id = $request->input('property');
         $room_count = $request->input('rm-count');
         $guest_count = $request->input('gt-count');
+        $tick = $request->input('tick');
 
         $hotel_data = DB::table('products')->select('price', 'special_price')->where('id', $property_id)->first();
 
@@ -48,13 +50,33 @@ class CheckoutController extends Controller
             $days = 1;
         }
 
-        if ($hotel_data->special_price != 0) {
-            $total = $days * ($room_count * $hotel_data->special_price);
-            $unit_price = $hotel_data->special_price;
+
+        $room_info = Roomtype::where('property_id', $property_id)
+            ->where('id', '=', $tick)
+            ->first();
+
+        if (isset($room_info) && !empty($room_info)) {
+            if ($room_info->special_price != 0) {
+                $total = $days * ($room_count * $room_info['special_price']);
+                $unit_price = $room_info['special_price'];
+                // $total = $days * ($room_count * $hotel_data->special_price);
+                // $unit_price = $hotel_data->special_price;
+            } else {
+                $total = $days * ($room_count * $room_info['price']);
+                $unit_price = $room_info['price'];
+                // $total = $days * ($room_count * $hotel_data->price);
+                // $unit_price = $hotel_data->price;
+            }
         } else {
-            $total = $days * ($room_count * $hotel_data->price);
-            $unit_price = $hotel_data->price;
+            if ($hotel_data->special_price != 0) {
+                $total = $days * ($room_count * $hotel_data->special_price);
+                $unit_price = $hotel_data->special_price;
+            } else {
+                $total = $days * ($room_count * $hotel_data->price);
+                $unit_price = $hotel_data->price;
+            }
         }
+
         $orderid = rand(1111111, 9999999);
         $orderData = [
             'receipt'         => 'rcptid_' . $orderid,

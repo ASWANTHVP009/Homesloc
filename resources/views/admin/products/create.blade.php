@@ -1,4 +1,56 @@
 @extends('admin.layout.master')
+
+<style>
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #313131;
+        background-color: #454d55;
+        border-radius: 3px;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #8a898e;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+
+    .m-50 {
+        margin-top: 20px;
+    }
+
+    .room-tab {
+        border: 1px solid #c2baba;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+        background: #313131;
+    }
+</style>
 @section('content')
     <section class="content-header">
         <div class="container-fluid">
@@ -17,19 +69,25 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+
+    <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- left column -->
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
-
                         <!-- form start -->
                         <form action="{{ route('admin.product.productSave') }}" method="POST" enctype="multipart/form-data"
                             id="create">
                             @csrf
-                            <div class="card-body">
+
+                            <div class="tab">
+                                <button type="button" class="tablinks active"
+                                    onclick="Tabs(event, 'General')">General</button>
+                                <button type="button" class="tablinks" onclick="Tabs(event, 'Rooms')">Rooms</button>
+                            </div>
+
+                            <div class="card-body tabcontent" id="General" style="display: block">
                                 <div class="form-group">
                                     <label for="name">Property Name</label>
                                     <input type="text" class="form-control" name="name"
@@ -75,7 +133,7 @@
                                         autocomplete="on" name="geolocation" />
 
                                     <!-- <input type="text" class="form-control" name="geolocation"
-                                                                                placeholder="Enter Geo Location" required> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        placeholder="Enter Geo Location" required> -->
 
                                     <input type="hidden" value="" name="latitude" id="latitude">
                                     <input type="hidden" value="" name="longitude" id="longitude">
@@ -238,7 +296,59 @@
                                     </div>
                                 </div> --}}
                             </div>
-                            <!-- /.card-body -->
+
+                            <div class="card-body tabcontent col-md-12" id="Rooms">
+
+                                <span>Create your Room types........</span>
+
+                                <?php $row = 1; ?>
+
+                                {{-- <div class="room-tab">
+
+                                    <div class="row">
+                                        <div class="form-group col-md-4 m-50">
+                                            <label for="Price">Price</label>
+                                            <input type="text" class="form-control" name="price"
+                                                placeholder="Enter Price" required>
+                                        </div>
+                                        <div class="form-group col-md-4 m-50">
+                                            <label for="Price">Special Price</label>
+                                            <input type="text" class="form-control" name="special_price"
+                                                placeholder="Enter Special Price" required>
+                                        </div>
+
+                                        <div class="form-group col-md-4 m-50">
+                                            <label>Status</label>
+                                            <select class="form-control select2" style="width: 100%; height: 40px;"
+                                                name="status">
+                                                <option selected="selected" value="1">Enabled</option>
+                                                <option value="0">Disabled</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Amentities</label>
+                                        <select class="select2" multiple="multiple" data-placeholder="Select a Amentity"
+                                            style="width: 100%;" name="amentities[]">
+                                            @foreach ($amentities as $amentity)
+                                                <option value="{{ $amentity->id }}">{{ $amentity->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="document">Proprty Images</label> <br>
+                                        <input type="file" name="fileToUpload" id="fileToUpload">
+                                    </div>
+                                </div> --}}
+
+
+                            </div>
+                            <div>
+                                <button type="button" class="form-control" fdprocessedid="4v56i" id="madd-room"
+                                    style="width:10%; float:right; margin-top:10px; margin-right:5px;"
+                                    onclick="addRow();">Add
+                                    Room</button>
+                            </div>
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" id="frm">Submit</button>
@@ -248,14 +358,93 @@
                     <!-- /.card -->
 
                 </div>
-                <!--/.col (left) -->
-                <!-- right column -->
-
-                <!--/.col (right) -->
             </div>
-            <!-- /.row -->
         </div><!-- /.container-fluid -->
-    </section>
+    </div>
+
+    <script type="text/javascript">
+        var row = 1;
+
+        function addRow() {
+
+
+            html = '<div class="room-tab"  id="room-row' + row + '">';
+            html += '<div class="row">';
+
+            html += '<div class="form-group col-md-4 m-50">';
+            html += '<label for="Price">Room Name</label>';
+            html += ' <input type="text" class="form-control" name="product[' + row +
+                '][pname]" placeholder = "Enter Room Name" required > ';
+            html += '</div>';
+
+
+            html += '<div class="form-group col-md-4 m-50">';
+            html += '<label for="Price">Price</label>';
+            html += ' <input type="text" class="form-control" name="product[' + row +
+                '][pprice]" placeholder = "Enter Price" required > ';
+            html += '</div>';
+            html += '<div class="form-group col-md-4 m-50">';
+            html += '<label for="Price">Special Price</label>';
+            html +=
+                '<input type="text" class="form-control" name="product[' + row +
+                '][pspecial_price]" placeholder = "Enter Special Price" required > ';
+            html += '</div>';
+
+            html += '<div class="form-group col-md-4 m-50">';
+            html += '<label>Status</label>';
+            html += ' <select class="form-control select2" style="width: 100%; height: 40px;" name = "product[' + row +
+                '][pstatus]" >';
+            html += '<option selected = "selected" value = "1" > Enabled </option> ';
+            html += '<option value = "0" > Disabled </option>';
+            html += '</select>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="form-group">';
+            html += '<label>Amentities</label>';
+            html +=
+                '<select class="select2" multiple="multiple" data-placeholder="Select a Amentity" style = "width: 100%;"  name = "product[' +
+                row +
+                '][pamentities][]">';
+            @foreach ($amentities as $amentity)
+                html += '<option value = "{{ $amentity->id }}" > {{ $amentity->name }} </option>';
+            @endforeach
+            html += '</select>';
+            html += '</div>';
+            html += '<div class="form-group">';
+            html += '<label for="document">Proprty Images</label> <br>';
+            html += '<input type="file" name="product[' + row + '][pimage]" id="pimage">';
+            html += '</div>';
+
+            html += '<button type="button" onclick="$(\'#room-row' + row +
+                '\').remove();" data-toggle="tooltip" title="Remove" class="btn btn-danger" style="float: right; margin-top: -40px;"><i class="fa fa-minus-circle"></i></button>';
+
+            html += '</div>';
+
+            $('#Rooms').append(html);
+
+            $('.select2').select2();
+
+            row++;
+        }
+    </script>
+
+    <script>
+        function Tabs(evt, tab) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tab).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+
     {{-- <script>
         FilePond.registerPlugin(FilePondPluginImagePreview);
         const inputElement = document.querySelector('input[id="images"]');

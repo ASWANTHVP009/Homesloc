@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Roomtype;
 use Nette\Utils\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+
 
 class ListController extends Controller
 {
@@ -318,11 +320,51 @@ class ListController extends Controller
             $days = 1;
         }
 
-        // dd($days);
-
         $total = $days * ($room_count * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price']));
 
-        return view('detail')->with('total', $total)->with('images', $images)->with('image', $image)->with('hotel_data', $hotel_data)->with('ratings', $ratings)->with('rating_array', $rating_array);
+        // get Product Room Types
+        $room_types = Roomtype::where('property_id', $hotel_id)->orderBy('id', 'asc')->get();
+        // End
+
+
+        // if (isset($room_types) && !empty($room_types)) {
+        if ($room_types->isNotEmpty()) {
+            $room_info = Roomtype::where('property_id', $hotel_id)
+                ->orderBy('id', 'asc')
+                ->first();
+
+            $total = $days * ($room_count * ($room_info['special_price'] ? $room_info['special_price'] : $room_info['price']));
+            $off = ($days * ($room_count * $room_info['price'])) - ($days * ($room_count * ($room_info['special_price'] ? $room_info['special_price'] : $room_info['price'])));
+
+            if (isset($room_info) && !empty($room_info)) {
+                $data = array(
+                    'id' => $room_info['id'],
+                    'property_id' => $room_info['property_id'],
+                    'price' => $room_info['price'],
+                    'special_price' => $room_info['special_price'],
+                    'name' => $room_info['name'],
+                    'total' => $total,
+                    'off' => $off,
+                );
+            }
+        } else {
+
+            $off = ($days * ($room_count * $hotel_data['price'])) - ($days * ($room_count * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price'])));
+
+            $data = array(
+                'id' => $hotel_data['id'],
+                'property_id' => $hotel_data['id'],
+                'price' => $hotel_data['price'],
+                'special_price' => $hotel_data['special_price'],
+                'name' => 'Classic',
+                'total' => $total,
+                'off' => $off,
+            );
+        }
+
+        // dd($room_types);
+
+        return view('detail')->with('data', $data)->with('room_types', $room_types)->with('total', $total)->with('images', $images)->with('image', $image)->with('hotel_data', $hotel_data)->with('ratings', $ratings)->with('rating_array', $rating_array);
         // return view('detail', [
         //     'images' => $images,
         //     'image' => $image,
@@ -330,5 +372,58 @@ class ListController extends Controller
         //     'ratings' => $ratings,
         //     'rating_array' => $rating_array,
         // ]);
+    }
+
+    public function roomtype(Request $request)
+    {
+        $input = $request->all();
+        if (isset($input['property_id']) && !empty($input['property_id']) && isset($input['tick_button']) && !empty($input['tick_button'])) {
+
+            $hotel_id = $input['property_id'];
+            $tick_button = $input['tick_button'];
+            $data = array();
+
+            $daterange = $input['daterange'];
+            $room_count = $input['rm_count'] ?  $input['rm_count'] : 1;
+
+            if (isset($daterange) && !empty($daterange)) {
+                $dates =  explode(" - ", $daterange);
+
+                $date1_str = DateTime::createFromFormat("d/m/Y", $dates[0]);
+                $date2_str = DateTime::createFromFormat("d/m/Y", $dates[1]);
+
+                $date1 = new DateTime($date1_str);
+                $date2 = new DateTime($date2_str);
+
+                $interval = $date1->diff($date2);
+                $days = $interval->days;
+            } else {
+                $days = 1;
+            }
+
+            $room_info = Roomtype::where('property_id', $hotel_id)
+                ->where('id', '=', $tick_button)
+                ->first();
+
+            $total = $days * ($room_count * ($room_info['special_price'] ? $room_info['special_price'] : $room_info['price']));
+
+            $off = ($days * ($room_count * $room_info['price'])) - ($days * ($room_count * ($room_info['special_price'] ? $room_info['special_price'] : $room_info['price'])));
+
+            if (isset($room_info) && !empty($room_info)) {
+                $data = array(
+                    'id' => $room_info['id'],
+                    'property_id' => $room_info['property_id'],
+                    'price' => $room_info['price'],
+                    'special_price' => $room_info['special_price'],
+                    'name' => $room_info['name'],
+                    'total' => $total,
+                    'off' => $off,
+                );
+            } else {
+            }
+        } else {
+        }
+
+        return response()->json(['success' => 1, 'info' => $data], 200);
     }
 }

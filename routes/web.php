@@ -214,6 +214,9 @@ Route::post('/review', [ProfileController::class, 'review'])->name('review');
 
 Route::post('/cancel', [ProfileController::class, 'cancel'])->name('cancel');
 
+Route::post('/roomtype', [ListController::class, 'roomtype'])->name('roomtype');
+
+
 
 // stripe
 

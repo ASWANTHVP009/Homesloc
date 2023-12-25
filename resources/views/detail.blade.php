@@ -1,13 +1,14 @@
 @include('commonHeader')
 <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" type="text/css">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- content -->
 <style>
-a:hover{
-    color:#000;
-    text-decoration:none;
-}
-    .share-icoc-name{
+    a:hover {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .share-icoc-name {
         height: 32px;
         border-radius: 4px;
         font-size: 15px;
@@ -19,7 +20,8 @@ a:hover{
         padding: 10px 0px 10px 9px;
         margin: 0;
     }
-    .share-icoc{
+
+    .share-icoc {
         height: 32px;
         border-radius: 4px;
         /*box-shadow: 0 2px 8px 0 rgba(55, 64, 77, 0.16);*/
@@ -33,12 +35,14 @@ a:hover{
         padding: 10px 0px 10px 5px;
         margin: 0px 8px 0px 8px;
     }
-    .share-icoc-svg{
+
+    .share-icoc-svg {
         margin-top: -2px;
         margin-right: -10px;
         width: 25px;
         height: 30px;
     }
+
     .star-rating {
         direction: rtl;
         display: inline-block;
@@ -62,6 +66,10 @@ a:hover{
     .star-rating label:hover~label,
     .star-rating input[type=radio]:checked~label {
         color: #f2b600;
+    }
+
+    .room-types {
+        margin-top: 10px;
     }
 </style>
 
@@ -112,7 +120,8 @@ a:hover{
                             </section>
                         </div>
                     </div>
-                    <div class="c-zr4j7z" style="top: 40px; background: #fff; padding: 9px 11px 9px 1px;border-radius: 3px;">
+                    <div class="c-zr4j7z"
+                        style="top: 40px; background: #fff; padding: 9px 11px 9px 1px;border-radius: 3px;">
                         <!--<button type="button" tabindex="0"><span class="c-1kiaciz"><svg-->
                         <!--            xmlns="http://www.w3.org/2000/svg" width="20" height="17"-->
                         <!--            viewBox="0 0 20 17">-->
@@ -125,43 +134,53 @@ a:hover{
                             <span class="c-1kiaciz" style="color:#000">
                                 Share :
                             </span>
-                        </button>
-                        
+                        </a>
+
                         <?php
-                            $url = url()->full();
-                            $encodedUrl = str_replace([' ', '>', '&', '/'], ['%20', '%3E', '%26', '%2F'], $url);
-                            $mailencodedUrl = urlencode($url);
+                        $url = url()->full();
+                        $encodedUrl = str_replace([' ', '>', '&', '/'], ['%20', '%3E', '%26', '%2F'], $url);
+                        $mailencodedUrl = urlencode($url);
                         ?>
-                        
-                        
+
+
                         <a class="share-icoc" href="https://www.facebook.com/sharer/sharer.php?u={{ $mailencodedUrl }}">
                             <span class="c-1kiaciz">
-                                <svg class="share-icoc-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                                    <path fill="#3D589A" fill-rule="nonzero" d="M18 3c0-1.576-1.423-3-3-3H3C1.423 0 0 1.424 0 3v12c0 1.576 1.423 3 3 3h6v-6.8H6.8v-3H9V7.031C9 5.015 10.514 3.2 12.375 3.2H14.8v3h-2.425c-.265 0-.575.322-.575.805V8.2h3v3h-3V18H15c1.577 0 3-1.424 3-3V3z"></path>
+                                <svg class="share-icoc-svg" xmlns="http://www.w3.org/2000/svg" width="18"
+                                    height="18" viewBox="0 0 18 18">
+                                    <path fill="#3D589A" fill-rule="nonzero"
+                                        d="M18 3c0-1.576-1.423-3-3-3H3C1.423 0 0 1.424 0 3v12c0 1.576 1.423 3 3 3h6v-6.8H6.8v-3H9V7.031C9 5.015 10.514 3.2 12.375 3.2H14.8v3h-2.425c-.265 0-.575.322-.575.805V8.2h3v3h-3V18H15c1.577 0 3-1.424 3-3V3z">
+                                    </path>
                                 </svg>
                             </span>
-                        </button>
-                        
+                        </a>
+
                         <a class="share-icoc" href="whatsapp://send?text={{ $mailencodedUrl }}">
                             <span class="c-1kiaciz">
-                                <svg class="share-icoc-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                                    <path fill="#2AD560" fill-rule="nonzero" d="M9.002 0h-.004C4.035 0 0 4.037 0 9c0 1.969.634 3.793 1.713 5.275L.592 17.62l3.46-1.106A8.922 8.922 0 0 0 9.001 18C13.965 18 18 13.962 18 9s-4.035-9-8.998-9zm5.237 12.71c-.217.612-1.079 1.12-1.766 1.27-.47.1-1.085.18-3.152-.678-2.645-1.096-4.348-3.783-4.481-3.958C4.713 9.17 3.77 7.921 3.77 6.63c0-1.292.656-1.92.92-2.19.217-.222.576-.324.92-.324.112 0 .212.006.302.01.264.012.397.027.571.445.218.523.746 1.815.81 1.947.064.133.128.313.038.487-.085.18-.159.26-.292.413-.133.153-.258.27-.391.434-.122.143-.259.296-.106.56.153.26.682 1.122 1.46 1.815 1.005.895 1.82 1.18 2.11 1.302.218.09.477.069.635-.1.202-.217.45-.577.703-.932.18-.254.408-.285.646-.195.243.084 1.529.72 1.793.851.265.133.44.196.503.307.063.112.063.635-.154 1.25z"></path>
+                                <svg class="share-icoc-svg" xmlns="http://www.w3.org/2000/svg" width="18"
+                                    height="18" viewBox="0 0 18 18">
+                                    <path fill="#2AD560" fill-rule="nonzero"
+                                        d="M9.002 0h-.004C4.035 0 0 4.037 0 9c0 1.969.634 3.793 1.713 5.275L.592 17.62l3.46-1.106A8.922 8.922 0 0 0 9.001 18C13.965 18 18 13.962 18 9s-4.035-9-8.998-9zm5.237 12.71c-.217.612-1.079 1.12-1.766 1.27-.47.1-1.085.18-3.152-.678-2.645-1.096-4.348-3.783-4.481-3.958C4.713 9.17 3.77 7.921 3.77 6.63c0-1.292.656-1.92.92-2.19.217-.222.576-.324.92-.324.112 0 .212.006.302.01.264.012.397.027.571.445.218.523.746 1.815.81 1.947.064.133.128.313.038.487-.085.18-.159.26-.292.413-.133.153-.258.27-.391.434-.122.143-.259.296-.106.56.153.26.682 1.122 1.46 1.815 1.005.895 1.82 1.18 2.11 1.302.218.09.477.069.635-.1.202-.217.45-.577.703-.932.18-.254.408-.285.646-.195.243.084 1.529.72 1.793.851.265.133.44.196.503.307.063.112.063.635-.154 1.25z">
+                                    </path>
                                 </svg>
                             </span>
-                        </button>
-                        
-                        <a class="share-icoc" href="mailto:?subject=HomesLoc&body={{ $mailencodedUrl }}" title="HomesLoc">
+                        </a>
+
+                        <a class="share-icoc" href="mailto:?subject=HomesLoc&body={{ $mailencodedUrl }}"
+                            title="HomesLoc">
                             <span class="c-1kiaciz">
-                                <svg class="share-icoc-svg" xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 18 14">
-                                    <path fill="#636363" fill-rule="nonzero" d="M1.728 4.315C1.313 4.037.92 3.655.552 3.167.184 2.68 0 2.227 0 1.81 0 1.293.139.862.417.517.695.172 1.09 0 1.607 0h14.786c.435 0 .812.156 1.13.467.318.312.477.686.477 1.124 0 .524-.164 1.024-.492 1.501a4.747 4.747 0 0 1-1.226 1.223l-4.7 3.232c-.067.046-.21.147-.427.303-.218.156-.399.282-.543.378-.144.096-.318.204-.522.323-.204.12-.397.209-.578.268-.18.06-.348.09-.502.09h-.02c-.154 0-.322-.03-.502-.09a3.045 3.045 0 0 1-.578-.268c-.204-.12-.378-.227-.522-.323a20.864 20.864 0 0 1-.543-.378c-.217-.156-.36-.257-.427-.303a503.86 503.86 0 0 0-2.631-1.815 465.176 465.176 0 0 1-2.06-1.417zM16.995 5.38A5.523 5.523 0 0 0 18 4.514v7.895c0 .438-.157.812-.472 1.124a1.555 1.555 0 0 1-1.135.467H1.607c-.442 0-.82-.156-1.135-.467A1.524 1.524 0 0 1 0 12.409V4.514c.295.325.633.613 1.015.865 2.424 1.63 4.088 2.774 4.992 3.43.381.279.691.496.929.652.238.156.554.315.949.477.395.163.763.244 1.105.244h.02c.342 0 .71-.081 1.105-.244.395-.162.711-.321.95-.477.237-.156.547-.373.928-.651 1.139-.816 2.806-1.96 5.002-3.43z"></path>
+                                <svg class="share-icoc-svg" xmlns="http://www.w3.org/2000/svg" width="18"
+                                    height="14" viewBox="0 0 18 14">
+                                    <path fill="#636363" fill-rule="nonzero"
+                                        d="M1.728 4.315C1.313 4.037.92 3.655.552 3.167.184 2.68 0 2.227 0 1.81 0 1.293.139.862.417.517.695.172 1.09 0 1.607 0h14.786c.435 0 .812.156 1.13.467.318.312.477.686.477 1.124 0 .524-.164 1.024-.492 1.501a4.747 4.747 0 0 1-1.226 1.223l-4.7 3.232c-.067.046-.21.147-.427.303-.218.156-.399.282-.543.378-.144.096-.318.204-.522.323-.204.12-.397.209-.578.268-.18.06-.348.09-.502.09h-.02c-.154 0-.322-.03-.502-.09a3.045 3.045 0 0 1-.578-.268c-.204-.12-.378-.227-.522-.323a20.864 20.864 0 0 1-.543-.378c-.217-.156-.36-.257-.427-.303a503.86 503.86 0 0 0-2.631-1.815 465.176 465.176 0 0 1-2.06-1.417zM16.995 5.38A5.523 5.523 0 0 0 18 4.514v7.895c0 .438-.157.812-.472 1.124a1.555 1.555 0 0 1-1.135.467H1.607c-.442 0-.82-.156-1.135-.467A1.524 1.524 0 0 1 0 12.409V4.514c.295.325.633.613 1.015.865 2.424 1.63 4.088 2.774 4.992 3.43.381.279.691.496.929.652.238.156.554.315.949.477.395.163.763.244 1.105.244h.02c.342 0 .71-.081 1.105-.244.395-.162.711-.321.95-.477.237-.156.547-.373.928-.651 1.139-.816 2.806-1.96 5.002-3.43z">
+                                    </path>
                                 </svg>
                             </span>
-                        </button>
-                        
+                        </a>
+
                     </div>
-                    
-                    
-                    
+
+
+
                 </div>
             </div>
         </div>
@@ -195,7 +214,8 @@ a:hover{
                                 @endif
                             </div>
                             <div>
-                                <div><span itemprop="starRating" itemscope="true" itemtype="http://schema.org/Rating">
+                                <div><span itemprop="starRating" itemscope="true"
+                                        itemtype="http://schema.org/Rating">
                                         <meta itemprop="ratingValue" content="1.6">
                                     </span>
                                     <div class="c-1ktt90" itemprop="aggregateRating" itemscope="true"
@@ -270,12 +290,14 @@ a:hover{
             </div>
 
             <div class="c-1r1ps0e" id="1424">
-                <div name="1424">
-                    <div>
-                        <div class="c-gcrtsc">Choose your room</div>
-                        <div class="c-28j001" itemprop="containsPlace" itemscope="true"
-                            itemtype="http://schema.org/HotelRoom">
-                            <div class="c-1bdbnnk">
+                <form id="room_type_sel">
+                    @csrf
+                    <div name="1424">
+                        <div>
+                            <div class="c-gcrtsc">Choose your room</div>
+                            <div class="c-28j001" itemprop="containsPlace" itemscope="true"
+                                itemtype="http://schema.org/HotelRoom">
+                                {{-- <div class="c-1bdbnnk">
                                 <div class="c-1q9wn95"><span class="c-1thsya0"><svg width="12" height="12"
                                             viewBox="0 0 9 10" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -284,92 +306,124 @@ a:hover{
                                         </svg></span><span class="c-dldzsc"><span>Selected
                                             Category</span></span>
                                 </div>
-                            </div>
-                            <div class="c-7doipl">
-                                <div class="c-ebnjpp">
-                                    <div class="c-1xhj18k"><span class="c-2j9z2q" itemprop="name">Classic</span>
-                                        <div class="c-1r30k9r"><span class=""><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="20" height="9"
-                                                    viewBox="0 0 20 9">
-                                                    <path fill-rule="evenodd"
-                                                        d="M4.247 6.034l-2.204-2.07L1 5.006l2.81 2.678.003-.003.457.457 7.067-7.075L10.274 0z">
-                                                    </path>
-                                                </svg></span></div>
-                                    </div>
-                                    <hr class="c-mjnk4s">
-                                    <div>
-                                        <div class="c-1xhj18k">
-                                            <div class="c-1b873yf">
-                                                @foreach ($hotel_data['amentities'] as $amentities)
-                                                    <div class="c-3g5f28"><span lazyload="true"
-                                                            class="c-1o86iao"><svg width="22px" height="22px"
-                                                                viewBox="0 0 22 22" version="1.1"
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                                <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
-                                                                <title>checkmark</title>
-                                                                <desc>Created with Sketch.</desc>
-                                                                <g id="Page-2" stroke="none" stroke-width="1"
-                                                                    fill="none" fill-rule="evenodd">
-                                                                    <g id="new-icon-set-(exportable)"
-                                                                        transform="translate(-121.000000, -698.000000)"
-                                                                        fill="black">
-                                                                        <path
-                                                                            d="M132,720 C129.061263,720 126.299684,718.856 124.221263,716.778737 C122.142842,714.701474 121,711.938737 121,709.001158 C121,706.062421 122.144,703.300842 124.221263,701.222421 C126.298526,699.144 129.061263,698 132,698 C134.938737,698 137.700316,699.144 139.778737,701.222421 C141.857158,703.300842 143,706.062421 143,709.001158 C143,711.939895 141.856,714.701474 139.778737,716.778737 C137.701474,718.856 134.938737,720 132,720 L132,720 Z M132,699.157895 C137.427053,699.157895 141.842105,703.572947 141.842105,709 C141.842105,714.427053 137.427053,718.842105 132,718.842105 C126.572947,718.842105 122.157895,714.427053 122.157895,709 C122.157895,703.572947 126.572947,699.157895 132,699.157895 Z M129.684211,713.631579 L129.681895,713.631579 C129.830105,713.631579 129.978316,713.576 130.091789,713.462526 L138.197053,705.357263 C138.422842,705.131474 138.422842,704.764421 138.197053,704.538632 C137.971263,704.312842 137.604211,704.312842 137.378421,704.538632 L129.683053,712.234 L126.619263,709.170211 C126.393474,708.944421 126.026421,708.944421 125.800632,709.170211 C125.574842,709.396 125.574842,709.763053 125.800632,709.988842 L129.274316,713.462526 C129.387789,713.574842 129.536,713.631579 129.684211,713.631579 Z"
-                                                                            id="checkmark"></path>
-                                                                    </g>
-                                                                </g>
-                                                            </svg></span>
-                                                        <div class="c-14dq6lk">{{ $amentities }}</div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            <div class="c-1slosxv" tabindex="0" role="button">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </div> --}}
 
-                                <div class="c-sn9j7k">
-                                    <div class="c-e2r6u2"><img alt="" loading="auto" importance="auto"
-                                            class="c-1gdxnl5" src="{{ URL::asset('/uploads/' . $image['path']) }}">
-                                    </div><span class="c-1as8cbh"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="16" height="13" viewBox="0 0 16 13">
-                                            <path fill="white" fill-rule="evenodd"
-                                                d="M1.016.467h14.48c.267 0 .483.207.483.463v10.978c0 .256-.216.678-.483.678H1.016c-.266 0-.483-.422-.483-.678V.93c0-.256.217-.463.483-.463zm.483 8.984v2.142h9.025L5.183 6.096a.404.404 0 00-.295-.128.403.403 0 00-.291.135L1.499 9.45zm9.653-2.494c-1.065 0-1.93-.832-1.93-1.855 0-1.022.865-1.854 1.93-1.854s1.931.832 1.931 1.854c0 1.023-.866 1.855-1.93 1.855zm0-2.782c-.532 0-.965.417-.965.927 0 .511.433.928.965.928s.966-.417.966-.928c0-.51-.434-.927-.966-.927zm3.862 7.418v-10.2H1.499v6.662l2.376-2.568a1.374 1.374 0 011.001-.446c.385-.004.744.146 1.013.423l5.955 6.129h3.17z">
-                                            </path>
-                                        </svg></span>
-                                </div>
-                            </div>
+                                <input type="hidden" name="property_id" id="property_id"
+                                    value="{{ $hotel_data['id'] }}">
 
-                            <div class="c-1x21dx0">
-                                <div class="c-8atqhb" itemprop="potentialAction" itemtype="http://schema.org/Action"
-                                    itemscope="true">
-                                    <div class="c-2t9rox">
-                                        <div class="c-0">
-                                            <div class="c-j7qwjs">
-                                                <div class="c-1a812ti">
-                                                    <div class="c-gnxvp8">₹{{ $hotel_data['special_price'] }}</div>
-                                                    <span class="c-77737p">₹{{ $hotel_data['price'] }}</span>
+                                @foreach ($room_types as $key => $rtype)
+                                    <div class="room-types">
+                                        <div class="c-7doipl">
+                                            <div class="c-ebnjpp">
+                                                <div class="c-1xhj18k"><span class="c-2j9z2q"
+                                                        itemprop="name">{{ $rtype['name'] }}</span>
+                                                    <div class="c-1r30k9r"><span class=""><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="9" viewBox="0 0 20 9">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M4.247 6.034l-2.204-2.07L1 5.006l2.81 2.678.003-.003.457.457 7.067-7.075L10.274 0z">
+                                                                </path>
+                                                            </svg></span></div>
                                                 </div>
-                                                <div class="c-131wcsq"></div>
+                                                <hr class="c-mjnk4s">
+                                                <div>
+                                                    <div class="c-1xhj18k">
+                                                        <div class="c-1b873yf">
+                                                            @foreach ($hotel_data['amentities'] as $amentities)
+                                                                <div class="c-3g5f28"><span lazyload="true"
+                                                                        class="c-1o86iao"><svg width="22px"
+                                                                            height="22px" viewBox="0 0 22 22"
+                                                                            version="1.1"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                            <title>checkmark</title>
+                                                                            <desc>Created with Sketch.</desc>
+                                                                            <g id="Page-2" stroke="none"
+                                                                                stroke-width="1" fill="none"
+                                                                                fill-rule="evenodd">
+                                                                                <g id="new-icon-set-(exportable)"
+                                                                                    transform="translate(-121.000000, -698.000000)"
+                                                                                    fill="black">
+                                                                                    <path
+                                                                                        d="M132,720 C129.061263,720 126.299684,718.856 124.221263,716.778737 C122.142842,714.701474 121,711.938737 121,709.001158 C121,706.062421 122.144,703.300842 124.221263,701.222421 C126.298526,699.144 129.061263,698 132,698 C134.938737,698 137.700316,699.144 139.778737,701.222421 C141.857158,703.300842 143,706.062421 143,709.001158 C143,711.939895 141.856,714.701474 139.778737,716.778737 C137.701474,718.856 134.938737,720 132,720 L132,720 Z M132,699.157895 C137.427053,699.157895 141.842105,703.572947 141.842105,709 C141.842105,714.427053 137.427053,718.842105 132,718.842105 C126.572947,718.842105 122.157895,714.427053 122.157895,709 C122.157895,703.572947 126.572947,699.157895 132,699.157895 Z M129.684211,713.631579 L129.681895,713.631579 C129.830105,713.631579 129.978316,713.576 130.091789,713.462526 L138.197053,705.357263 C138.422842,705.131474 138.422842,704.764421 138.197053,704.538632 C137.971263,704.312842 137.604211,704.312842 137.378421,704.538632 L129.683053,712.234 L126.619263,709.170211 C126.393474,708.944421 126.026421,708.944421 125.800632,709.170211 C125.574842,709.396 125.574842,709.763053 125.800632,709.988842 L129.274316,713.462526 C129.387789,713.574842 129.536,713.631579 129.684211,713.631579 Z"
+                                                                                        id="checkmark"></path>
+                                                                                </g>
+                                                                            </g>
+                                                                        </svg></span>
+                                                                    <div class="c-14dq6lk">{{ $amentities }}</div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                        <div class="c-1slosxv" tabindex="0" role="button">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="c-sn9j7k">
+                                                <div class="c-e2r6u2"><img alt="" loading="auto"
+                                                        importance="auto" class="c-1gdxnl5"
+                                                        src="{{ URL::asset('/uploads/' . $rtype['image']) }}">
+                                                </div><span class="c-1as8cbh"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        width="16" height="13" viewBox="0 0 16 13">
+                                                        <path fill="white" fill-rule="evenodd"
+                                                            d="M1.016.467h14.48c.267 0 .483.207.483.463v10.978c0 .256-.216.678-.483.678H1.016c-.266 0-.483-.422-.483-.678V.93c0-.256.217-.463.483-.463zm.483 8.984v2.142h9.025L5.183 6.096a.404.404 0 00-.295-.128.403.403 0 00-.291.135L1.499 9.45zm9.653-2.494c-1.065 0-1.93-.832-1.93-1.855 0-1.022.865-1.854 1.93-1.854s1.931.832 1.931 1.854c0 1.023-.866 1.855-1.93 1.855zm0-2.782c-.532 0-.965.417-.965.927 0 .511.433.928.965.928s.966-.417.966-.928c0-.51-.434-.927-.966-.927zm3.862 7.418v-10.2H1.499v6.662l2.376-2.568a1.374 1.374 0 011.001-.446c.385-.004.744.146 1.013.423l5.955 6.129h3.17z">
+                                                        </path>
+                                                    </svg></span>
                                             </div>
                                         </div>
-                                        <button type="button" class="c-1m5xxnu"><span class="c-k008qs"
-                                                itemprop="name"><span class="c-m8w07n"><span class=""><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="20"
-                                                            height="9" viewBox="0 0 20 9">
-                                                            <path fill-rule="evenodd"
-                                                                d="M4.247 6.034l-2.204-2.07L1 5.006l2.81 2.678.003-.003.457.457 7.067-7.075L10.274 0z">
-                                                            </path>
-                                                        </svg></span> </span>SELECTED</span>
-                                        </button>
+
+                                        <div class="c-1x21dx0">
+                                            <div class="c-8atqhb" itemprop="potentialAction"
+                                                itemtype="http://schema.org/Action" itemscope="true">
+                                                <div class="c-2t9rox">
+                                                    <div class="c-0">
+                                                        <div class="c-j7qwjs">
+                                                            <div class="c-1a812ti">
+                                                                <div class="c-gnxvp8">
+                                                                    ₹<span
+                                                                        id="rtype-special_{{ $rtype['id'] }}">{{ $rtype['special_price'] }}</span>
+                                                                </div>
+                                                                <span class="c-77737p">₹<span
+                                                                        id="rtype-price_{{ $rtype['id'] }}">{{ $rtype['price'] }}</span></span>
+                                                            </div>
+                                                            <div class="c-131wcsq"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    @if ($key == 0)
+                                                        <button type="button" class="c-1m5xxnu rt-button"
+                                                            id="tick_{{ $rtype['id'] }}"
+                                                            onclick="tick({{ $rtype['id'] }})"
+                                                            style="background:#25d366">
+                                                            <span class="c-k008qs">
+                                                                SELECTED
+                                                            </span>
+                                                        </button>
+                                                        {{-- <input type="hidden" name="tick_button" id="tick_button" --}}
+                                                        {{-- value="{{ $rtype['id'] }}"> --}}
+                                                    @else
+                                                        <button type="button" class="c-1m5xxnu rt-button"
+                                                            id="tick_{{ $rtype['id'] }}"
+                                                            onclick="tick({{ $rtype['id'] }})">
+                                                            <span class="c-k008qs">
+                                                                SELECT
+                                                            </span>
+                                                        </button>
+                                                        {{-- <input type="hidden" name="tick_button" id="tick_button"> --}}
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
+
                             </div>
+
                         </div>
                     </div>
-                </div>
+                    <input type="hidden" name="tick_button" id="tick_button">
+                </form>
             </div>
 
             <div class="c-1r1ps0e" id="1210">
@@ -624,10 +678,21 @@ a:hover{
 
                     <meta itemprop="priceRange" content="₹894 - ₹3123">
 
+                    @php
+                        $originalPrice = $data['price']; // Replace with your actual original price
+                        $newPrice = $data['special_price']; // Replace with your actual new price
+
+                        $percentageOff = (($originalPrice - $newPrice) / $originalPrice) * 100;
+                    @endphp
+
                     <div class="listingPrice__numbers"><span
-                            class="listingPrice__finalPrice listingPrice__finalPrice--black">{{ $hotel_data['special_price'] }}</span><span
-                            class="listingPrice__slashedPrice d-body-lg">{{ $hotel_data['price'] }}</span><span
-                            class="listingPrice__percentage">35% off</span></div>
+                            class="listingPrice__finalPrice listingPrice__finalPrice--black"
+                            id="sp_price">{{ $data['special_price'] }}</span><span
+                            class="listingPrice__slashedPrice d-body-lg"
+                            id="base_price">{{ $data['price'] }}</span><span class="listingPrice__percentage"
+                            id="off_price">{{ number_format(round($percentageOff), 0) }}</span><span
+                            class="listingPrice__percentage">%
+                            off</span></div>
 
                     <div class="listingPrice__perRoomNight">inclusive of all taxes</div>
 
@@ -675,7 +740,7 @@ a:hover{
                                     opacity=".3"></path>
                             </svg></span>
 
-                        <div><span class="c-1w0k317">Classic </span></div>
+                        <div><span class="c-1w0k317" id="room-title">{{ $data['name'] }} </span></div>
                     </div>
                 </div>
 
@@ -746,9 +811,9 @@ a:hover{
                         <div class="c-70qvj9">
                             <span class="c-2jict3">₹
                                 @if ($hotel_data['special_price'])
-                                    {{ $hotel_data['price'] - $hotel_data['special_price'] }}
+                                    <span id="room-off">{{ $data['off'] }}</span>
                                 @else
-                                    {{ $hotel_data['price'] }}
+                                    <span id="room-off"> {{ $data['off'] }}</span>
                                 @endif
 
                             </span>
@@ -765,11 +830,10 @@ a:hover{
                                 <div class="c-1l4repk">(incl. of all taxes) </div>
                             </div>
 
-                            <div class="c-nx2p0o">
-
-                                <span class="c-2jict3">
-                                    ₹{{ $total }} 
-                                </span>
+                            <div class="c-nx2p0o" style="display:flex;">
+                                <span class="c-2jict3" style="width: 100%;">
+                                    ₹ <span class="" id="room-total"
+                                        style="width: 100%;">{{ $total }}</span>
                             </div>
 
                         </div>
@@ -781,7 +845,7 @@ a:hover{
                 <div class="c-1wso87h">
 
                     <button type="button" class="c-u65gu2"><a
-                            href="/checkout?property={{ app('request')->route('id') }} & daterange={{ app('request')->input('daterange') }} & rm-count={{ app('request')->input('rm-count') }} & gt-count={{ app('request')->input('gt-count') }} & amt={{ app('request')->input('rm-count') * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price']) }}">Continue
+                            href="/checkout?property={{ app('request')->route('id') }} & daterange={{ app('request')->input('daterange') }} & rm-count={{ app('request')->input('rm-count') }} & tick={{ app('request')->input('tick') }} & gt-count={{ app('request')->input('gt-count') }} & amt={{ app('request')->input('rm-count') * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price']) }}">Continue
 
                             to Book</a></button>
 
@@ -826,3 +890,115 @@ a:hover{
 <!-- content -->
 
 @include('commonFooter')
+
+<script>
+    $(document).ready(function() {
+        var tick = {{ $data['id'] }}
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(currentUrl.split('?')[1]);
+        urlParams.set('tick', tick);
+        var updatedUrl = currentUrl.split('?')[0] + '?' + urlParams.toString();
+        history.pushState(null, null, updatedUrl);
+    });
+</script>
+
+<script>
+    function tick(row) {
+
+
+
+
+
+        var buttons = document.querySelectorAll('.rt-button');
+
+        buttons.forEach(function(button) {
+            button.style.backgroundColor = '';
+            button.innerHTML = "SELECT";
+        });
+
+        $('#tick_' + row).css('background', '#25d366');
+        var tickbutton = document.getElementById('tick_' + row);
+        tickbutton.innerHTML = "SELECTED";
+
+        var base_price = document.getElementById('rtype-price_' + row).innerHTML;
+        var sp_price = document.getElementById('rtype-special_' + row).innerHTML;
+        $('#sp_price').html(sp_price);
+        $('#base_price').html(base_price);
+        var off = ((base_price - sp_price) / base_price) * 100;
+        $('#off_price').html(Math.round(off));
+
+        $('#tick_button').val(row);
+
+
+        var property_id = $('#property_id').val();
+        var tick_button = $('#tick_button').val();
+        var property = {{ app('request')->route('id') }};
+        var rm_count = {{ app('request')->input('rm-count') }};
+        var gt_count = {{ app('request')->input('gt-count') }};
+
+        // get date range
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(currentUrl.split('?')[1]);
+        var daterange = urlParams.get('daterange');
+        // end
+
+        // Add tick to param
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(currentUrl.split('?')[1]);
+        urlParams.set('tick', tick_button);
+        var updatedUrl = currentUrl.split('?')[0] + '?' + urlParams.toString();
+        history.pushState(null, null, updatedUrl);
+        // End
+
+        $.ajax({
+            type: 'POST',
+            url: '/roomtype',
+            dataType: 'json',
+            data: {
+                property_id: property_id,
+                tick_button: tick_button,
+                daterange: daterange,
+                rm_count: rm_count,
+                gt_count: gt_count,
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            // error: function(data) {
+            //     if (data) {
+            //         if (data.responseJSON.error.rating_error) {
+            //             document.getElementById('error-rating').innerHTML = data.responseJSON
+            //                 .error
+            //                 .rating_error;
+            //         } else {
+            //             $('#error-rating').hide();
+            //         }
+            //         if (data.responseJSON.error.text_error) {
+            //             document.getElementById('error-review').innerHTML = data.responseJSON
+            //                 .error
+            //                 .text_error;
+            //         } else {
+            //             $('#error-review').hide();
+            //         }
+            //     }
+            // },
+            success: function(data) {
+
+                if (data) {
+
+
+                    // console.log(data.info.name);
+                    // alert(data['info']);
+
+
+                    $('#room-title').html(data.info.name);
+                    $('#room-total').html(data.info.total);
+                    $('#room-off').html(data.info.off);
+                }
+
+                // console.log(data);
+
+            }
+        });
+    }
+</script>

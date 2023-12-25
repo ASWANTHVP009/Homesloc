@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\Product;
 use App\Models\Amentity;
 use App\Models\Group;
+use App\Models\Roomtype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -62,6 +63,42 @@ class ProductController
         } else {
             $geolocation = '';
         }
+
+
+
+        // update Product Type
+        Roomtype::where('property_id', decrypt($input['product_id']))->delete();
+        if (isset($input['product']) && !empty($input['product'])) {
+            foreach ($input['product'] as $type) {
+                if (isset($type['pamentities']) && !empty($type['pamentities'])) {
+                    $pamentities = implode(',', $type['pamentities']);
+                } else {
+                    $pamentities = '';
+                }
+                $image = $type['pimage'];
+
+                if (substr($image, 0, 3) === "Rp-") {
+                    $imageName = $image;
+                } else {
+                    $fileInfo = $image->getClientOriginalName();
+                    $filename = pathinfo($fileInfo, PATHINFO_FILENAME);
+                    $imageName = 'Rp-' . time() . '_' . $filename . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('uploads'), $imageName);
+                }
+                $roomtypes = new Roomtype();
+                $roomtypes->property_id = decrypt($input['product_id']);
+                $roomtypes->name = $type['pname'];
+                $roomtypes->price = $type['pprice'];
+                $roomtypes->special_price = $type['pspecial_price'];
+                $roomtypes->status = $type['pstatus'];
+                $roomtypes->amentities = $pamentities;
+                $roomtypes->image = $imageName;
+                $roomtypes->save();
+            }
+        }
+        // end
+        // dd($input);
+
 
         DB::table('products')
             ->where('id', decrypt($input['product_id']))
@@ -137,12 +174,8 @@ class ProductController
         }
         $product = Product::find(decrypt($id));
 
-
-
         if (isset($product['geolocation']) && !empty($product['geolocation'])) {
-
             $loc_cord = explode(',', $product['geolocation']);
-
 
             if (isset($loc_cord[0]) && !empty($loc_cord[0])) {
                 $latitude = $loc_cord[0];
@@ -161,10 +194,16 @@ class ProductController
             $longitude = '';
         }
 
-        // dd($longitude);
+        // get Product Room Types
+
+        $room_types = Roomtype::where('property_id', decrypt($id))->get();
+
+        // End
+
+        // dd($room_types);
 
 
-        return view('admin.products.edit')->with('image_datas', $image_datas)->with('amentities', $amentities)->with('menus', $menus)->with('types', $types)->with('product', $product)->with('latitude', $latitude)->with('longitude', $longitude);
+        return view('admin.products.edit')->with('room_types', $room_types)->with('image_datas', $image_datas)->with('amentities', $amentities)->with('menus', $menus)->with('types', $types)->with('product', $product)->with('latitude', $latitude)->with('longitude', $longitude);
     }
     public function delete($id)
     {
@@ -208,7 +247,6 @@ class ProductController
 
     public function productSave(Request $request)
     {
-
         $input = request()->all();
 
         if (isset($input['amentities']) && !empty($input['amentities'])) {
@@ -229,11 +267,6 @@ class ProductController
             $geolocation = '';
         }
 
-
-        // $amentities = implode(',', $input['amentities']);
-        // $menus = implode(',', $input['menus']);
-        // dd($menus);
-
         $product = new Product();
         $product->name = $input['name'];
         $product->description = $input['description'];
@@ -252,11 +285,42 @@ class ProductController
         $product->searchlocation = $input['geolocation'] ? $input['geolocation'] : '';
         $product->user_id = auth()->guard('admin')->id() ? auth()->guard('admin')->id() : 0;
         $product->status  = $input['status'] ? $input['status'] : 0;
-
-        // dd($product);
-
         $product->save();
         $property_id = $product->id;
+
+
+        // Save Room Types
+
+        if (isset($input['product']) && !empty($input['product'])) {
+
+            foreach ($input['product'] as $type) {
+
+                if (isset($type['pamentities']) && !empty($type['pamentities'])) {
+                    $pamentities = implode(',', $type['pamentities']);
+                } else {
+                    $pamentities = '';
+                }
+
+                $image = $type['pimage'];
+                $fileInfo = $image->getClientOriginalName();
+                $filename = pathinfo($fileInfo, PATHINFO_FILENAME);
+                $imageName = 'Rp-' . time() . '_' . $filename . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('uploads'), $imageName);
+
+                $roomtypes = new Roomtype();
+                $roomtypes->property_id = $property_id;
+                $roomtypes->name = $type['pname'];
+                $roomtypes->price = $type['pprice'];
+                $roomtypes->special_price = $type['pspecial_price'];
+                $roomtypes->status = $type['pstatus'];
+                $roomtypes->amentities = $pamentities;
+                $roomtypes->image = $imageName;
+                $roomtypes->save();
+            }
+        } else {
+            // if room type not available hide the room and cnage status to 0
+        }
+        // End
 
         // Save Images with property ID
         $insert = [];
