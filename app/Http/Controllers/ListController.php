@@ -360,6 +360,15 @@ class ListController extends Controller
                 'total' => $total,
                 'off' => $off,
             );
+            $room_types = array();
+            $room_types[] = array(
+                'id' => $hotel_data['id'],
+                'property_id' => $hotel_data['id'],
+                'price' => $hotel_data['price'],
+                'special_price' => $hotel_data['special_price'],
+                'name' => 'Classic',
+                'image' => $image
+            );
         }
 
         // dd($room_types);
