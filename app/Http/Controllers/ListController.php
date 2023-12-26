@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Amentity;
 use App\Models\Product;
 use App\Models\Roomtype;
 use Nette\Utils\DateTime;
@@ -323,12 +324,13 @@ class ListController extends Controller
         $total = $days * ($room_count * ($hotel_data['special_price'] ? $hotel_data['special_price'] : $hotel_data['price']));
 
         // get Product Room Types
-        $room_types = Roomtype::where('property_id', $hotel_id)->orderBy('id', 'asc')->get();
+        // $room_types = Roomtype::where('property_id', $hotel_id)->orderBy('id', 'asc')->get();
+        $room_types =  $image_data->getRoomTypes($hotel_id);
         // End
 
 
-        // if (isset($room_types) && !empty($room_types)) {
-        if ($room_types->isNotEmpty()) {
+        if (isset($room_types) && !empty($room_types)) {
+            // if ($room_types->isNotEmpty()) {
             $room_info = Roomtype::where('property_id', $hotel_id)
                 ->orderBy('id', 'asc')
                 ->first();
@@ -361,17 +363,17 @@ class ListController extends Controller
                 'off' => $off,
             );
             $room_types = array();
+
             $room_types[] = array(
                 'id' => $hotel_data['id'],
                 'property_id' => $hotel_data['id'],
                 'price' => $hotel_data['price'],
                 'special_price' => $hotel_data['special_price'],
                 'name' => 'Classic',
-                'image' => $image
+                'image' => $image,
+                'amentities' => $hotel_data['amentities']
             );
         }
-
-        // dd($room_types);
 
         return view('detail')->with('data', $data)->with('room_types', $room_types)->with('total', $total)->with('images', $images)->with('image', $image)->with('hotel_data', $hotel_data)->with('ratings', $ratings)->with('rating_array', $rating_array);
         // return view('detail', [

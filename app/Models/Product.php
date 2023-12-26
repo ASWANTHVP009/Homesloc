@@ -349,4 +349,33 @@ class Product extends Model
         return $data;
     }
     // end
+
+    // room type
+    public function getRoomTypes($hotel_id)
+    {
+        // $hotel_data = DB::table('roomtypes')->select('*')->where('property_id', $hotel_id)->get();
+        $hotel_data = Roomtype::where('property_id', $hotel_id)->orderBy('id', 'asc')->get();
+
+        if ($hotel_data->isNotEmpty()) {
+            foreach ($hotel_data as $value) {
+                if (isset($value->amentities) && !empty($value->amentities)) {
+                    $amentities = Amentity::whereIn('id', explode(',', $value->amentities))->pluck('name');
+                } else {
+                    $amentities = [];
+                }
+                $room_types[] = array(
+                    'id' => $value['id'],
+                    'property_id' => $value['id'],
+                    'price' => $value['price'],
+                    'special_price' => $value['special_price'],
+                    'name' => $value['name'],
+                    'image' => $value['image'],
+                    'amentities' => $amentities
+                );
+            }
+        } else {
+            $room_types = array();
+        }
+        return $room_types;
+    }
 }

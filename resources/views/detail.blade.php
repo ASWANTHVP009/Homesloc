@@ -329,7 +329,8 @@
                                                 <div>
                                                     <div class="c-1xhj18k">
                                                         <div class="c-1b873yf">
-                                                            @foreach ($hotel_data['amentities'] as $amentities)
+
+                                                            @foreach ($rtype['amentities'] as $amentities)
                                                                 <div class="c-3g5f28"><span lazyload="true"
                                                                         class="c-1o86iao"><svg width="22px"
                                                                             height="22px" viewBox="0 0 22 22"
