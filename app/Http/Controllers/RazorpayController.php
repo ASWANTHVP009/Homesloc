@@ -22,7 +22,8 @@ class RazorpayController extends Controller
 
     public function __construct($foo  = null)
     {
-        $this->api = new Api("rzp_test_7jzaCCPRSnsuFj", "6K1sdQwpJAbbG8LFl80a0QTr");
+        // $this->api = new Api("rzp_test_7jzaCCPRSnsuFj", "6K1sdQwpJAbbG8LFl80a0QTr");
+        $this->api = new Api("rzp_live_a4Z4SMNTQ4azeb", "fNgKcmcaidSzncT0uBnuZMca");
     }
 
     public function store(Request $request)
@@ -30,7 +31,7 @@ class RazorpayController extends Controller
         $input = $request->all();
 
         // dd($input);
-        // $payment_details = $this->api->payment->fetch($request->get('payment_id'));
+        $payment_details = $this->api->payment->fetch($request->get('payment_id'));
         $hotel_data = DB::table('products')->select('name', 'location', 'price', 'special_price')->where('id', $input['property_id'])->first();
 
         $user = auth()->user();
@@ -41,8 +42,8 @@ class RazorpayController extends Controller
         }
         // Order save
         $order_data = [
-            // 'order_id' => $payment_details->order_id,
-            'order_id' => 'HMLC-' . substr($input['mobile'], -6) . '-' . substr($input['name'], -3),
+            'order_id' => $payment_details->order_id,
+            // 'order_id' => 'HMLC-' . substr($input['mobile'], -6) . '-' . substr($input['name'], -3),
             'name' => $input['name'],
             'last_name' => "",
             'email' => $input['email'],
@@ -53,10 +54,10 @@ class RazorpayController extends Controller
             'hotel_name' => $hotel_data->name,
             'hotel_location' => $hotel_data->location,
             'price' => $hotel_data->special_price ? $hotel_data->special_price : $hotel_data->price,
-            // 'total' => $payment_details->amount,
-            // 'payment_method' => $payment_details->method,
-            'total' => $input['total'],
-            'payment_method' => "Card Payment",
+            'total' => $payment_details->amount,
+            'payment_method' => $payment_details->method,
+            // 'total' => $input['total'],
+            // 'payment_method' => "Card Payment",
             'status' => 1,
             'customer_id' => $customerId,
             'date_range' => $input['daterange'],
@@ -87,10 +88,10 @@ class RazorpayController extends Controller
             'hotel_location' => $hotel_data->location,
             'price' => $hotel_data->special_price ? $hotel_data->special_price : $hotel_data->price,
             'date_range' => $input['daterange'],
-            'payment_method' => 'Card Payment',
-            'total' => $input['total'],
-            // 'payment_method' => $payment_details->method,
-            // 'total' => $payment_details->amount / 100,
+            // 'payment_method' => 'Card Payment',
+            // 'total' => $input['total'],
+            'payment_method' => $payment_details->method,
+            'total' => $payment_details->amount / 100,
         );
         return view('invoice', compact('invoice_data'));
     }

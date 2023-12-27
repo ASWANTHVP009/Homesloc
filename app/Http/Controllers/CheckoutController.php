@@ -20,7 +20,10 @@ class CheckoutController extends Controller
 
     public function __construct($foo  = null)
     {
-        $this->api = new Api("rzp_test_7jzaCCPRSnsuFj", "6K1sdQwpJAbbG8LFl80a0QTr");
+        // $this->api = new Api("rzp_test_7jzaCCPRSnsuFj", "6K1sdQwpJAbbG8LFl80a0QTr");
+
+        $this->api = new Api("rzp_live_a4Z4SMNTQ4azeb", "fNgKcmcaidSzncT0uBnuZMca");
+        
     }
     public function index(Request $request)
     {

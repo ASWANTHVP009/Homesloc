@@ -180,14 +180,14 @@
                                                         <input type='hidden' name="total"
                                                             value="{{ $total }}">
 
-                                                        <button class="c-u65gu2" type="submit"
+                                                        {{-- <button class="c-u65gu2" type="submit"
                                                             id="checkout-live-button"><i class="fa fa-money"></i>
-                                                            Pay Now</button>
+                                                            Pay Now</button> --}}
                                                     </form>
 
-                                                    {{-- <button type="submit" class="c-u65gu2" id="rzp-button1">
+                                                    <button type="submit" class="c-u65gu2" id="rzp-button1">
                                                         Pay Now
-                                                    </button> --}}
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -371,7 +371,9 @@
     var urls = "{{ route('razorpay.payment.store') }}";
 
     var options = {
-        "key": "rzp_test_7jzaCCPRSnsuFj", // Enter the Key ID generated from the Dashboard
+
+        "key": "rzp_live_a4Z4SMNTQ4azeb", // Enter the Key ID generated from the Dashboard
+        // "key": "rzp_test_7jzaCCPRSnsuFj", // Enter the Key ID generated from the Dashboard
         "amount": "{{ $razorpayOrder->amount }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "INR",
         "name": "Homesloc",
@@ -396,9 +398,9 @@
             // alert(response.razorpay_signature)
         },
         "prefill": {
-            "name": "Gaurav Kumar",
-            "email": "gaurav.kumar@example.com",
-            "contact": "9000090000"
+            "name": name,
+            "email": email,
+            "contact": mobile
         },
         "theme": {
             "color": "#3399cc"
